@@ -28,6 +28,7 @@ in
       pkgs.keepassxc
       pkgs.dropbox
       pkgs.blueman
+      pkgs.ranger
     ];
 
     xsession.windowManager.i3 = {
