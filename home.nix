@@ -8,6 +8,7 @@ in
     home.packages = [
       pkgs.htop
       pkgs.git
+      pkgs.gnupg
     ];
 
     xsession.windowManager.i3 = {
@@ -68,5 +69,10 @@ in
     programs.home-manager = {
       enable = true;
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+    };
+
+    services.gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 1800;
     };
 }
