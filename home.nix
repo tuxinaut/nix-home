@@ -8,6 +8,7 @@ in
     home.packages = [
       pkgs.htop
       pkgs.git
+      pkgs.terminator
       pkgs.gnupg
     ];
 
