@@ -24,6 +24,7 @@ in
       pkgs.gimp
       pkgs.yubikey-personalization-gui
       pkgs.yubioath-desktop
+      pkgs.lm_sensors
     ];
 
     xsession.windowManager.i3 = {
