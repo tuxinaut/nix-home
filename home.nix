@@ -158,6 +158,10 @@ in
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
     };
 
+    services.network-manager-applet = {
+      enable = true;
+    };
+
     services.blueman-applet = {
       enable = true;
     };
