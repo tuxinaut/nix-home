@@ -13,6 +13,7 @@ in
       pkgs.thunderbird
       pkgs.gnupg
       pkgs.parcellite
+      pkgs.redshift
     ];
 
     xsession.windowManager.i3 = {
@@ -145,6 +146,13 @@ in
 
     services.parcellite = {
       enable = true;
+    };
+
+    services.redshift = {
+      enable = true;
+      tray = true;
+      latitude = "53.551086";
+      longitude = "9.993682";
     };
 
     services.gpg-agent = {
