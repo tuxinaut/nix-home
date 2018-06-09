@@ -9,6 +9,8 @@ in
       pkgs.htop
       pkgs.git
       pkgs.terminator
+      pkgs.firefox
+      pkgs.thunderbird
       pkgs.gnupg
     ];
 
