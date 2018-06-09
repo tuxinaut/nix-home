@@ -66,6 +66,22 @@ in
       };
     };
 
+    programs.git = {
+      enable = true;
+      userName = "Denny Schäfer";
+      userEmail = "denny.schaefer@tuxinaut.de";
+      signing = {
+        key = "23DB861B";
+        signByDefault = true;
+        gpgPath = "gpg2";
+      };
+      extraConfig = {
+        color.ui = "auto";
+        merge.tool = "meld";
+        core.editor = "vim";
+      };
+    };
+
     programs.home-manager = {
       enable = true;
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
