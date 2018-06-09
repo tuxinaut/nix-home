@@ -24,9 +24,9 @@ in
             "${modifier}+1" = "workspace 1:Web";
             "${modifier}+2" = "workspace 2:Email";
             "${modifier}+3" = "workspace 3:Terminal";
-            "${modifier}+Shift+exclam" = "move workspace 1:Web";
-            "${modifier}+Shift+qoutedbl" = "move workspace 2:Email";
-            "${modifier}+Shift+section" = "move workspace 3:Terminal";
+            "${modifier}+Shift+1" = "move container to workspace 1:Web";
+            "${modifier}+Shift+2" = "move container to workspace 2:Email";
+            "${modifier}+Shift+3" = "move container to workspace 3:Terminal";
             "${modifier}+Shift+Left" = "move left ${move}";
             "${modifier}+Shift+Down" = "move down ${move}";
             "${modifier}+Shift+Up" = "move up ${move}";
@@ -37,6 +37,10 @@ in
             "${modifier}+plus" = "scratchpad show";
             "${modifier}+x" = "move workspace to output right";
             "${modifier}+y" = "move workspace to output up";
+            "Control+${modifier}+a" = "workspace prev";
+            "Control+${modifier}+s" = "workspace next";
+            "Control+${modifier}+q" = "workspace back_and_forth";
+            "${modifier}+Tab" = "exec rofi -show combi run -threads 0";
           };
         modes = {
           resize = {
