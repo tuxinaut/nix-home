@@ -29,6 +29,7 @@ in
       pkgs.dropbox
       pkgs.blueman
       pkgs.ranger
+      pkgs.powerline-fonts
     ];
 
     xsession.windowManager.i3 = {
