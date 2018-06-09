@@ -27,6 +27,7 @@ in
       pkgs.lm_sensors
       pkgs.keepassxc
       pkgs.dropbox
+      pkgs.blueman
     ];
 
     xsession.windowManager.i3 = {
@@ -155,6 +156,10 @@ in
     programs.home-manager = {
       enable = true;
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+    };
+
+    services.blueman-applet = {
+      enable = true;
     };
 
     services.parcellite = {
