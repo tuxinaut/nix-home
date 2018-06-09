@@ -22,6 +22,8 @@ in
       pkgs.meld
       pkgs.hstr
       pkgs.gimp
+      pkgs.yubikey-personalization-gui
+      pkgs.yubioath-desktop
     ];
 
     xsession.windowManager.i3 = {
