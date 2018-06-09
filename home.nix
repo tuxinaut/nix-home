@@ -17,6 +17,7 @@ in
       pkgs.vlc
       pkgs.youtubeDL
       pkgs.hugo
+      pkgs.borgbackup
     ];
 
     xsession.windowManager.i3 = {
