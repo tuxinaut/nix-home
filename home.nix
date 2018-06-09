@@ -19,6 +19,7 @@ in
       pkgs.hugo
       pkgs.borgbackup
       pkgs.keybase-gui
+      pkgs.meld
     ];
 
     xsession.windowManager.i3 = {
