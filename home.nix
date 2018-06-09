@@ -15,6 +15,7 @@ in
       pkgs.parcellite
       pkgs.redshift
       pkgs.vlc
+      pkgs.youtubeDL
     ];
 
     xsession.windowManager.i3 = {
