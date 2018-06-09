@@ -25,6 +25,7 @@ in
       pkgs.yubikey-personalization-gui
       pkgs.yubioath-desktop
       pkgs.lm_sensors
+      pkgs.keepassxc
     ];
 
     xsession.windowManager.i3 = {
