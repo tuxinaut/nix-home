@@ -12,6 +12,7 @@ in
       pkgs.firefox
       pkgs.thunderbird
       pkgs.gnupg
+      pkgs.parcellite
     ];
 
     xsession.windowManager.i3 = {
@@ -140,6 +141,10 @@ in
     programs.home-manager = {
       enable = true;
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+    };
+
+    services.parcellite = {
+      enable = true;
     };
 
     services.gpg-agent = {
