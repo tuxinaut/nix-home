@@ -18,6 +18,7 @@ in
       pkgs.youtubeDL
       pkgs.hugo
       pkgs.borgbackup
+      pkgs.keybase-gui
     ];
 
     xsession.windowManager.i3 = {
