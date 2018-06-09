@@ -21,6 +21,7 @@ in
       pkgs.keybase-gui
       pkgs.meld
       pkgs.hstr
+      pkgs.gimp
     ];
 
     xsession.windowManager.i3 = {
