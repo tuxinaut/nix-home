@@ -26,6 +26,7 @@ in
       pkgs.yubioath-desktop
       pkgs.lm_sensors
       pkgs.keepassxc
+      pkgs.dropbox
     ];
 
     xsession.windowManager.i3 = {
