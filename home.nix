@@ -85,6 +85,54 @@ in
       };
     };
 
+    programs.rofi = {
+      enable = true;
+      padding = 1;
+      lines = 10;
+      borderWidth = 1;
+      location = "bottom";
+      width = 100;
+      xoffset = 0;
+      yoffset = 0;
+      colors = {
+        window = {
+          background = "#2f1e2e";
+          border = "argb:36ef6155";
+          separator = "argb:2fef6155";
+        };
+        rows = {
+          normal = {
+            background = "argb:a02f1e2e";
+            foreground = "#b4b4b4";
+            backgroundAlt = "argb:a02f1e2e";
+            highlight = {
+              background = "argb:54815ba4";
+              foreground = "#ffffff";
+            };
+          };
+          urgent = {
+            background = "argb:272f1e2e";
+            foreground = "#ef6155";
+            backgroundAlt = "argb:2f2f1e2e";
+            highlight = {
+              background = "argb:54815ba4";
+              foreground = "#ef6155";
+            };
+          };
+          active = {
+            background = "argb:272f1e2e";
+            foreground = "#815ba4";
+            backgroundAlt = "argb:2f2f1e2e";
+            highlight = {
+              background = "argb:54815ba4";
+              foreground = "#815ba4";
+            };
+          };
+        };
+      };
+      separator = "dash";
+    };
+
     programs.home-manager = {
       enable = true;
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
