@@ -16,6 +16,7 @@ in
       pkgs.redshift
       pkgs.vlc
       pkgs.youtubeDL
+      pkgs.hugo
     ];
 
     xsession.windowManager.i3 = {
