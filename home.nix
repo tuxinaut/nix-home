@@ -14,6 +14,7 @@ in
       pkgs.gnupg
       pkgs.parcellite
       pkgs.redshift
+      pkgs.vlc
     ];
 
     xsession.windowManager.i3 = {
