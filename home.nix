@@ -30,6 +30,8 @@ in
       pkgs.blueman
       pkgs.ranger
       pkgs.powerline-fonts
+      pkgs.wget
+      pkgs.usbutils
     ];
 
     xsession.windowManager.i3 = {
