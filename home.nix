@@ -304,14 +304,14 @@ set conceallevel=0 " 0 = Text is shown normally
           };
         modes = {
           resize = {
-            j = "resize shrink left width 10 px or 10 ppt";      
-            "Shift+J" = "resize grow left width 10 px or 10 ppt";      
-            k = "resize shrink down 10 px or 10 ppt";      
-            "Shift+K" = "resize grow down 10 px or 10 ppt";      
-            l = "resize shrink up 10 px or 10 ppt";      
-            "Shift+L" = "resize grow up 10 px or 10 ppt";      
-            odiaeresis = "resize shrink right 10 px or 10 ppt";      
-            "Shift+Odiaeresis" = "resize grow right 10 px or 10 ppt";      
+            j = "resize shrink left width 10 px or 10 ppt";
+            "Shift+J" = "resize grow left width 10 px or 10 ppt";
+            k = "resize shrink down 10 px or 10 ppt";
+            "Shift+K" = "resize grow down 10 px or 10 ppt";
+            l = "resize shrink up 10 px or 10 ppt";
+            "Shift+L" = "resize grow up 10 px or 10 ppt";
+            odiaeresis = "resize shrink right 10 px or 10 ppt";
+            "Shift+Odiaeresis" = "resize grow right 10 px or 10 ppt";
             Left = "resize shrink left 10 px or 10 ppt";
             "Shift+Left" = "resize grow left 10 px or 10 ppt";
             Down = "resize shrink down 10 px or 10 ppt";
