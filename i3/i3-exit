@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+lock() {
+# i3lock -i /home/denny-schaefer/Pictures/31c3-background-visual.png
+  i3lock
+}
+
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        kill $(pgrep xautolock); xset dpms 600 && lock && systemctl suspend
+        ;;
+    hibernate)
+        lock && systemctl hibernate
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    present)
+        PID=$(pgrep xautolock)
+
+        # Make display black or not
+        if [ -z $PID ]; then
+          /home/denny-schaefer/bin/my_xautolock
+          xset dpms 600
+        else
+          kill $PID
+          xset -dpms
+        fi
+
+        ;;
+    shutdown)
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|present|shutdown}"
+        exit 2
+        ;;
+esac
+
+exit 0
