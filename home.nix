@@ -259,10 +259,26 @@ set conceallevel=0 " 0 = Text is shown normally
 
     xsession.windowManager.i3 = {
       enable = true;
+      extraConfig = ''
+        set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown, (Shift+p) Presenter Modus
+        mode "$mode_system" {
+          bindsym l exec --no-startup-id ~/.config/i3/i3-exit lock, mode "default"
+          bindsym e exec --no-startup-id ~/.config/i3/i3-exit logout, mode "default"
+          bindsym s exec --no-startup-id ~/.config/i3/i3-exit suspend, mode "default"
+          bindsym h exec --no-startup-id ~/.config/i3/i3-exit hibernate, mode "default"
+          bindsym r exec --no-startup-id ~/.config/i3/i3-exit reboot, mode "default"
+          bindsym Shift+s exec --no-startup-id ~/.config/i3/i3-exit shutdown, mode "default"
+          bindsym Shift+p exec --no-startup-id ~/.config/i3/i3-exit present, mode "default"
+
+          # back to normal: Enter or Escape
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+        }
+      '';
       config = {
         modifier = "${modifier}";
         focus.forceWrapping = true;
-        keybindings = 
+        keybindings =
           lib.mkOptionDefault {
             "${modifier}+1" = "workspace 1:Web";
             "${modifier}+2" = "workspace 2:Email";
@@ -284,6 +300,7 @@ set conceallevel=0 " 0 = Text is shown normally
             "Control+${modifier}+s" = "workspace next";
             "Control+${modifier}+q" = "workspace back_and_forth";
             "${modifier}+Tab" = "exec rofi -show combi run -threads 0";
+            "${modifier}+Shift+e" = "mode \"\$mode_system\"";
           };
         modes = {
           resize = {
@@ -453,6 +470,7 @@ set conceallevel=0 " 0 = Text is shown normally
 
     home.file = {
       ".gitignore".source = ./gitignore;
+      ".config/i3/i3-exit".source = ./i3/i3-exit;
     };
 
     programs.home-manager = {
