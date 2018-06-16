@@ -107,6 +107,7 @@ in
         color.ui = "auto";
         merge.tool = "meld";
         core.editor = "vim";
+        core.excludesfile = "~/.gitignore";
       };
     };
 
@@ -226,6 +227,10 @@ in
           };
         };
       };
+    };
+
+    home.file = {
+      ".gitignore".source = ./gitignore;
     };
 
     programs.home-manager = {
