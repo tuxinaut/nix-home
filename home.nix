@@ -33,6 +33,7 @@ in
       pkgs.wget
       pkgs.usbutils
       pkgs.gnome3.gnome-keyring
+      pkgs.gnome3.dconf
     ];
 
   programs.vim = {
