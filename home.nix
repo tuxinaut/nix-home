@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   modifier = "Mod4";
@@ -305,6 +305,9 @@ set conceallevel=0 " 0 = Text is shown normally
             "Control+${modifier}+q" = "workspace back_and_forth";
             "${modifier}+Tab" = "exec rofi -show combi run -threads 0";
             "${modifier}+Shift+e" = "mode \"\$mode_system\"";
+            "XF86AudioRaiseVolume" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 5%+ unmute";
+            "XF86AudioLowerVolume" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 5%- unmute";
+            "XF86AudioMute" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 1+ toggle";
           };
         modes = {
           resize = {
