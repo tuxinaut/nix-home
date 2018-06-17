@@ -485,6 +485,10 @@ set conceallevel=0 " 0 = Text is shown normally
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
     };
 
+    services.dunst = {
+      enable = true;
+    };
+
     services.network-manager-applet = {
       enable = true;
     };
