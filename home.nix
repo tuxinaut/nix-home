@@ -478,6 +478,7 @@ set conceallevel=0 " 0 = Text is shown normally
     home.file = {
       ".gitignore".source = ./gitignore;
       ".config/i3/i3-exit".source = ./i3/i3-exit;
+      ".i3status.conf".source = ./i3/i3status.conf;
     };
 
     programs.home-manager = {
