@@ -35,6 +35,8 @@ in
       pkgs.gnome3.gnome-keyring
       pkgs.gnome3.dconf
       pkgs.pavucontrol
+      pkgs.lsof
+      pkgs.xorg.xev
     ];
 
   programs.vim = {
