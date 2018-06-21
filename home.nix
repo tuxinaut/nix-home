@@ -348,6 +348,10 @@ set conceallevel=0 " 0 = Text is shown normally
             notification = false;
           }
           {
+            command = "blueman-applet";
+            notification = false;
+          }
+          {
             command = "xset dpms 600";
             notification = false;
           }
