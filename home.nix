@@ -41,6 +41,7 @@ in
       pkgs.xorg.xev
       pkgs.xorg.xbacklight
       pkgs.feh
+      pkgs.libnotify
     ];
 
   programs.vim = {
