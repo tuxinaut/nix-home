@@ -37,6 +37,7 @@ in
       pkgs.pavucontrol
       pkgs.lsof
       pkgs.xorg.xev
+      pkgs.xorg.xbacklight
     ];
 
   programs.vim = {
@@ -308,6 +309,8 @@ set conceallevel=0 " 0 = Text is shown normally
             "XF86AudioRaiseVolume" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 5%+ unmute";
             "XF86AudioLowerVolume" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 5%- unmute";
             "XF86AudioMute" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 1+ toggle";
+            "XF86MonBrightnessUp" = "exec xbacklight -inc 10";
+            "XF86MonBrightnessDown" = "exec xbacklight -dec 10";
           };
         modes = {
           resize = {
