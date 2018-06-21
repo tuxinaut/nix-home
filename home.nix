@@ -43,6 +43,7 @@ in
       pkgs.feh
       pkgs.libnotify
       pkgs.bluez
+      pkgs.bash-completion
     ];
 
   programs.vim = {
