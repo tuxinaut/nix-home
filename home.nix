@@ -5,6 +5,8 @@ let
   move = "50px";
 in
 {
+  home.keyboard.layout = "de";
+
     home.packages = [
       pkgs.htop
       pkgs.git
@@ -262,6 +264,8 @@ set conceallevel=0 " 0 = Text is shown normally
     '';
   };
 
+    xsession.enable = true;
+
     xsession.windowManager.i3 = {
       enable = true;
       extraConfig = ''
@@ -487,6 +491,12 @@ set conceallevel=0 " 0 = Text is shown normally
     programs.home-manager = {
       enable = true;
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+    };
+
+    services.screen-locker = {
+      enable = true;
+      inactiveInterval = 1;
+      lockCmd = "/home/tuxinaut/.config/i3/i3-exit lock";
     };
 
     services.dunst = {
