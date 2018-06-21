@@ -355,6 +355,18 @@ set conceallevel=0 " 0 = Text is shown normally
             command = "xset dpms 600";
             notification = false;
           }
+          {
+            command = "gtk-redshift";
+          }
+          {
+            command = "parcellite";
+          }
+          {
+            command = "dropbox start";
+          }
+#          {
+#            command = "nm-applet";
+#          }
         ];
         bars = [
           {
