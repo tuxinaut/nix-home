@@ -42,6 +42,7 @@ in
       pkgs.xorg.xbacklight
       pkgs.feh
       pkgs.libnotify
+      pkgs.bluez
     ];
 
   programs.vim = {
