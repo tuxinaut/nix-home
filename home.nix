@@ -347,6 +347,10 @@ set conceallevel=0 " 0 = Text is shown normally
             command = "feh --bg-scale '/home/tuxinaut/pictures/wallpaper.png'";
             notification = false;
           }
+          {
+            command = "xset dpms 600";
+            notification = false;
+          }
         ];
         bars = [
           {
