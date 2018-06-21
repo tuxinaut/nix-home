@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 lock() {
-# i3lock -i /home/denny-schaefer/Pictures/31c3-background-visual.png
-  i3lock
+  i3lock -t -i /home/tuxinaut/.config/nixpkgs/wallpaper.png
 }
-
 
 case "$1" in
     lock)
