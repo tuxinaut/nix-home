@@ -500,6 +500,7 @@ set conceallevel=0 " 0 = Text is shown normally
       ".gitignore".source = ./gitignore;
       ".config/i3/i3-exit".source = ./i3/i3-exit;
       ".i3status.conf".source = ./i3/i3status.conf;
+      ".bashrc".source = ./bash/bashrc;
       "pictures/wallpaper.png".source = ./wallpaper.png;
     };
 
