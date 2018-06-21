@@ -40,6 +40,7 @@ in
       pkgs.lsof
       pkgs.xorg.xev
       pkgs.xorg.xbacklight
+      pkgs.feh
     ];
 
   programs.vim = {
@@ -338,6 +339,12 @@ set conceallevel=0 " 0 = Text is shown normally
             Escape = "mode \"default\"";
           };
         };
+        startup = [
+          {
+            command = "feh --bg-scale '/home/tuxinaut/pictures/wallpaper.png'";
+            notification = false;
+          }
+        ];
         bars = [
           {
             id = "bar-0";
@@ -486,6 +493,7 @@ set conceallevel=0 " 0 = Text is shown normally
       ".gitignore".source = ./gitignore;
       ".config/i3/i3-exit".source = ./i3/i3-exit;
       ".i3status.conf".source = ./i3/i3status.conf;
+      "pictures/wallpaper.png".source = ./wallpaper.png;
     };
 
     programs.home-manager = {
