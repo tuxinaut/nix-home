@@ -44,6 +44,7 @@ in
       pkgs.libnotify
       pkgs.bluez
       pkgs.bash-completion
+      pkgs.unzip
     ];
 
   programs.vim = {
