@@ -567,7 +567,7 @@ set conceallevel=0 " 0 = Text is shown normally
 
     services.screen-locker = {
       enable = true;
-      inactiveInterval = 1;
+      inactiveInterval = 5;
       lockCmd = "/home/tuxinaut/.config/i3/i3-exit lock";
     };
 
