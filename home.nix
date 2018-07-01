@@ -46,6 +46,7 @@ in
       pkgs.bash-completion
       pkgs.unzip
       pkgs.calibre
+      pkgs.nix-index
     ];
 
   programs.vim = {
