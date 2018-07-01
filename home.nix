@@ -47,6 +47,7 @@ in
       pkgs.unzip
       pkgs.calibre
       pkgs.nix-index
+      pkgs.atool
     ];
 
   programs.vim = {
