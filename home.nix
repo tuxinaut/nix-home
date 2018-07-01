@@ -378,6 +378,22 @@ set conceallevel=0 " 0 = Text is shown normally
             notification = false;
           }
           {
+            command = "i3-msg 'workspace 1:Web; exec firefox'";
+            notification = false;
+          }
+          {
+            command = "i3-msg 'workspace 1:Web; exec keepassxc'";
+            notification = false;
+          }
+          {
+            command = "i3-msg 'workspace 2:Email; exec thunderbird'";
+            notification = false;
+          }
+          {
+            command = "i3-msg 'workspace 3:Terminal; exec terminator'";
+            notification = false;
+          }
+          {
             command = "gtk-redshift";
           }
           {
