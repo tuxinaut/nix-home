@@ -607,5 +607,6 @@ set conceallevel=0 " 0 = Text is shown normally
     services.gpg-agent = {
       enable = true;
       defaultCacheTtl = 1800;
+      enableSshSupport = true;
     };
 }
