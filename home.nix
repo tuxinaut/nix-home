@@ -406,6 +406,16 @@ set conceallevel=0 " 0 = Text is shown normally
 #            command = "nm-applet";
 #          }
         ];
+        window.commands = [
+          {
+            command = "floating disable";
+            criteria = { class = "Thunderbird"; };
+          }
+          {
+            command = "move to workspace \"2:EMail\"";
+            criteria = { class = "Thunderbird"; };
+          }
+        ];
         bars = [
           {
             id = "bar-0";
