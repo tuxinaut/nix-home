@@ -497,7 +497,7 @@ set conceallevel=0 " 0 = Text is shown normally
               mode = "2560x1440";
               position = "0x0";
               rate = "59.95";
-              #rotate = "left";
+              rotate = "left";
             };
             eDP1 = {
               enable = true;
