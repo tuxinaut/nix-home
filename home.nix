@@ -45,6 +45,7 @@ in
       pkgs.bluez
       pkgs.bash-completion
       pkgs.unzip
+      pkgs.calibre
     ];
 
   programs.vim = {
