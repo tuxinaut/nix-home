@@ -48,7 +48,25 @@ in
       pkgs.calibre
       pkgs.nix-index
       pkgs.atool
+      pkgs.hicolor-icon-theme
     ];
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Darker";
+    };
+    iconTheme = {
+#      package = pkgs.moka-icon-theme;
+      name = "Adwaita";
+    };
+  };
+
+  qt = {
+    enable = true;
+    useGtkTheme = true;
+  };
 
   programs.vim = {
     enable = true;
