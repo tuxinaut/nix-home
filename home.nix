@@ -545,7 +545,7 @@ set conceallevel=0 " 0 = Text is shown normally
             DP1 = {
               enable = true;
               mode = "2560x1440";
-              position = "0x1440";
+              position = "1920x0";
               rate = "59.95";
             };
             eDP1 = {
