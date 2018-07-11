@@ -49,6 +49,7 @@ in
       pkgs.nix-index
       pkgs.atool
       pkgs.hicolor-icon-theme
+      pkgs.zathura
     ];
 
   gtk = {
