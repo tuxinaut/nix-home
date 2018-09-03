@@ -2,6 +2,8 @@
 [[ $PS1 && -f ~/.nix-profile/share/bash-completion/bash_completion ]] && \
     . ~/.nix-profile/share/bash-completion/bash_completion
 
+source scm_breeze
+
 # add this configuration to ~/.bashrc
 export HH_CONFIG=hicolor         # get more colors
 shopt -s histappend              # append new history items to .bash_history
