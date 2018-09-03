@@ -80,6 +80,8 @@
       noCheck = true;
       options = [
         "user"
+        "uid=1000"
+        "gid=1000"
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
@@ -91,6 +93,8 @@
       noCheck = true;
       options = [
         "user"
+        "uid=1000"
+        "gid=1000"
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
@@ -102,6 +106,8 @@
       noCheck = true;
       options = [
         "user"
+        "uid=1000"
+        "gid=1000"
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
@@ -113,6 +119,8 @@
       noCheck = true;
       options = [
         "user"
+        "uid=1000"
+        "gid=1000"
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
@@ -124,6 +132,8 @@
       noCheck = true;
       options = [
         "user"
+        "uid=1000"
+        "gid=1000"
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
@@ -135,6 +145,8 @@
       noCheck = true;
       options = [
         "user"
+        "uid=1000"
+        "gid=1000"
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
