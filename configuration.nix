@@ -61,6 +61,75 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  fileSystems = {
+    "/storage/Daten" = {
+      device = "//nas.tuxinaut.de/Daten";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+      ];
+    };
+    "/storage/Music" = {
+      device = "//nas.tuxinaut.de/Music";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+      ];
+    };
+    "/storage/Photo" = {
+      device = "//nas.tuxinaut.de/Photo";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+      ];
+    };
+    "/storage/Robocopy" = {
+      device = "//nas.tuxinaut.de/Robocopy";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+      ];
+    };
+    "/storage/Sicherungen" = {
+      device = "//nas.tuxinaut.de/Sicherungen";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+      ];
+    };
+    "/storage/Video" = {
+      device = "//nas.tuxinaut.de/Video";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+      ];
+    };
+  };
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
