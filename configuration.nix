@@ -49,6 +49,10 @@
     vim
   ];
 
+  services.udev.packages = with pkgs; [
+    yubikey-personalization
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.bash.enableCompletion = true;
@@ -56,6 +60,9 @@
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
+  
+  # Needed for Yubikey
+  services.pcscd.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
