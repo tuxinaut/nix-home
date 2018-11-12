@@ -23,7 +23,7 @@
     enable = true;
     forwardAgent = true;
     controlMaster = "yes";
-    controlPath = "~/.ssh/master-%r@%h:%p";
+    controlPath = "/tmp/control_%l_%h_%p_%r";
     extraConfig = "User denny.schaefer";
   };
 
