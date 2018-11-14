@@ -15,6 +15,7 @@
     pkgs.vimHugeX
     pkgs.parcellite
     pkgs.gimp
+    pkgs.terraform
   ];
 
 
