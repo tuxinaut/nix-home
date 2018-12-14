@@ -16,6 +16,7 @@
     pkgs.parcellite
     pkgs.gimp
     pkgs.terraform
+    pkgs.kubectl
   ];
 
 
