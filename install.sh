@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# TODO
+# Hardware config will be define and imported
+# in configuration.nix!
+
 HOST="$(hostname)"
 system=$(uname -s)
 
@@ -20,7 +24,11 @@ fi
 
 if [[ ! -e ./hosts/$HOST-hardware-configuration.nix ]]; then
   cp -v -- $SOURCE_PATH/hardware-configuration.nix ./hosts/$HOST-hardware-configuration.nix
+  # TODO
+  # SED for setting the right hardware path
+  # Or do it in the right way via nix dsl
 fi
 
 ln -s ./hosts/$HOST.nix configuration.nix
-ln -s ./hosts/$HOST-hardware-configuration.nix hardware-configuration.nix
+
+exit 0
