@@ -59,6 +59,8 @@
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
+  programs.qt5ct.enable = true;
+
   # List services that you want to enable:
   
   # Needed for Yubikey
