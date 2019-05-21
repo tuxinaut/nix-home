@@ -58,6 +58,7 @@ in
       pkgs.gnumake
       pkgs.yubikey-neo-manager
       pkgs.file
+      pkgs.scrot
     ];
 
   gtk = {
