@@ -61,6 +61,7 @@ in
       pkgs.scrot
       pkgs.awscli
       pkgs.imagemagick
+      pkgs.inkscape
     ];
 
   gtk = {
