@@ -72,6 +72,7 @@ in
       pkgs.xclip
       pkgs.easytag
       pkgs.bind
+      pkgs.torbrowser
     ];
 
   gtk = {
