@@ -93,6 +93,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
+        "x-systemd.device-timeout=2s"
+        "x-systemd.mount-timeout=2s"
       ];
     };
     "/storage/Music" = {
@@ -106,6 +108,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
+        "x-systemd.device-timeout=2s"
+        "x-systemd.mount-timeout=2s"
       ];
     };
     "/storage/Photo" = {
@@ -119,6 +123,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
+        "x-systemd.device-timeout=2s"
+        "x-systemd.mount-timeout=2s"
       ];
     };
     "/storage/Robocopy" = {
@@ -132,6 +138,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
+        "x-systemd.device-timeout=2s"
+        "x-systemd.mount-timeout=2s"
       ];
     };
     "/storage/Sicherungen" = {
@@ -145,6 +153,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
+        "x-systemd.device-timeout=2s"
+        "x-systemd.mount-timeout=2s"
       ];
     };
     "/storage/Video" = {
@@ -158,6 +168,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
+        "x-systemd.device-timeout=2s"
+        "x-systemd.mount-timeout=2s"
       ];
     };
   };
