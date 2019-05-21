@@ -62,6 +62,7 @@ in
       pkgs.awscli
       pkgs.imagemagick
       pkgs.inkscape
+      pkgs.ruby
     ];
 
   gtk = {
