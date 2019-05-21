@@ -53,6 +53,7 @@ in
       pkgs.hicolor-icon-theme
       pkgs.gnome3.gnome_themes_standard
       pkgs.gnome3.defaultIconTheme
+      pkgs.go-mtpfs
       pkgs.zathura
     ];
 
