@@ -75,6 +75,8 @@ in
       pkgs.torbrowser
       pkgs.libreoffice-fresh
       pkgs.slack
+      pkgs.colord
+      pkgs.colord-gtk
     ];
 
   gtk = {
