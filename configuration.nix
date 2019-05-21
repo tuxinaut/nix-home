@@ -49,6 +49,8 @@
     vim
     htop
     linuxPackages.exfat-nofuse
+    fwupd
+    fwupdate
   ];
 
   services.udev.packages = with pkgs; [
@@ -64,9 +66,11 @@
   programs.qt5ct.enable = true;
 
   # List services that you want to enable:
-  
+
   # Needed for Yubikey
   services.pcscd.enable = true;
+
+  services.fwupd.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
