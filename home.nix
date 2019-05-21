@@ -77,6 +77,7 @@ in
       pkgs.slack
       pkgs.colord
       pkgs.colord-gtk
+      pkgs.killall
     ];
 
   gtk = {
