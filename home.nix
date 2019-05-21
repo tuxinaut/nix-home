@@ -56,6 +56,7 @@ in
       pkgs.go-mtpfs
       pkgs.zathura
       pkgs.gnumake
+      pkgs.yubikey-neo-manager
     ];
 
   gtk = {
