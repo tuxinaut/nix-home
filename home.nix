@@ -63,6 +63,11 @@ in
       pkgs.imagemagick
       pkgs.inkscape
       pkgs.ruby
+      pkgs.ffmpeg
+      pkgs.kdenlive
+      pkgs.breeze-qt5
+      pkgs.breeze-gtk
+      pkgs.breeze-icons
     ];
 
   gtk = {
