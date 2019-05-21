@@ -59,6 +59,7 @@ in
       pkgs.yubikey-neo-manager
       pkgs.file
       pkgs.scrot
+      pkgs.awscli
     ];
 
   gtk = {
