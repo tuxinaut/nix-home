@@ -74,6 +74,7 @@ in
       pkgs.bind
       pkgs.torbrowser
       pkgs.libreoffice-fresh
+      pkgs.slack
     ];
 
   gtk = {
