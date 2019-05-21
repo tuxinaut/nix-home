@@ -100,6 +100,7 @@ in
   programs.vim = {
     enable = true;
     plugins = [
+      "iceberg-vim"
       "Tabular"
       "vim-indent-guides"
       "syntastic"
@@ -182,7 +183,7 @@ set undodir=$HOME/.vim/undo
 "----------------------------------------------------------------------
 " colorschemes
 "----------------------------------------------------------------------
-colorscheme molokai
+colorscheme iceberg
 
 augroup vimrc
 augroup END
@@ -310,7 +311,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = "wombat"
+"let g:airline_theme = "wombat"
 let g:airline#extensions#tabline#enabled = 1
 
 " Tagbar
