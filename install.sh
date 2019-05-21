@@ -31,4 +31,6 @@ fi
 
 ln -s ./hosts/$HOST.nix configuration.nix
 
+ln -s "." "${HOME}/.config/nixpkgs"
+
 exit 0
