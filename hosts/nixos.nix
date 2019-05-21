@@ -23,6 +23,8 @@
     }
   ];
 
+  boot.kernelParams = [ "modeset=1" "i915.enable_fbc=1" ];
+
   networking = {
     networkmanager = {
       enable = true;
