@@ -60,6 +60,7 @@ in
       pkgs.file
       pkgs.scrot
       pkgs.awscli
+      pkgs.imagemagick
     ];
 
   gtk = {
