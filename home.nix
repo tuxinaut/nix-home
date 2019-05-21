@@ -73,6 +73,7 @@ in
       pkgs.easytag
       pkgs.bind
       pkgs.torbrowser
+      pkgs.libreoffice-fresh
     ];
 
   gtk = {
