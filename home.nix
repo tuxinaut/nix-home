@@ -68,6 +68,7 @@ in
       pkgs.breeze-qt5
       pkgs.breeze-gtk
       pkgs.breeze-icons
+      pkgs.s-tui
     ];
 
   gtk = {
