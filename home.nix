@@ -71,6 +71,7 @@ in
       pkgs.s-tui
       pkgs.xclip
       pkgs.easytag
+      pkgs.bind
     ];
 
   gtk = {
