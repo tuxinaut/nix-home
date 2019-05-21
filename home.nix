@@ -70,6 +70,7 @@ in
       pkgs.breeze-icons
       pkgs.s-tui
       pkgs.xclip
+      pkgs.easytag
     ];
 
   gtk = {
