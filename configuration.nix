@@ -47,6 +47,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    htop
   ];
 
   services.udev.packages = with pkgs; [
