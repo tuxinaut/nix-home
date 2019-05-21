@@ -48,6 +48,7 @@
   environment.systemPackages = with pkgs; [
     vim
     htop
+    linuxPackages.exfat-nofuse
   ];
 
   services.udev.packages = with pkgs; [
