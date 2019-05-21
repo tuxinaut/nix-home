@@ -69,6 +69,7 @@ in
       pkgs.breeze-gtk
       pkgs.breeze-icons
       pkgs.s-tui
+      pkgs.xclip
     ];
 
   gtk = {
