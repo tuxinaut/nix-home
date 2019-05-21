@@ -194,7 +194,8 @@ if has("autocmd")
   " Clear whitespace at the end of lines automatically
   autocmd BufWritePre * :%s/\s\+$//e
 
-  autocmd bufwritepost .vimrc source $MYVIMRC
+  " Automatic reload .vimrc
+  autocmd bufwritepost .vimrc so $MYVIMRC
 
   filetype on
   autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
