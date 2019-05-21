@@ -20,6 +20,8 @@ in
       pkgs.youtubeDL
       pkgs.hugo
       pkgs.borgbackup
+      pkgs.kbfs
+      pkgs.keybase
       pkgs.keybase-gui
       pkgs.meld
       pkgs.hstr

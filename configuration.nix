@@ -78,6 +78,10 @@
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
+  services.autorandr.enable = true;
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
+
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
