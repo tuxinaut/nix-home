@@ -57,6 +57,7 @@ in
       pkgs.zathura
       pkgs.gnumake
       pkgs.yubikey-neo-manager
+      pkgs.file
     ];
 
   gtk = {
