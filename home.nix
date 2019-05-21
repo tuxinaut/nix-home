@@ -51,6 +51,8 @@ in
       pkgs.nix-index
       pkgs.atool
       pkgs.hicolor-icon-theme
+      pkgs.gnome3.gnome_themes_standard
+      pkgs.gnome3.defaultIconTheme
       pkgs.zathura
     ];
 
