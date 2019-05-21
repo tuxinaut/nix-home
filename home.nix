@@ -55,6 +55,7 @@ in
       pkgs.gnome3.defaultIconTheme
       pkgs.go-mtpfs
       pkgs.zathura
+      pkgs.gnumake
     ];
 
   gtk = {
