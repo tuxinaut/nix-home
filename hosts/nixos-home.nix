@@ -597,13 +597,13 @@ set conceallevel=0 " 0 = Text is shown normally
     };
 
     home.file = {
-      ".gitignore".source = ./gitignore;
-      ".config/i3/i3-exit".source = ./i3/i3-exit;
-      ".i3status.conf".source = ./i3/i3status.conf;
-      ".bashrc".source = ./bash/bashrc;
-      "pictures/wallpaper.png".source = ./wallpaper.png;
-      ".vim/spell/de.utf-8.spl".source = ./vim/spell/de.utf-8.spl;
-      ".vim/spell/de.utf-8.sug".source = ./vim/spell/de.utf-8.sug;
+      ".gitignore".source = ../gitignore;
+      ".config/i3/i3-exit".source = ../i3/i3-exit;
+      ".i3status.conf".source = ../i3/i3status.conf;
+      ".bashrc".source = ../bash/bashrc;
+      "pictures/wallpaper.png".source = ../wallpaper.png;
+      ".vim/spell/de.utf-8.spl".source = ../vim/spell/de.utf-8.spl;
+      ".vim/spell/de.utf-8.sug".source = ../vim/spell/de.utf-8.sug;
     };
 
     programs.home-manager = {
