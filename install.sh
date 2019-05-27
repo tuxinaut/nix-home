@@ -33,6 +33,6 @@ if [[ -e ./hosts/$HOST.nix ]]; then
   ln -s ./hosts/$HOST.nix configuration.nix
 fi
 
-ln -s "." "${HOME}/.config/nixpkgs"
+ln -sf ./hosts/$HOST-home.nix ./home.nix
 
 exit 0
