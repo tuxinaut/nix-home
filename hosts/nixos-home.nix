@@ -123,6 +123,7 @@ in
       "vim-snippets"
       "vim-airline-themes"
       "molokai"
+      "tagbar"
     ];
     settings = {
       ignorecase = true;
