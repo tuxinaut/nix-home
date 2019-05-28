@@ -115,7 +115,6 @@ in
       "editorconfig-vim"
       "vim-better-whitespace"
 #      "Dockerfile.vim"
-#      "vim-vagrant"
 #      "Vim-Jinja2-Syntax"
       "neocomplete"
       "neosnippet"
