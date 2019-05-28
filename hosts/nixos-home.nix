@@ -113,7 +113,7 @@ in
       "vim-multiple-cursors"
       "surround"
       "editorconfig-vim"
-#      "vim-better-whitespace"
+      "vim-better-whitespace"
 #      "Dockerfile.vim"
 #      "vim-vagrant"
 #      "Vim-Jinja2-Syntax"
