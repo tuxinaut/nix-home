@@ -17,6 +17,7 @@
     pkgs.gimp
     pkgs.terraform
     pkgs.kubectl
+    pkgs.ddgr
   ];
 
 
