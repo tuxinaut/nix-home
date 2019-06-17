@@ -18,6 +18,7 @@
     pkgs.terraform
     pkgs.kubectl
     pkgs.ddgr
+    pkgs.keepassxc
   ];
 
 
