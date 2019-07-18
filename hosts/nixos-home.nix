@@ -3,6 +3,12 @@
 let
   modifier = "Mod4";
   move = "50px";
+
+  # See https://nixos.wiki/wiki/Vim
+  my_vim_configurable = pkgs.vim_configurable.override {
+    python = pkgs.python37Full;
+  };
+
 in
 {
   home.keyboard.layout = "de";
@@ -78,6 +84,14 @@ in
       pkgs.colord
       pkgs.colord-gtk
       pkgs.killall
+      (
+        my_vim_configurable.customize {
+          name = "vim";
+
+          vimrcConfig.customRC = ''
+            ${ (builtins.readFile ../vim/vimrc) }
+          '';
+      })
     ];
 
   gtk = {
@@ -97,40 +111,6 @@ in
     useGtkTheme = true;
   };
 
-  programs.vim = {
-    enable = true;
-    plugins = [
-      "iceberg-vim"
-      "Tabular"
-      "vim-indent-guides"
-      "syntastic"
-      "fugitive"
-      "nerdtree"
-      "ctrlp"
-#      "vim-gnupg"
-      "vim-airline"
-#      "SudoEdit.vim"
-      "vim-multiple-cursors"
-      "surround"
-      "editorconfig-vim"
-      "vim-better-whitespace"
-#      "Dockerfile.vim"
-#      "Vim-Jinja2-Syntax"
-      "neocomplete"
-      "neosnippet"
-      "neosnippet-snippets"
-      "vim-snippets"
-      "vim-airline-themes"
-      "molokai"
-      "tagbar"
-    ];
-    settings = {
-      ignorecase = true;
-    };
-    extraConfig = ''
-      ${ (builtins.readFile ../vim/vimrc) }
-    '';
-  };
 
     xsession.enable = true;
 
