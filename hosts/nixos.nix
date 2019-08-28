@@ -196,6 +196,12 @@
     Enable=Source,Sink,Media,Socket
   ";
 
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  # needed to support 32Bit games
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "de";

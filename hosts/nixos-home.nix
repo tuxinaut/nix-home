@@ -127,6 +127,7 @@ in
       pkgs.colord
       pkgs.colord-gtk
       pkgs.killall
+      pkgs.steam-run-native
       (
         my_vim_configurable.customize {
           name = "vim";
