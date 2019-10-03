@@ -90,7 +90,6 @@ in
       pkgs.pavucontrol
       pkgs.lsof
       pkgs.xorg.xev
-      pkgs.xorg.xbacklight
       pkgs.feh
       pkgs.libnotify
       pkgs.bluez
@@ -139,6 +138,7 @@ in
             ${ (builtins.readFile ../vim/vimrc) }
           '';
       })
+      pkgs.acpilight
     ];
 
   gtk = {
