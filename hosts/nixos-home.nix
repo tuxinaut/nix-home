@@ -52,11 +52,13 @@ let
     tagbar
     vim-quick-scope
   ];
+
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
 in
 {
   home.keyboard.layout = "de";
 
-    home.packages = [
+  home.packages = [
       pkgs.htop
       pkgs.git
       pkgs.terminator
@@ -122,7 +124,7 @@ in
       pkgs.bind
       pkgs.torbrowser
       pkgs.libreoffice-fresh
-      pkgs.slack
+      unstable.slack
       pkgs.colord
       pkgs.colord-gtk
       pkgs.killall
