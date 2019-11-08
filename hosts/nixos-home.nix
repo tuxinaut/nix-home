@@ -433,12 +433,64 @@ in
 
     home.file = {
       ".gitignore".source = ../gitignore;
-      ".config/i3/i3-exit".source = ../i3/i3-exit;
       ".i3status.conf".source = ../i3/i3status.conf;
       ".bashrc".source = ../bash/bashrc;
       "pictures/wallpaper.png".source = ../wallpaper.png;
       ".vim/spell/de.utf-8.spl".source = ../vim/spell/de.utf-8.spl;
       ".vim/spell/de.utf-8.sug".source = ../vim/spell/de.utf-8.sug;
+      # Workaround
+      # Needed because xss-lock is not in the default path
+      ".config/i3/i3-exit" = {
+        executable = true;
+        text = ''
+#!/usr/bin/env bash
+
+lock() {
+  i3lock -t -i /home/tuxinaut/.config/nixpkgs/wallpaper.png
+}
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        kill $(pgrep xss-lock); xset dpms 600 && lock && systemctl suspend
+        ;;
+    hibernate)
+        lock && systemctl hibernate
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    present)
+        PID=$(pgrep xss-lock)
+
+        # Make display black or not
+        if [ -z $PID ]; then
+          ${pkgs.xss-lock}/bin/xss-lock -- /home/tuxinaut/.config/i3/i3-exit lock &
+          # PID file is needed for i3status
+          pgrep xss-lock > /tmp/xss.pid
+          xset dpms 600
+        else
+          kill $PID
+          xset -dpms
+        fi
+
+        ;;
+    shutdown)
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|present|shutdown}"
+        exit 2
+        ;;
+esac
+
+exit 0
+'';};
     };
 
     programs.home-manager = {
