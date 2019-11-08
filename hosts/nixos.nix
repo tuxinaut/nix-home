@@ -223,9 +223,11 @@
   # services.xserver.desktopManager.plasma5.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+    programs.adb.enable = true;
+
   users.extraUsers.tuxinaut = {
     createHome = true;
-    extraGroups = ["wheel" "video" "audio" "disk" "networkmanager"];
+    extraGroups = ["adbusers" "wheel" "video" "audio" "disk" "networkmanager"];
     group = "users";
     home = "/home/tuxinaut";
     isNormalUser = true;
