@@ -181,6 +181,9 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # Update the CPU microcode for Intel processors.
+  hardware.cpu.intel.updateMicrocode = true;
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio = {
