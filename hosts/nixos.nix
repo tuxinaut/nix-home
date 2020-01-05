@@ -24,6 +24,7 @@
   ];
 
   boot.kernelParams = [ "modeset=1" "i915.enable_fbc=1" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking = {
     networkmanager = {
