@@ -141,6 +141,7 @@ in
           '';
       })
       pkgs.acpilight
+      pkgs.teamviewer
     ];
 
   gtk = {

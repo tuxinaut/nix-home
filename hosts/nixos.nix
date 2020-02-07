@@ -221,6 +221,7 @@
   services.autorandr.enable = true;
   services.keybase.enable = true;
   services.kbfs.enable = true;
+  services.teamviewer.enable = true;
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
