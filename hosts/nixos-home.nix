@@ -393,13 +393,13 @@ in
             DP-1-2 = {
               enable = true;
               mode = "2560x1440";
-              position = "1920x0";
+              position = "0x0";
               rate = "59.95";
             };
             eDP-1 = {
               enable = true;
               primary = true;
-              position = "0x0";
+              position = "2560x0";
               mode = "1920x1080";
               rate = "59.93";
             };
@@ -423,7 +423,7 @@ in
             eDP-1 = {
               enable = true;
               primary = true;
-              position = "0x2560";
+              position = "2560x0";
               mode = "1920x1080";
               rate = "59.93";
             };
