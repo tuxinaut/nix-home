@@ -1,0 +1,40 @@
+# https://unix.stackexchange.com/questions/151850/why-doesnt-the-tilde-expand-inside-double-quotes
+
+[[ -f ~/.nix-profile/etc/profile.d/nix.sh ]] && \
+   . ~/.nix-profile/etc/profile.d/nix.sh
+
+[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && \
+    . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+
+# Use bash-completion, if available
+#[[ $PS1 && -f ~/.nix-profile/share/bash-completion/bash_completion ]] && \
+#    . ~/.nix-profile/share/bash-completion/bash_completion
+
+# AWS CLI completion
+[[ -f /etc/profiles/per-user/dschaefer/bin/aws_completer ]] && \
+    complete -C /etc/profiles/per-user/dschaefer/bin/aws_completer aws
+
+#/Users/dschaefer/result/home-path/share/bash-completion/completions
+
+
+#total 0
+#lrwxr-xr-x  1 dschaefer  admin   96 Jan  1  1970 aws -> /nix/store/k7vs3dccsgx8i5mm0av7x59pqqjf2hss-awscli2-2.1.17/share/bash-completion/completions/aws
+#lrwxr-xr-x  1 dschaefer  admin   92 Jan  1  1970 git -> /nix/store/wpqzf98gqcf2a0qr0cgp82l1wpnvny2b-git-2.30.0/share/bash-completion/completions/git
+#lrwxr-xr-x  1 dschaefer  admin  102 Jan  1  1970 git-prompt.sh -> /nix/store/wpqzf98gqcf2a0qr0cgp82l1wpnvny2b-git-2.30.0/share/bash-completion/completions/git-prompt.sh
+#lrwxr-xr-x  1 dschaefer  admin  103 Jan  1  1970 home-manager -> /nix/store/cdm4la26h5vmv75cknxb1zyd044sk3c0-home-manager/share/bash-completion/completions/home-manager
+#lrwxr-xr-x  1 dschaefer  admin   91 Jan  1  1970 hstr -> /nix/store/nk1aq1929cxwb4260xjdzc0j8i8c9b9s-hstr-2.3/share/bash-completion/completions/hstr
+
+# HSTR configuration - add this to ~/.bashrc
+alias hh=hstr                    # hh to be alias for hstr
+export HSTR_CONFIG=hicolor       # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace:ignoredups:ignorespace # leading space hides commands from history, no duplicate lines in the history.
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+HISTTIMEFORMAT="%Y-%m-%d %T " # setting up timestamp for history
+# ensure synchronization between Bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
