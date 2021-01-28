@@ -53,6 +53,7 @@ set undodir=$HOME/.vim/undo
 "----------------------------------------------------------------------
 " colorschemes
 "----------------------------------------------------------------------
+set background=dark
 colorscheme iceberg
 
 augroup vimrc
