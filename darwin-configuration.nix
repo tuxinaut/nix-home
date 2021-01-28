@@ -5,10 +5,6 @@
   # Link documentation explain?¿
   imports = [ <home-manager/nix-darwin> ];
 
-  # Changing the configuration.nix location
-  # https://github.com/LnL7/nix-darwin/wiki/Changing-the-configuration.nix-location
-  environment.darwinConfig = "/etc/nixos/darwin-configuration.nix";
-
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
@@ -22,7 +18,8 @@
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
+  # https://github.com/LnL7/nix-darwin/wiki/Changing-the-configuration.nix-location
+  environment.darwinConfig = "/etc/nixos/darwin-configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
