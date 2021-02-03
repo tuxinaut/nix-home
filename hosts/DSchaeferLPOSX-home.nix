@@ -49,7 +49,10 @@ let
 in
 {
   home.packages = [
-    pkgs.bash-completion
+    # This should be done by
+    # https://github.com/LnL7/nix-darwin/blob/master/modules/programs/bash/default.nix
+    # pkgs.bash-completion
+    pkgs.nix-bash-completions
     pkgs.git
     pkgs.bat
     pkgs.hstr
@@ -71,7 +74,7 @@ in
 
     programs.git = {
       enable = true;
-      userName = "Denny Schäfer";
+      userName = "Schäfer, Denny";
       userEmail = "denny.schaefer@immowelt.de";
       extraConfig = {
         color.ui = "auto";
@@ -88,6 +91,7 @@ in
       ".vim/backup/.dummy".source = ../bash/emptyfile;
       ".vim/swap/.dummy".source = ../bash/emptyfile;
       ".vim/undo/.dummy".source = ../bash/emptyfile;
+      "bin/move-window-left-or-right-and-follow-focus".source = ../yabai/move-window-left-or-right-and-follow-focus;
     };
 
     programs.home-manager = {

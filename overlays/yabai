@@ -1,0 +1,14 @@
+# Does not work because of:
+# https://github.com/NixOS/darwin-stubs/issues/6
+# https://github.com/NixOS/nixpkgs/issues/105964
+#self: super: {
+#  yabai = super.yabai.overrideAttrs (old: {
+#    version = "3.3.7";
+#    src = super.fetchFromGitHub {
+#      owner = "koekeishiya";
+#      repo = "yabai";
+#      rev = "v$(version}";
+#      sha256 = "1yx4qp4rwk3ncw57yqy9m0nsg1rb62x4y2mj009lbzx0syfvh84s";
+#    };
+#  });
+#}

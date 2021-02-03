@@ -5,6 +5,8 @@
   # Link documentation explain?¿
   imports = [ <home-manager/nix-darwin> ];
 
+  #nixpkgs.overlays = [ (import ./overlays/yabai) ];
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
@@ -43,42 +45,57 @@
     enable = true;
     skhdConfig =
       "ctrl + alt + cmd - r : launchctl kickstart -k \"gui/\${UID}/homebrew.mxcl.yabai\"
-      ctrl + shift - f : yabai -m window --toggle zoom-fullscreen
+      ctrl + shift - return : /Applications/Hyper.app/Contents/MacOS/Hyper
+      ctrl + cmd - a  : yabai -m space --focus next
+      ctrl + cmd - s  : yabai -m space --focus prev
+      ctrl + cmd - r  : yabai -m space --rotate 90
+      ctrl + shift - x  : yabai -m display --focus last
+      ctrl + shift - h  : yabai -m display --focus prev || yabai -m display --focus last
+      ctrl + shift - l  : yabai -m display --focus next || yabai -m display --focus first
+      ctrl + shift - 1  : yabai -m display --focus 1
+      ctrl + shift - 2  : yabai -m display --focus 2
+      ctrl + shift - 3  : yabai -m display --focus 3
       ctrl - a  : yabai -m window --focus prev
       ctrl - s  : yabai -m window --focus next
-      ctrl + shift - a : yabai -m window --space prev
-      ctrl + shift - s : yabai -m window --space next
-      ctrl + shift - return : /Applications/Hyper.app/Contents/MacOS/Hyper
+      ctrl + shift - a : yabai -m window --space prev || yabai -m window --space last
+      ctrl + shift - s : yabai -m window --space next || yabai -m window --space first
       ctrl + shift - q : $(yabai -m window \$(yabai -m query --windows --window | jq -re \".id\") --close)
       ctrl + shift - n : yabai -m window --toggle native-fullscreen
-      ctrl + shift - z : yabai -m window --toggle zoom-fullscreen";
+      ctrl + shift - f : yabai -m window --toggle zoom-fullscreen
+      ctrl + shift - m : yabai -m window --focus recent
+      ctrl + cmd - h : /Users/dschaefer/bin/move-window-left-or-right-and-follow-focus \"prev\" \"last\"
+      ctrl + cmd - l : /Users/dschaefer/bin/move-window-left-or-right-and-follow-focus \"next\" \"first\" ";
   };
 
   services.yabai = {
     enable = true;
     package = pkgs.yabai;
-    enableScriptingAddition = false; # false Stop flicking of the menubar!
+    enableScriptingAddition = false; # https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection
     config = {
-      focus_follows_mouse          = "autoraise";
-      mouse_follows_focus          = "on";
-      window_placement             = "second_child";
-      window_opacity               = "off";
-      window_opacity_duration      = "0.0";
-      window_topmost               = "on";
-      window_shadow                = "float";
-      active_window_opacity        = "1.0";
-      normal_window_opacity        = "1.0";
-      split_ratio                  = "0.50";
-      auto_balance                 = "on";
-      mouse_modifier               = "fn";
-      mouse_action1                = "move";
-      mouse_action2                = "resize";
-      layout                       = "bsp";
-      top_padding                  = 10;
-      bottom_padding               = 2;
-      left_padding                 = 2;
-      right_padding                = 2;
-      window_gap                   = 2;
+      focus_follows_mouse        = "autoraise";
+      mouse_follows_focus        = "on";
+      window_placement           = "second_child";
+      window_opacity             = "off";
+      window_opacity_duration    = "0.0";
+      window_topmost             = "on";
+      window_shadow              = "float";
+      active_window_opacity      = "1.0";
+      normal_window_opacity      = "1.0";
+      split_ratio                = "0.50";
+      auto_balance               = "on";
+      mouse_modifier             = "fn";
+      mouse_action1              = "move";
+      mouse_action2              = "resize";
+      layout                     = "bsp";
+      top_padding                = 5;
+      bottom_padding             = 5;
+      left_padding               = 5;
+      right_padding              = 5;
+      window_gap                 = 5;
+      window_border              = "on"; # https://github.com/koekeishiya/yabai/issues/565
+      window_border_width        = 6;
+      active_window_border_color = "0xFF40FF00";
+      normal_window_border_color = "0x00FFFFFF";
     };
 
     extraConfig = ''
@@ -96,8 +113,8 @@
         yabai -m space 6 --label six
         yabai -m space 9 --label nine
 
-        killall limelight &> /dev/null
-        limelight --config ~/.config/limelight/limelightrc &> /dev/null &
+        #killall limelight &> /dev/null
+        #limelight --config ~/.config/limelight/limelightrc &> /dev/null &
       '';
     };
 
