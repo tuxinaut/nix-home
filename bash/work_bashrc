@@ -1,24 +1,5 @@
 export PATH="$HOME/bin:$PATH"
 
-# Use bash-completion, if available
-[[ $PS1 && -f ~/.nix-profile/share/bash-completion/bash_completion ]] && \
-    . ~/.nix-profile/share/bash-completion/bash_completion
-# https://unix.stackexchange.com/questions/151850/why-doesnt-the-tilde-expand-inside-double-quotes
-[[ -f ~/.nix-profile/etc/profile.d/nix.sh ]] && \
-   . ~/.nix-profile/etc/profile.d/nix.sh
-
-[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && \
-    . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-
-# Use bash-completion, if available
-#[[ $PS1 && -f ~/.nix-profile/share/bash-completion/bash_completion ]] && \
-#    . ~/.nix-profile/share/bash-completion/bash_completion
-
-# AWS CLI completion
-[[ -f /etc/profiles/per-user/dschaefer/bin/aws_completer ]] && \
-    complete -C /etc/profiles/per-user/dschaefer/bin/aws_completer aws
-
-
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr
 export HSTR_CONFIG=hicolor       # get more colors
