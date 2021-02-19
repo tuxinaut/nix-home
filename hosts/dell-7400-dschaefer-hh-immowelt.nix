@@ -4,6 +4,10 @@
 
 { config, pkgs, ... }:
 
+let
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -54,6 +58,16 @@ keyMap = "de";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
+
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+    driSupport = true;
+  };
 
   # Enable sound.
   # sound.enable = true;
@@ -118,6 +132,11 @@ programs.bash.enableCompletion = true;
 services.pcscd.enable = true;
 
 services.pipewire.enable = true;
+#services.pipewire.package = unstable.pipewire;
+
+services.fwupd.enable = true;
+
+services.upower.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -132,9 +151,9 @@ xdg = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
+      #xdg-desktop-portal-gtk
     ];
-    gtkUsePortal = true;
+    #gtkUsePortal = true;
   };
 };
 

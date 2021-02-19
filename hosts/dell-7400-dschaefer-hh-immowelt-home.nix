@@ -55,7 +55,8 @@ in
 
 {
   home.packages = [
-    pkgs.bashCompletion
+    pkgs.firefox-wayland
+pkgs.bashCompletion
     # Unstable because of error regarding autocompletionn
     unstable.awscli2
     pkgs.git
@@ -65,8 +66,9 @@ in
     unstable.slack
     # Screensharing
     #pkgs.pipewire
+    pkgs.pipewire_0_2
     pkgs.xdg-desktop-portal
-    pkgs.xdg-desktop-portal-gtk
+    #pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-wlr
     pkgs.pavucontrol
     # Display management
@@ -97,10 +99,13 @@ in
     pkgs.google-chrome
     # Communication
     unstable.teams
+    # Backlight
+    pkgs.brightnessctl
   ];
 
 wayland.windowManager.sway = {
-enable = true;
+  enable = true;
+  package = unstable.sway;
   wrapperFeatures = {
     base = true;
     gtk = true;
@@ -124,15 +129,19 @@ modifier = "Mod4";
 "${modifier}+Shift+j" = "move workspace to output up";
 "${modifier}+Shift+k" = "move workspace to output down";
 "Control+${modifier}+q" = "workspace back_and_forth";
-    "${modifier}+1" = "workspace number 1";
+"${modifier}+1" = "workspace number 1";
+# Backlight
+# needs brightnessctl
+"XF86MonBrightnessUp" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
+"XF86MonBrightnessDown" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
 # Pulse Audio controls
 "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; #increase sound volume
 "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; #decrease sound volume
 "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
 # Media player controls
-"XF86AudioPlay" = "exec playerctl play-pause";
-"XF86AudioNext" = "exec playerctl next";
-"XF86AudioPrev" = "exec playerctl previous";
+"XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+"XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+"XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
     };
 gaps = {
 inner = 5;
@@ -158,6 +167,7 @@ extraSessionCommands = "
 export QT_QPA_PLATFORM=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"
 # Pipewire???
+export MOZ_ENABLE_WAYLAND=\"1\";
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
 ";
@@ -170,6 +180,15 @@ input * {
 ";
 };
 
+# GTK Icon Theme
+gtk = {
+enable = true;
+iconTheme = {
+package = pkgs.gnome3.gnome_themes_standard;
+name = "Adwaita";
+};
+};
+
 # Looks like there is not dunst package that supports wayland
 # despite the fact dunst supports wayland
 # https://github.com/dunst-project
@@ -178,20 +197,21 @@ enable = true;
 anchor = "bottom-center";
 };
 
-  programs.firefox = {
-enable = true;
-package = pkgs.firefox-wayland;
-profiles = {
-work = {
-isDefault = true;
-settings = {
-"general.smoothScrooll" = false;
-"general.usragent.locale" = "us-US";
-};
-};
-};
-};
+#  programs.firefox = {
+#enable = true;
+#package = pkgs.firefox-wayland;
+#profiles = {
+#work = {
+#isDefault = true;
+#settings = {
+#"general.smoothScrooll" = false;
+#"general.usragent.locale" = "us-US";
+#};
+#};
+#};
+#};
 
+# Enable font management
 fonts.fontconfig.enable = true;
 
     programs.git = {
@@ -202,6 +222,7 @@ fonts.fontconfig.enable = true;
         color.ui = "auto";
         core.editor = "vim";
         core.excludesfile = "~/.gitignore";
+        pull.ff = "only";
       };
     };
 
@@ -209,6 +230,15 @@ fonts.fontconfig.enable = true;
       enable = true;
       package = unstable.wofi;
 
+    };
+
+  # https://www.linux.com/news/accelerating-openssh-connections-controlmaster
+  programs.ssh = {
+    enable = true;
+    forwardAgent = true;
+    controlMaster = "auto";
+    controlPath = "/tmp/control_%l_%h_%p_%r";
+    controlPersist = "10m";
     };
 
     #programs.i3status-rust.enable = true;
@@ -220,8 +250,15 @@ fonts.fontconfig.enable = true;
       ".vim/swap/.dummy".source = ../bash/emptyfile;
       ".vim/undo/.dummy".source = ../bash/emptyfile;
     };
+    services.gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 1800;
+      enableSshSupport = true;
+      pinentryFlavor = "tty";
+    };
+
     programs.home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/master.tar.gz;
     };
 }

@@ -1,5 +1,10 @@
 export PATH="$HOME/bin:$PATH"
 
+# Home Manager Session Vars
+# Needed for ssh-agent socket ($SSH_AUTH_SOCK)
+[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && \
+    . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr
 export HSTR_CONFIG=hicolor       # get more colors
