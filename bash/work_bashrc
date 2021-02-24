@@ -1,9 +1,17 @@
+# Add extra bin (binary) folder to Path
 export PATH="$HOME/bin:$PATH"
+
+# Invoking GPG-AGENT
+# https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
+export GPG_TTY="$(tty)"
+
+# Set default editor
+export EDITOR="vim"
 
 # Home Manager Session Vars
 # Needed for ssh-agent socket ($SSH_AUTH_SOCK)
-[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && \
-    . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+#[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && \
+#    . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr
@@ -19,3 +27,8 @@ export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
 if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
 # if this is interactive shell, then bind 'kill last command' to Ctrl-x k
 if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
+
+# Starship prompt
+#
+# https://github.com/starship/starship
+eval "$(starship init bash)"

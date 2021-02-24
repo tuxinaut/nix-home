@@ -6,13 +6,13 @@ let
     set rtp+=${plugin.rtp}/after
   '';
 
-  vim-quick-scope = pkgs.vimUtils.buildVimPlugin {
-    name = "quick-scope";
+  vim-wayland-clipboard = pkgs.vimUtils.buildVimPlugin {
+    name = "wayland-clipboard";
     src = pkgs.fetchFromGitHub {
-      owner = "unblevable";
-      repo = "quick-scope";
-      rev= "994576d997a52b4c7828149e9f1325d1c4691ae2";
-      sha256= "0lr27vwv2bzva9s7f9d856vvls10icwli0kwj5v5f1q8y83fa4zd";
+      owner = "jasonccox";
+      repo = "vim-wayland-clipboard";
+      rev= "2dc05c0f556213068a9ddf37a8b9b2276deccf84";
+      sha256= "sha256:16x7dk1x9q8kzjcgapgb9hw8hm4w8v1g6pzpiz6ccsd0ab0jzf40";
     };
 
     buildInputs = [ pkgs.zip pkgs.vim ];
@@ -20,7 +20,7 @@ let
 
   # See https://nixos.wiki/wiki/Vim
   my_vim_configurable = pkgs.vim_configurable.override {
-    python = pkgs.python37Full;
+    python = pkgs.python38Full;
   };
 
   my_vimPlugins = with pkgs.vimPlugins; [
@@ -38,49 +38,45 @@ let
     surround
     editorconfig-vim
     vim-better-whitespace
-    #Dockerfile.vim
-    #Vim-Jinja2-Syntax
-    neocomplete
-    neosnippet
-    neosnippet-snippets
-    vim-snippets
     vim-airline-themes
     molokai
     tagbar
-    vim-quick-scope
+    quick-scope
+    vim-wayland-clipboard
   ];
-    modifier = config.wayland.windowManager.sway.config.modifier;
+
+  modifier = config.wayland.windowManager.sway.config.modifier;
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
 in
 
 {
   home.packages = [
+    # Internet and email
     pkgs.firefox-wayland
-pkgs.bashCompletion
-    # Unstable because of error regarding autocompletionn
-    unstable.awscli2
-    pkgs.git
-    pkgs.htop
+    pkgs.thunderbird
+    pkgs.chromium
+    # Clipboard
+    pkgs.wl-clipboard
+    pkgs.clipman
     pkgs.keepassxc
     pkgs.signal-desktop
     unstable.slack
-    # Screensharing
-    #pkgs.pipewire
-    pkgs.pipewire_0_2
-    pkgs.xdg-desktop-portal
-    #pkgs.xdg-desktop-portal-gtk
-    pkgs.xdg-desktop-portal-wlr
     pkgs.pavucontrol
     # Display management
     pkgs.wdisplays
     pkgs.wlr-randr
     pkgs.yubioath-desktop
-    pkgs.hstr
     # https://github.com/altdesktop/playerctl
     pkgs.playerctl
+    # terminal
+    pkgs.bashCompletion
+    pkgs.starship
+    pkgs.hstr
     # fonts
-    pkgs.font-awesome
+    #pkgs.font-awesome
+    pkgs.font-awesome-ttf
     pkgs.powerline-fonts
+    pkgs.gnome3.gnome-font-viewer
       (
         my_vim_configurable.customize {
           name = "vim";
@@ -92,6 +88,14 @@ pkgs.bashCompletion
             ${ (builtins.readFile ../vim/vimrc) }
           '';
         })
+    # Tools
+    pkgs.htop
+    pkgs.fzf
+    pkgs.jq
+    # Unstable because of error regarding autocompletionn
+    unstable.awscli2
+    pkgs.git
+    pkgs.gnupg
     # Needed for Immowelt SSO
     pkgs.python38Packages.virtualenv
     pkgs.phantomjs
@@ -101,6 +105,9 @@ pkgs.bashCompletion
     unstable.teams
     # Backlight
     pkgs.brightnessctl
+    # Misc tools
+    pkgs.gnome3.gnome-system-monitor
+    pkgs.killall
   ];
 
 wayland.windowManager.sway = {
@@ -110,26 +117,47 @@ wayland.windowManager.sway = {
     base = true;
     gtk = true;
   };
-config = {
+  config = {
+    assigns = {
+      "5:" = [
+        { class = "^Signal$"; }
+        { class = "^Slack$"; }
+      ];
+    };
 output = {
 "*" = {
 bg = "/etc/nixos/wallpaper.png fill";
 };
 };
 fonts = [
-"pango:monospace 9"
-"FontAwesome 9"
+"Font Awesome 5 free 10"
+"Font Awesome 5 Brands 10"
+"Hack 10"
 ];
 modifier = "Mod4";
   keybindings =
     lib.mkOptionDefault {
-"${modifier}+Tab" = "exec ${unstable.wofi}/bin/wofi -d --show run,drun";
+#"${modifier}+Tab" = "exec ${unstable.wofi}/bin/wofi -d --show run,drun";
+# Ugly
+"${modifier}+Tab" = "exec bash /home/dschaefer/bin/sway-window-switcher";
 "${modifier}+Shift+h" = "move workspace to output left";
 "${modifier}+Shift+l" = "move workspace to output right";
 "${modifier}+Shift+j" = "move workspace to output up";
 "${modifier}+Shift+k" = "move workspace to output down";
+"Control+${modifier}+h" = "workspace prev";
+"Control+${modifier}+l" = "workspace next";
 "Control+${modifier}+q" = "workspace back_and_forth";
-"${modifier}+1" = "workspace number 1";
+# https://fontawesome.com/cheatsheet/free/brands
+# https://fontawesome.com/cheatsheet/free/solid
+"${modifier}+1" = "workspace number 1:";
+"${modifier}+2" = "workspace number 2:";
+"${modifier}+3" = "workspace number 3:";
+"${modifier}+4" = "workspace number 4:";
+"${modifier}+5" = "workspace number 5:";
+"${modifier}+6" = "workspace number 6";
+"${modifier}+7" = "workspace number 7";
+"${modifier}+8" = "workspace number 8:";
+"${modifier}+9" = "workspace number 9:";
 # Backlight
 # needs brightnessctl
 "XF86MonBrightnessUp" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
@@ -142,6 +170,9 @@ modifier = "Mod4";
 "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
 "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
 "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+# Dunst
+"Control+Shift+d" = "exec dunstctl close";
+"Control+Shift+h" = "exec dunstctl history-pop";
     };
 gaps = {
 inner = 5;
@@ -150,12 +181,14 @@ outer = 5;
 bars = [
 {
 id = "bar-0";
-position = "top";
+position = "top"; fonts = [
+"Hack 10"
+];
+
 trayOutput = "eDP-1";
 colors = {
 background = "#323232";
 statusline = "#ffffff";
-#inactiveWorkspace = [ "#32323200 #32323200 #5c5c5c"];
 };
 }
 ];
@@ -175,7 +208,10 @@ extraConfig = "
 default_border pixel 6
 #input \"1:1:AT_Translated_Set_2_keyboard\" {
 input * {
- xkb_layout de
+xkb_layout de
+# Enable Capslock and Numlock
+#XKB_capslock enable
+xkb_numlock enable
 }
 ";
 };
@@ -196,7 +232,8 @@ programs.mako = {
 enable = true;
 anchor = "bottom-center";
 };
-
+# FIXME: It broke with unstable!
+#
 #  programs.firefox = {
 #enable = true;
 #package = pkgs.firefox-wayland;
@@ -213,6 +250,20 @@ anchor = "bottom-center";
 
 # Enable font management
 fonts.fontconfig.enable = true;
+
+services.gammastep = {
+  enable = true;
+  latitude = "53.551086";
+  longitude = "9.993682";
+  settings = {
+    general = {
+      adjustment-method = "wayland";
+      fade = 1;
+    };
+  };
+  #tray = true;
+};
+
 
     programs.git = {
       enable = true;
@@ -239,11 +290,50 @@ fonts.fontconfig.enable = true;
     controlMaster = "auto";
     controlPath = "/tmp/control_%l_%h_%p_%r";
     controlPersist = "10m";
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      env = {
+      TERM = "xterm-256color";
+      };
+      font = {
+        normal.family = "Hack";
+      };
+      dynamic_title = true;
     };
+  };
+
+  programs.bash = {
+    enable = true;
+    profileExtra = "
+if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
+  exec sway
+fi
+    ";
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Dracula";
+      style = "numbers";
+    };
+    themes = {
+  dracula = builtins.readFile (pkgs.fetchFromGitHub {
+    owner = "dracula";
+    repo = "sublime"; # Bat uses sublime syntax for its themes
+    rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
+    sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
+  } + "/Dracula.tmTheme");
+    };
+  };
 
     #programs.i3status-rust.enable = true;
 
     home.file = {
+      "bin/sway-window-switcher".source = ../sway/sway-bash-window-switcher.sh;
       ".gitignore".source = ../gitignore;
       ".bashrc".source = ../bash/work_bashrc;
       ".vim/backup/.dummy".source = ../bash/emptyfile;
@@ -255,6 +345,11 @@ fonts.fontconfig.enable = true;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
       pinentryFlavor = "tty";
+    };
+
+    # https://github.com/emersion/kanshi
+    services.kanshi = {
+      enable = true;
     };
 
     programs.home-manager = {

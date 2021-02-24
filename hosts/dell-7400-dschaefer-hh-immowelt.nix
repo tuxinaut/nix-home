@@ -123,6 +123,12 @@ enable = true;
 
 programs.bash.enableCompletion = true;
 
+# Displays keypresses on screen on supported Wayland compositors (requires wlr_layer_shell_v1 support).
+#
+# https://git.sr.ht/~sircmpwn/wshowkeys
+# Does not work because of errors
+#programs.wshowkeys.enable = true;
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -144,19 +150,18 @@ services.upower.enable = true;
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-# Hand and needed
+# Handy and needed
 # Without Firefox can't call the Slack app
 xdg = {
   portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
-      #xdg-desktop-portal-gtk
+      xdg-desktop-portal-gtk
     ];
-    #gtkUsePortal = true;
+    gtkUsePortal = true;
   };
 };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
