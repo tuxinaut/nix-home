@@ -43,6 +43,7 @@ let
     tagbar
     quick-scope
     vim-wayland-clipboard
+    editorconfig-vim #https://github.com/editorconfig/editorconfig-vim
   ];
 
   modifier = config.wayland.windowManager.sway.config.modifier;
@@ -51,10 +52,16 @@ in
 
 {
   home.packages = [
+    pkgs.xdg-desktop-portal-wlr
+    pkgs.libnotify
+    pkgs.gnome3.gnome-calculator
+    pkgs.lm_sensors
+    pkgs.fd
     # Internet and email
     pkgs.firefox-wayland
     pkgs.thunderbird
     pkgs.chromium
+    pkgs.google-chrome
     # Clipboard
     pkgs.wl-clipboard
     pkgs.clipman
@@ -73,7 +80,6 @@ in
     pkgs.starship
     pkgs.hstr
     # fonts
-    #pkgs.font-awesome
     pkgs.font-awesome-ttf
     pkgs.powerline-fonts
     pkgs.gnome3.gnome-font-viewer
@@ -95,12 +101,12 @@ in
     # Unstable because of error regarding autocompletionn
     unstable.awscli2
     pkgs.git
+    pkgs.gitAndTools.scmpuff
     pkgs.gnupg
     # Needed for Immowelt SSO
     pkgs.python38Packages.virtualenv
     pkgs.phantomjs
     pkgs.chromedriver
-    pkgs.google-chrome
     # Communication
     unstable.teams
     # Backlight
@@ -208,6 +214,7 @@ extraConfig = "
 default_border pixel 6
 #input \"1:1:AT_Translated_Set_2_keyboard\" {
 input * {
+# https://man.archlinux.org/man/xkeyboard-config.7
 xkb_layout de
 # Enable Capslock and Numlock
 #XKB_capslock enable
@@ -290,6 +297,17 @@ services.gammastep = {
     controlMaster = "auto";
     controlPath = "/tmp/control_%l_%h_%p_%r";
     controlPersist = "10m";
+    matchBlocks = {
+      "private.github.com" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_rsa_private";
+      };
+      # Fix that the GPG/SSH agent unlock dialog appears in some random terminal
+      #
+      # https://bugzilla.mindrot.org/show_bug.cgi?id=2824#c9
+      # https://unix.stackexchange.com/questions/280879/how-to-get-pinentry-curses-to-start-on-the-correct-tty
+      "* exec \"gpg-connect-agent UPDATESTARTUPTTY /bye\"" = {};
+    };
   };
 
   programs.alacritty = {
@@ -311,7 +329,7 @@ services.gammastep = {
 if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
   exec sway
 fi
-    ";
+";
   };
 
   programs.bat = {

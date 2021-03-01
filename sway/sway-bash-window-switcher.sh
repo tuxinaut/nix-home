@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Get regular windows
-regular_windows=$(swaymsg -t get_tree | jq -r '.nodes[].nodes[].nodes[] | .. | (.id|tostring) + " " + .name?' | grep -e "[0-9]* ."  )
+# regular_windows=$(swaymsg -t get_tree | jq -r '.nodes[].nodes[].nodes[] | .. | (.id|tostring) + " " + .name?' | grep -e "[0-9]* ." | sed 's/^\([0-9]\{2,\}\ \)/[Window] /' )
+regular_windows=$(swaymsg -t get_tree | jq -r '.nodes[].nodes[].nodes[] | .. | (.id|tostring) + " " + .name?' | grep -e "[0-9]* ." )
 
 # Get floating windows
 floating_windows=$(swaymsg -t get_tree | jq '.nodes[].nodes[].floating_nodes[] | (.id|tostring) + " " + .name?'| grep -e "[0-9]* ." | tr -d '"')

@@ -59,6 +59,12 @@ keyMap = "de";
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # Automatically run the garbage collector at a specific time.
+  nix.gc.automatic = true;
+
+  # Nix automatically detects files in the store that have
+  # identical contents, and replaces them with hard links to a single copy.
+  nix.autoOptimiseStore = true;
 
   hardware.opengl = {
     enable = true;
@@ -157,9 +163,9 @@ xdg = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
+      #xdg-desktop-portal-gtk
     ];
-    gtkUsePortal = true;
+    #gtkUsePortal = true;
   };
 };
 
