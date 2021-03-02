@@ -3,7 +3,9 @@ export PATH="$HOME/bin:$PATH"
 
 # Invoking GPG-AGENT
 # https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
-export GPG_TTY="$(tty)"
+#
+# Will be done by the home-manager .bashrc
+#export GPG_TTY="$(tty)"
 
 # Set default editor
 export EDITOR="vim"
@@ -16,7 +18,9 @@ export EDITOR="vim"
 # Starship prompt
 #
 # https://github.com/starship/starship
-eval "$(starship init bash)"
+#
+# Will be done by the home-manager .bashrc
+#eval "$(starship init bash)"
 
 # scmpuff
 #
@@ -26,30 +30,34 @@ eval "$(scmpuff init -s)"
 # Activate autocompletion for fzf
 #
 # https://nixos.wiki/wiki/Fzf
-if command -v fzf-share >/dev/null; then
-  . "$(fzf-share)/key-bindings.bash"
-  . "$(fzf-share)/completion.bash"
-fi
+#
+# Will be done by the home-manager .bashrc
+#if command -v fzf-share >/dev/null; then
+#  . "$(fzf-share)/key-bindings.bash"
+#  . "$(fzf-share)/completion.bash"
+#fi
 
 # Aliases
-alias g="git"
-alias gcb="git checkout -b"
-alias gpl="git pull"
-alias gpl="git pull"
-alias gplr="git pull --rebase"
-alias gps="git push"
-alias gpsf="git push --force"
-alias gfa="git fetch --all"
+#alias g="git"
+#alias gcb="git checkout -b"
+#alias gpl="git pull"
+#alias gpl="git pull"
+#alias gplr="git pull --rebase"
+#alias gps="git push"
+#alias gpsf="git push --force"
+#alias gfa="git fetch --all"
 
-alias reload=". ~/.bash_profile"
+#alias reload=". ~/.bash_profile"
 
 # Simulate at least partly the behavior of scm_breeze
 #
 # https://github.com/scmbreeze/scm_breeze#repository-index
 c () {
   local query=${1}
-  FOLDER=$(fd -d 1 --type d --base-directory ~/workspace . | fzf --query "$query")
-  cd ~/workspace/$FOLDER
+  local searchFolder="~/workspace"
+
+  folder=$(fd -d 1 --type d --base-directory $searchFolder . | fzf --query "$query")
+  cd "~/${searchFolder}/${folder}"
 }
 
 # Mainly sponsored by
@@ -57,10 +65,10 @@ c () {
 # https://pnguyen.io/posts/aws-profile/
 aws_profile_switcher() {
   local query=${1}
+
   local selected_profile=$(aws configure list-profiles | fzf-tmux +s --height 30% --reverse -1 -0 --header 'Select AWS profile' --query "$query")
   if [[ -n $selected_profile ]]; then
-    eval "export AWS_DEFAULT_PROFILE=$selected_profile"
-    echo "AWS_DEFAULT_PROFILE=$selected_profile"
+    eval "export AWS_PROFILE=$selected_profile"
   fi
 }
 # if this is interactive shell, then bind ‘aws_profile_switcher’ to Ctrl-k
@@ -71,7 +79,7 @@ alias hh=hstr                    # hh to be alias for hstr
 export HSTR_CONFIG=hicolor       # get more colors
 shopt -s histappend              # append new history items to .bash_history
 export HISTCONTROL=ignorespace:ignoredups:ignorespace # leading space hides commands from history, no duplicate lines in the history.
-export HISTFILESIZE=1000000      # increase history file size (default is 500)
+export HISTFILESIZE=10000000     # increase history file size (default is 500)
 export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
 HISTTIMEFORMAT="%Y-%m-%d %T " # setting up timestamp for history
 # ensure synchronization between Bash memory and history file
