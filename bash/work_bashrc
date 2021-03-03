@@ -54,10 +54,10 @@ eval "$(scmpuff init -s)"
 # https://github.com/scmbreeze/scm_breeze#repository-index
 c () {
   local query=${1}
-  local searchFolder="~/workspace"
+  local searchFolder="${HOME}/workspace"
 
   folder=$(fd -d 1 --type d --base-directory $searchFolder . | fzf --query "$query")
-  cd "~/${searchFolder}/${folder}"
+  cd "${searchFolder}/${folder}"
 }
 
 # Mainly sponsored by

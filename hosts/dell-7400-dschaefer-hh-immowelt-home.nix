@@ -1,6 +1,8 @@
 { pkgs, lib, config, ... }:
 
 let
+  homeDirectory = "/home/dschaefer";
+
   loadPlugin = plugin: ''
     set rtp^=${plugin.rtp}
     set rtp+=${plugin.rtp}/after
@@ -51,6 +53,8 @@ in
 
 {
   home.packages = [
+    pkgs.bemenu
+    # for i3status-rust
     pkgs.iw
     pkgs.ethtool
 
@@ -128,12 +132,13 @@ wayland.windowManager.sway = {
     # Not sure if this will work
     startup = [
       {
-        command = "wl-paste  -t text --watch clipman store --max-items=1000 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
-        notification = false;
+        command = "wl-paste  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=1000 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
       }
       {
-        command = "wl-paste -p  -t text --watch clipman store --max-items=1000 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
-        notification = false;
+        # FIXME
+        # Maybe shorter
+        # https://www.reddit.com/r/swaywm/comments/ki4z9a/sync_clipboards/
+        command = "wl-paste -p  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=1000 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
       }
     ];
     assigns = {
@@ -157,7 +162,7 @@ modifier = "Mod4";
     lib.mkOptionDefault {
 #"${modifier}+Tab" = "exec ${unstable.wofi}/bin/wofi -d --show run,drun";
 # Ugly
-"${modifier}+Tab" = "exec bash /home/dschaefer/bin/sway-window-switcher";
+"${modifier}+Tab" = "exec bash ${homeDirectory}/bin/sway-window-switcher";
 "${modifier}+Shift+h" = "move workspace to output left";
 "${modifier}+Shift+l" = "move workspace to output right";
 "${modifier}+Shift+j" = "move workspace to output up";
@@ -181,9 +186,10 @@ modifier = "Mod4";
 "XF86MonBrightnessUp" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
 "XF86MonBrightnessDown" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
 # Pulse Audio controls
-"XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; #increase sound volume
-"XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; #decrease sound volume
-"XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
+"XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%"; #increase sound volume
+"XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%"; #decrease sound volume
+# FIXME
+"XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle"; # mute sound
 # Media player controls
 "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
 "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
@@ -191,6 +197,10 @@ modifier = "Mod4";
 # Dunst
 "Control+Shift+d" = "exec dunstctl close";
 "Control+Shift+h" = "exec dunstctl history-pop";
+#Clipboard
+"Control+Shift+c" = "exec ${pkgs.clipman}/bin/clipman pick --histpath \"${homeDirectory}/.local/share/clipman-primary.json\" --max-items=1000 -t bemenu -T'bemenu -b -i -l 10 --nb \"#002b36\" --tb \"#002b36\" --fb \"#002b36\" --fn \"Hack 14\" -p \"pick >\" -b -P \"\" --hb \"#002b36\" --hf \"#b5890\" --tf \"#fdf6e3\" --nf \"#fdf6e3\"'";
+
+"${modifier}+Shift+e" = "mode \"\$mode_system\"";
     };
 gaps = {
 inner = 5;
@@ -200,7 +210,7 @@ bars = [
 {
 id = "bar-0";
 position = "top";
-statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs /home/dschaefer/.config/i3status-rust/config-main.toml";
+statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${homeDirectory}/.config/i3status-rust/config-main.toml";
 fonts = [
 "Hack 10"
 ];
@@ -225,6 +235,20 @@ export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
 ";
 extraConfig = "
+set $mode_system System (l)  lock, (s)  suspend, (h)  hibernate, (r)  reboot, (Shift+s)  shutdown
+mode \"$mode_system\" {
+  bindsym l exec --no-startup-id swaylock -i /etc/nixos/wallpaper.png, mode \"default\"
+  bindsym s exec --no-startup-id systemctl suspend, mode \"default\"
+  bindsym h exec --no-startup-id systemctl hibernate, mode \"default\"
+  bindsym r exec --no-startup-id systemctl reboot, mode \"default\"
+  bindsym Shift+s exec --no-startup-id systemctl poweroff, mode \"default\"
+
+  # back to normal: Enter or Escape
+  bindsym Return mode \"default\"
+  bindsym Escape mode \"default\"
+}
+
+
 default_border pixel 6
 #input \"1:1:AT_Translated_Set_2_keyboard\" {
 input * {
@@ -366,6 +390,8 @@ if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
 ";
 shellAliases = {
 g="git";
+gc="git commit";
+gap="git add -p";
 gcb="git checkout -b";
 gpl="git pull";
 gplr="git pull --rebase";
@@ -403,12 +429,17 @@ reload=". ~/.bash_profile";
         icons = "awesome5";
         blocks = [
 {
+block = "notify";
+#driver = "dunst";
+format = "{state}";
+}
+{
 block = "backlight";
 device = "intel_backlight";
 }
 {
   block = "battery";
-  device = "BAT0"
+  device = "BAT0";
 driver = "upower";
 format = "{percentage}% {time}";
 }
