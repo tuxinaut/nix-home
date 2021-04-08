@@ -52,7 +52,24 @@ let
 in
 
 {
+  home.sessionPath = [
+    "${homeDirectory}/bin"
+  ];
+
+  home.sessionVariables = {
+    EDITOR = "vim";
+  };
+
+  programs.dircolors = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   home.packages = [
+    pkgs.zathura
+    pkgs.solaar # Logitech mouse
+    pkgs.gimp
+    pkgs.grim
     pkgs.dunst # Workaround to control dunst via cli
     pkgs.bemenu
     # for i3status-rust
@@ -101,6 +118,7 @@ in
           '';
         })
     # Tools
+    pkgs.gnumake
     pkgs.jq
     unstable.awscli2 # Unstable because of error regarding autocompletionn
     pkgs.git
@@ -143,9 +161,13 @@ wayland.windowManager.sway = {
       }
     ];
     assigns = {
+      "2:" = [
+        { class = "^Thunderbird$"; }
+      ];
       "5:" = [
         { class = "^Signal$"; }
         { class = "^Slack$"; }
+        { class = "^Teams$"; }
       ];
     };
 output = {
@@ -182,6 +204,17 @@ modifier = "Mod4";
 "${modifier}+7" = "workspace number 7";
 "${modifier}+8" = "workspace number 8:";
 "${modifier}+9" = "workspace number 9:";
+
+"${modifier}+Shift+1" = "move container to workspace 1:";
+"${modifier}+Shift+2" = "move container to workspace 2:";
+"${modifier}+Shift+3" = "move container to workspace 3:";
+"${modifier}+Shift+4" = "move container to workspace 4:";
+"${modifier}+Shift+5" = "move container to workspace 5:";
+"${modifier}+Shift+6" = "move container to workspace 6";
+"${modifier}+Shift+7" = "move container to workspace 7";
+"${modifier}+Shift+8" = "move container to workspace 8:";
+"${modifier}+Shift+9" = "move container to workspace 9:";
+
 # Backlight
 # needs brightnessctl
 "XF86MonBrightnessUp" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
@@ -191,6 +224,7 @@ modifier = "Mod4";
 "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%"; #decrease sound volume
 # FIXME
 "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle"; # mute sound
+"Control+Shift+m" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -SIGRTMIN+4 i3status-rs"; # mute default mic
 # Media player controls
 "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
 "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
@@ -199,7 +233,10 @@ modifier = "Mod4";
 "Control+Shift+d" = "exec dunstctl close";
 "Control+Shift+h" = "exec dunstctl history-pop";
 #Clipboard
-"Control+Shift+c" = "exec ${pkgs.clipman}/bin/clipman pick --histpath \"${homeDirectory}/.local/share/clipman-primary.json\" --max-items=1000 -t bemenu -T'bemenu -b -i -l 10 --nb \"#002b36\" --tb \"#002b36\" --fb \"#002b36\" --fn \"Hack 14\" -p \"pick >\" -b -P \"\" --hb \"#002b36\" --hf \"#b5890\" --tf \"#fdf6e3\" --nf \"#fdf6e3\"'";
+#$(swaymsg -r -t get_outputs | jq '. [] | select (.focused == true) | .name | split ("-") | last')
+"Control+Shift+c" = "exec ${pkgs.clipman}/bin/clipman pick --histpath \"${homeDirectory}/.local/share/clipman-primary.json\" --max-items=1000 -t bemenu -T'bemenu -b -i -l 10 --nb \"#002b36\" --tb \"#002b36\" --fb \"#002b36\" --fn \"Hack 14\" -p \"pick >\" -b -P \"\" --hb \"#002b36\" --hf \"#b5890\" --tf \"#fdf6e3\" --nf \"#fdf6e3\" -m all'";
+
+"Control+Shift+s" = "exec bash ${homeDirectory}/bin/screenshot";
 
 "${modifier}+Shift+e" = "mode \"\$mode_system\"";
     };
@@ -370,6 +407,11 @@ services.gammastep = {
       enable = true;
       userName = "Schäfer, Denny";
       userEmail = "denny.schaefer@immowelt.de";
+      signing = {
+        key = "C9FC08DD";
+        signByDefault = true;
+        gpgPath = "gpg2";
+      };
       extraConfig = {
         color.ui = "auto";
         core.editor = "vim";
@@ -397,6 +439,10 @@ style_root = "black bold";
 format = "user: [$user]($style) ";
 disabled = false;
 show_always = false;
+};
+nodejs = {
+  # https://github.com/starship/starship/pull/1649
+  symbol = " ";
 };
       };
     };
@@ -437,6 +483,17 @@ show_always = false;
         normal.family = "Hack";
       };
       dynamic_title = true;
+      save_to_clipboard = {
+        save_to_clipboard = true;
+      };
+      key_bindings = [
+        {
+          # Open a new alacritty instance in the same directory
+          key = "Return";
+          mods = "Control|Shift";
+          action = "SpawnNewInstance";
+        }
+      ];
     };
   };
 
@@ -451,8 +508,12 @@ if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
 [[ -f ~/.bashrc_static ]] && . ~/.bashrc_static
 ";
 shellAliases = {
+ns="nix-shell -p";
 g="git";
+gr="git remote";
 gc="git commit";
+grb="git rebase";
+gcl="git clone";
 gap="git add -p";
 gcb="git checkout -b";
 gpl="git pull";
@@ -496,8 +557,27 @@ block = "notify";
 format = "{state}";
 }
 {
+  block = "custom";
+  command = "bash ${homeDirectory}/bin/mic_checker";
+  on_click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+  signal = 4;
+  interval = 30;
+}
+{
 block = "backlight";
 device = "intel_backlight";
+}
+          {
+block = "bluetooth";
+mac = "00:02:3C:7C:9C:0D";
+label = "Outlier Sports";
+hide_disconnected = true;
+}
+          {
+block = "bluetooth";
+mac = "DA:0B:DA:C7:BD:A0";
+label = "MX Ergo";
+hide_disconnected = true;
 }
 {
   block = "battery";
@@ -560,11 +640,14 @@ hide_inactive = true;
 
     home.file = {
       "bin/sway-window-switcher".source = ../sway/sway-bash-window-switcher.sh;
+      "bin/screenshot".source = ../bash/screenshot.sh;
+      "bin/mic_checker".source = ../bash/mic_checker.sh;
       ".gitignore".source = ../gitignore;
       ".bashrc_static".source = ../bash/work_bashrc;
       ".vim/backup/.dummy".source = ../bash/emptyfile;
       ".vim/swap/.dummy".source = ../bash/emptyfile;
       ".vim/undo/.dummy".source = ../bash/emptyfile;
+      "Pictures/.dummy".source = ../bash/emptyfile;
     };
 
     services.gpg-agent = {
@@ -572,12 +655,26 @@ hide_inactive = true;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
       pinentryFlavor = "tty";
+      extraConfig = "
+        #keyid-format LONG
+      ";
     };
 
     # https://github.com/emersion/kanshi
     services.kanshi = {
       enable = true;
     };
+
+    # Using Bluetooth headset buttons to control media player
+    # https://nixos.wiki/wiki/Bluetooth
+    systemd.user.services.mpris-proxy = {
+      Unit = {
+        Description = "Mpris proxy";
+        After = [ "network.target" "sound.target" ];
+      };
+  Service = {ExecStart = "${pkgs.bluez}/bin/mpris-proxy";};
+  Install = {WantedBy = [ "default.target" ];};
+};
 
     programs.home-manager = {
       enable = true;

@@ -1,5 +1,5 @@
 # Add extra bin (binary) folder to Path
-export PATH="$HOME/bin:$PATH"
+#export PATH="$HOME/bin:$PATH"
 
 # Invoking GPG-AGENT
 # https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
@@ -8,7 +8,7 @@ export PATH="$HOME/bin:$PATH"
 #export GPG_TTY="$(tty)"
 
 # Set default editor
-export EDITOR="vim"
+#export EDITOR="vim"
 
 # Home Manager Session Vars
 # Needed for ssh-agent socket ($SSH_AUTH_SOCK)

@@ -50,6 +50,8 @@ set dir=$HOME/.vim/swap " tell vim where to put swap files
 set undofile
 set undodir=$HOME/.vim/undo
 
+set viminfo='1000,n$HOME/.vim/viminfo'
+
 "----------------------------------------------------------------------
 " colorschemes
 "----------------------------------------------------------------------

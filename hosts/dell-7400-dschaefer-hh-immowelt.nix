@@ -88,6 +88,13 @@ keyMap = "de";
     '';
   };
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+#hardware.bluetooth.settings = {
+#  general = "Enable=Source,Sink,Media,Socket";
+#};
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -112,7 +119,8 @@ qt5.qtwayland
   ];
 
 services.udev.packages = with pkgs; [
-yubikey-personalization
+  yubikey-personalization
+  logitech-udev-rules
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
