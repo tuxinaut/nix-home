@@ -26,18 +26,22 @@ let
   };
 
   my_vimPlugins = with pkgs.vimPlugins; [
+    coc-nvim
+    coc-json
+    coc-tsserver
+
     iceberg-vim
-    Tabular
+    tabular
     vim-indent-guides
     syntastic
-    fugitive
+    vim-fugitive
     nerdtree
-    ctrlp
+    ctrlp-vim
     #vim-gnupg
     vim-airline
     #SudoEdit.vim
     vim-multiple-cursors
-    surround
+    vim-surround
     vim-better-whitespace
     vim-airline-themes
     molokai
@@ -66,13 +70,20 @@ in
   };
 
   home.packages = [
+    # languages runtimes
+    pkgs.nodejs-12_x
+    pkgs.nodePackages.typescript
+    # backup
+    pkgs.borgbackup
+    pkgs.borgmatic
+
     pkgs.zathura
     pkgs.solaar # Logitech mouse
     pkgs.gimp
     pkgs.grim
     pkgs.dunst # Workaround to control dunst via cli
     pkgs.bemenu
-    # for i3status-rust
+    # packages for i3status-rust
     pkgs.iw
     pkgs.ethtool
 
@@ -167,7 +178,7 @@ wayland.windowManager.sway = {
       "5:" = [
         { class = "^Signal$"; }
         { class = "^Slack$"; }
-        { class = "^Teams$"; }
+        { class = "^Microsoft Teams"; }
       ];
     };
 output = {
@@ -510,6 +521,10 @@ if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
 shellAliases = {
 ns="nix-shell -p";
 g="git";
+gb="git branch";
+gbd="git branch --delete";
+gcm="git commit --amend";
+gaa="git add --all";
 gr="git remote";
 gc="git commit";
 grb="git rebase";
@@ -587,7 +602,6 @@ format = "{percentage}% {time}";
 }
 {
 block = "music";
-#buttons = "[play, next]";
 marquee = true;
 }
 {
@@ -595,7 +609,7 @@ block = "net";
 device = "wlo1";
 format = "{ssid} {signal_strength} {ip}";
 interval = 5;
-use_bits = false;
+#use_bits = false; # broken?
 hide_inactive = true;
 }
 {
@@ -603,24 +617,24 @@ block = "net";
 device = "enp57s0u1u2";
 format = "{ip}";
 interval = 5;
-use_bits = false;
+#use_bits = false;
 hide_inactive = true;
 }
-          {
-              block = "disk_space";
-              path = "/";
-              alias = "/";
-              info_type = "available";
-              unit = "GB";
-              interval = 60;
-              warning = 20.0;
-              alert = 10.0;
-            }
+#          {
+#              block = "disk_space";
+#              path = "/";
+#              alias = "/";
+#              info_type = "available";
+#              unit = "GB";
+#              interval = 60;
+#              warning = 20.0;
+#              alert = 10.0;
+#            }
             {
               block = "memory";
               display_type = "memory";
-              format_mem = "{Mup}%";
-              format_swap = "{SUp}%";
+              format_mem = "{mem_used_percents}%";
+              format_swap = "{swap_used_percents}%";
             }
             {
               block = "load";
@@ -675,6 +689,33 @@ hide_inactive = true;
   Service = {ExecStart = "${pkgs.bluez}/bin/mpris-proxy";};
   Install = {WantedBy = [ "default.target" ];};
 };
+# https://www.freedesktop.org/software/systemd/man/systemd.mount.html
+# https://github.com/nix-community/home-manager/pull/1629
+#systemd.user.mounts = {
+#       "home-dschaefer-nas-backup" = {
+#    Unit = {
+#      Description = "Example description";
+#      Documentation = [ "man:example(1)" "man:example(5)" ];
+#    };
+#
+#    Mount = {
+#      What = "//nas.tuxinaut.de/Sicherungen";
+#       Where = "/home/dschaefer/nas/backup";
+#      Type = "cifs";
+##      noCheck = true;
+#      options = [
+#        "user"
+#        "uid=1000"
+#        "gid=1000"
+#        "credentials=/etc/nas"
+#        "nofail"
+#        "x-systemd.automount"
+#        "x-systemd.device-timeout=2s"
+#        "x-systemd.mount-timeout=2s"
+#      ];
+#    };
+#  };
+#};
 
     programs.home-manager = {
       enable = true;

@@ -176,6 +176,23 @@ xdg = {
     #gtkUsePortal = true;
   };
 };
+  fileSystems = {
+    "/storage/Sicherungen" = {
+      device = "//nas.tuxinaut.de/Sicherungen";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "uid=1000"
+        "gid=1000"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+        "x-systemd.device-timeout=20s"
+        "x-systemd.mount-timeout=20s"
+      ];
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
