@@ -3,6 +3,10 @@
 # TODO
 # Hardware config will be define and imported
 # in configuration.nix!
+#[root@nixos:/etc/nixos]# ./install.sh
+#mv: cannot move '/etc/nixos' to '/etc/nixos-orig/nixos': Directory not empty
+#./install.sh: line 18: git: command not found
+
 
 HOST="$(hostname)"
 system=$(uname -s)

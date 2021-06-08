@@ -4,6 +4,10 @@
 
 { config, pkgs, ... }:
 
+let
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -14,17 +18,20 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices = [
-    {
-      name = "root";
+  boot.initrd.luks.devices = {
+    root = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
 
-    }
-  ];
+    };
+  };
 
-  boot.kernelParams = [ "modeset=1" "i915.enable_fbc=1" ];
+  boot.blacklistedKernelModules = [ "psmouse" ];
+  boot.kernelParams = [ "modeset=1" "i915.enable_fbc=1" "i915.enable_guc=2"];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Whether to delete all files in /tmp during boot.
+  boot.cleanTmpDir = true;
 
   networking = {
     networkmanager = {
@@ -37,11 +44,12 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "de";
-    defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "de";
   };
+
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -52,13 +60,28 @@
     vim
     htop
     linuxPackages.exfat-nofuse
+    firmwareLinuxNonfree
     fwupd
-    fwupdate
   ];
+
+  # Enable virtualbox.
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+    virtualbox = {
+      host = {
+        package = unstable.virtualbox;
+        enable = true;
+        enableExtensionPack = true;
+      };
+    };
+  };
 
   services.udev.packages = with pkgs; [
     yubikey-personalization
     autorandr
+    virtualbox
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -68,6 +91,11 @@
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   programs.qt5ct.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    #enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
@@ -97,8 +125,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
-        "x-systemd.device-timeout=2s"
-        "x-systemd.mount-timeout=2s"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
       ];
     };
     "/storage/Music" = {
@@ -112,8 +140,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
-        "x-systemd.device-timeout=2s"
-        "x-systemd.mount-timeout=2s"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
       ];
     };
     "/storage/Photo" = {
@@ -127,8 +155,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
-        "x-systemd.device-timeout=2s"
-        "x-systemd.mount-timeout=2s"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
       ];
     };
     "/storage/Robocopy" = {
@@ -142,8 +170,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
-        "x-systemd.device-timeout=2s"
-        "x-systemd.mount-timeout=2s"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
       ];
     };
     "/storage/Sicherungen" = {
@@ -157,8 +185,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
-        "x-systemd.device-timeout=2s"
-        "x-systemd.mount-timeout=2s"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
       ];
     };
     "/storage/Video" = {
@@ -172,8 +200,8 @@
         "credentials=/etc/nas"
         "nofail"
         "x-systemd.automount"
-        "x-systemd.device-timeout=2s"
-        "x-systemd.mount-timeout=2s"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
       ];
     };
   };
@@ -195,13 +223,17 @@
   };
 
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.extraConfig = "
-    [General]
-    Enable=Source,Sink,Media,Socket
-  ";
+  hardware.bluetooth.config = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
 
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl
+  ];
   # needed to support 32Bit games
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
@@ -221,18 +253,17 @@
   services.autorandr.enable = true;
   services.keybase.enable = true;
   services.kbfs.enable = true;
-  services.teamviewer.enable = true;
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-    programs.adb.enable = true;
+  programs.adb.enable = true;
 
   users.extraUsers.tuxinaut = {
     createHome = true;
-    extraGroups = ["adbusers" "wheel" "video" "audio" "disk" "networkmanager"];
+    extraGroups = ["adbusers" "docker" "dialout" "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"];
     group = "users";
     home = "/home/tuxinaut";
     isNormalUser = true;
@@ -241,6 +272,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
+    config.allowBroken = true;
   };
 
   # This value determines the NixOS release with which your system is to be

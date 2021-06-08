@@ -114,7 +114,7 @@ in
       pkgs.inkscape
       pkgs.ruby
       pkgs.ffmpeg
-      pkgs.kdenlive
+      unstable.kdenlive
       pkgs.breeze-qt5
       pkgs.breeze-gtk
       pkgs.breeze-icons
@@ -122,13 +122,16 @@ in
       pkgs.xclip
       pkgs.easytag
       pkgs.bind
-      pkgs.torbrowser
+      #unstable.torbrowser
       pkgs.libreoffice-fresh
       unstable.slack
       pkgs.colord
       pkgs.colord-gtk
       pkgs.killall
       pkgs.steam-run-native
+      pkgs.haskellPackages.greenclip
+      pkgs.gnome3.gnome-calculator
+      pkgs.gnome3.gnome-system-monitor
       (
         my_vim_configurable.customize {
           name = "vim";
@@ -141,7 +144,10 @@ in
           '';
       })
       pkgs.acpilight
-      pkgs.teamviewer
+      pkgs.x265
+      pkgs.signal-desktop
+      pkgs.bitwarden
+      pkgs.hyper
     ];
 
   gtk = {
@@ -158,7 +164,7 @@ in
 
   qt = {
     enable = true;
-    useGtkTheme = true;
+    platformTheme = "gtk";
   };
 
 
@@ -254,10 +260,6 @@ in
             notification = false;
           }
           {
-            command = "i3-msg 'workspace 1:Web; exec keepassxc'";
-            notification = false;
-          }
-          {
             command = "i3-msg 'workspace 2:Email; exec thunderbird'";
             notification = false;
           }
@@ -323,6 +325,7 @@ in
       width = 100;
       xoffset = 0;
       yoffset = 0;
+      extraConfig = "rofi.modi: clipboard:greenclip print,combi,run,window\nrofi.show-icons: true";
       colors = {
         window = {
           background = "#2f1e2e";
@@ -406,6 +409,7 @@ in
           };
         };
         "dell_vertical" = {
+          #disableAutoload = true;
           fingerprint = {
             DP-1-2 = "00ffffffffffff0010ac6ed04c58313014190104a5371f783e4455a9554d9d260f5054a54b00b300d100714fa9408180778001010101565e00a0a0a029503020350029372100001a000000ff0039583256593535423031584c0a000000fc0044454c4c205532353135480a20000000fd0038561e711e010a202020202020018302031cf14f1005040302071601141f12132021222309070783010000023a801871382d40582c450029372100001e011d8018711c1620582c250029372100009e011d007251d01e206e28550029372100001e8c0ad08a20e02d10103e9600293721000018483f00ca808030401a50130029372100001e00000000000000000057";
             eDP-1 = "00ffffffffffff004d1049140000000020190104a51d11780ede50a3544c99260f5054000000010101010101010101010101010101011a3680a070381f403020350026a510000018000000100000000000000000000000000000000000fe00444a435036804c513133334d31000000000002410328001200000b010a20200066";
@@ -477,7 +481,7 @@ case "$1" in
           xset dpms 600
         else
           kill $PID
-          xset -dpms
+          xset s off -dpms
         fi
 
         ;;
@@ -496,7 +500,7 @@ exit 0
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/rycee/home-manager/archive/release-18.09.tar.gz;
+      path = https://github.com/rycee/home-manager/archive/release-20.09.tar.gz;
     };
 
     services.screen-locker = {
@@ -585,5 +589,8 @@ exit 0
       enable = true;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
+          extraConfig = ''
+      pinentry-program ${pkgs.pinentry-curses}/bin/pinentry-curses
+    '';
     };
 }
