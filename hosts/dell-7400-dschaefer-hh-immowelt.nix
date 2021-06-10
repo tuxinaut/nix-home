@@ -12,6 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
 ./dell-7400-dschaefer-hh-immowelt-hardware-configuration.nix
+./virtualbox.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -104,7 +105,7 @@ isNormalUser = true;
 uid=1000;
 createHome = true;
 group = "users";
-extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" ]; # Enable ‘sudo’ for the user.
+extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"]; # Enable ‘sudo’ for the user.
 };
 
   # List packages installed in system profile. To search, run:
@@ -192,6 +193,11 @@ xdg = {
         "x-systemd.mount-timeout=20s"
       ];
     };
+  };
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.allowBroken = true;
   };
 
   # This value determines the NixOS release from which the default
