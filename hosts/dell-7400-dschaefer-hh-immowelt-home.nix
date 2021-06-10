@@ -519,26 +519,26 @@ if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
 [[ -f ~/.bashrc_static ]] && . ~/.bashrc_static
 ";
 shellAliases = {
-ns="nix-shell -p";
 g="git";
+gaa="git add --all";
+gap="git add -p";
 gb="git branch";
 gbd="git branch --delete";
-gcm="git commit --amend";
-gaa="git add --all";
-gr="git remote";
-grbi="git rebase --interactive";
-gcmh="git commit --amend -C HEAD";
-grbc="git rebase --continue";
 gc="git commit";
-grb="git rebase";
-gcl="git clone";
-gap="git add -p";
 gcb="git checkout -b";
+gcl="git clone";
+gcm="git commit --amend";
+gcmh="git commit --amend -C HEAD";
+gfa="git fetch --all";
 gpl="git pull";
 gplr="git pull --rebase";
 gps="git push";
 gpsf="git push --force";
-gfa="git fetch --all";
+gr="git remote";
+grb="git rebase";
+grbc="git rebase --continue";
+grbi="git rebase --interactive";
+ns="nix-shell -p";
 reload=". ~/.bash_profile";
   };
 #  sessionVariables = {
