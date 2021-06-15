@@ -303,6 +303,7 @@ default_border pixel 6
 input * {
 # https://man.archlinux.org/man/xkeyboard-config.7
 xkb_layout de
+xkb_variant nodeadkeys
 # Enable Capslock and Numlock
 #XKB_capslock enable
 xkb_numlock enable
