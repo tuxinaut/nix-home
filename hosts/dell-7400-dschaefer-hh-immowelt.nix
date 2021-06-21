@@ -58,8 +58,13 @@ keyMap = "de";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  services.printing.drivers = [
+    pkgs.gutenprint
+    pkgs.gutenprintBin
+  ];
   # Automatically run the garbage collector at a specific time.
   nix.gc.automatic = true;
 
@@ -117,6 +122,7 @@ vim
 git
 qt5.qtwayland
   #networkmanagerapplet
+  canon-cups-ufr2
   ];
 
 services.udev.packages = with pkgs; [
