@@ -431,6 +431,12 @@ services.gammastep = {
         core.excludesfile = "~/.gitignore";
         pull.ff = "only";
       };
+      includes = [
+        {
+          path = "~/.gitprivate";
+          condition = "gitdir:~/workspace/private";
+        }
+      ];
     };
 
     programs.fzf = {
@@ -662,6 +668,7 @@ hide_inactive = true;
       "bin/screenshot".source = ../bash/screenshot.sh;
       "bin/mic_checker".source = ../bash/mic_checker.sh;
       ".gitignore".source = ../gitignore;
+      ".gitprivate".source = ../gitprivate;
       ".bashrc_static".source = ../bash/work_bashrc;
       ".vim/backup/.dummy".source = ../bash/emptyfile;
       ".vim/swap/.dummy".source = ../bash/emptyfile;
