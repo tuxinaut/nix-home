@@ -546,6 +546,8 @@ gcmh="git commit --amend -C HEAD";
 gdc="git diff --cached";
 gfa="git fetch --all";
 glm="git log --oneline ...$(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
+gcom="git checkout $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
+glp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
 gpl="git pull";
 gplr="git pull --rebase";
 gps="git push";
