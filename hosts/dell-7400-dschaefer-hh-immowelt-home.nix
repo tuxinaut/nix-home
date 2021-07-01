@@ -743,6 +743,9 @@ hide_inactive = true;
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/master.tar.gz;
+#      path = https://github.com/nix-community/home-manager/archive/master.tar.gz;
+# Needed becuase of broken rofi
+# https://github.com/nix-community/home-manager/commit/5b08b33e8fcd4737edca0f187e47033b1b206114
+      path = https://github.com/nix-community/home-manager/archive/9b7a90daa17022c428e3b6da36814f5f9a804a35.tar.gz;
     };
 }
