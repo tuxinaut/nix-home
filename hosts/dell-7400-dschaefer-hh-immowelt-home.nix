@@ -434,7 +434,13 @@ services.gammastep = {
       includes = [
         {
           path = "~/.gitprivate";
-          condition = "gitdir:~/workspace/private";
+          # Check if that now really works!!!
+          condition = "gitdir:~/workspace/private/";
+        }
+        {
+          path = "~/.gitprivate";
+          # Check if that now really works!!!
+          condition = "gitdir:/etc/nixos/";
         }
       ];
     };
