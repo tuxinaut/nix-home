@@ -153,7 +153,7 @@ in
 
 wayland.windowManager.sway = {
   enable = true;
-  package = unstable.sway;
+  package = pkgs.sway;
   wrapperFeatures = {
     base = true;
     gtk = true;
