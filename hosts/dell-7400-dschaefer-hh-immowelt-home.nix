@@ -113,6 +113,7 @@ in
     pkgs.bashCompletion
     pkgs.hstr
     pkgs.gitAndTools.scmpuff
+    unstable.complete-alias
     # fonts
     pkgs.font-awesome-ttf
     pkgs.powerline-fonts
@@ -531,6 +532,12 @@ if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
 ";
     initExtra = "
 [[ -f ~/.bashrc_static ]] && . ~/.bashrc_static
+
+# https://github.com/cykerway/complete-alias
+if [[ -f ${unstable.complete-alias}/bin/complete_alias ]]; then
+  . ${unstable.complete-alias}/bin/complete_alias
+  complete -F _complete_alias \"\${!BASH_ALIASES[@]}\"
+fi
 ";
 shellAliases = {
 g="git";
