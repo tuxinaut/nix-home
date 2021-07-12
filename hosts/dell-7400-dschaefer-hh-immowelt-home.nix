@@ -540,31 +540,51 @@ if [[ -f ${unstable.complete-alias}/bin/complete_alias ]]; then
 fi
 ";
 shellAliases = {
+# https://github.com/scmbreeze/scm_breeze/blob/master/lib/git/aliases.sh
+# https://github.com/scmbreeze/scm_breeze/blob/4f1e42165252cc63a541ae13e760e286a5710a7a/git.scmbrc.example
 g="git";
 gaa="git add --all";
 gap="git add -p";
+gash="git stash";
+gasha="git stash apply";
+gashl="git stash list";
+gashp="git stash pop";
+gau="git add -u";
 gb="git branch";
+gba="git branch --all";
 gbd="git branch --delete";
+gbl="git blame";
 gc="git commit";
 gcb="git checkout -b";
+gce="git clean";
+gcef="git clean -fd";
 gcl="git clone";
 gcm="git commit --amend";
 gcmh="git commit --amend -C HEAD";
-gdc="git diff --cached";
-gfa="git fetch --all";
-glm="git log --oneline ...$(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
+gco="git checkout";
 gcom="git checkout $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
-glp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+gcp="git cherry-pick";
+gcv="git commit --verbose";
+gdc="git diff --cached";
+gdw="git diff --word-diff";
+gfa="git fetch --all";
+gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+glm="git log --oneline ...$(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
 gpl="git pull";
+gplp="git pull --prune";
 gplr="git pull --rebase";
 gps="git push";
 gpsf="git push --force";
-gr="git remote";
+gr="git remote -v";
 grb="git rebase";
 grbc="git rebase --continue";
 grbi="git rebase --interactive";
 grbim="git rebase --interactive --autosquash $(git log --oneline --format=%H $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)... | tail -n1)^";
+grs="git reset";
 grsh="git reset --hard";
+grsl="git reset HEAD~";
+gt="git tag";
+gwc="git whatchanged";
 ns="nix-shell -p";
 reload=". ~/.bash_profile";
   };

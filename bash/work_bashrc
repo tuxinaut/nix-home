@@ -25,7 +25,7 @@
 # scmpuff
 #
 # https://github.com/mroth/scmpuff
-eval "$(scmpuff init -s)"
+eval "$(scmpuff init -s --aliases=false)"
 
 # Activate autocompletion for fzf
 #
