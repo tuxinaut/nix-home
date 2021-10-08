@@ -92,7 +92,9 @@ in
     pkgs.gnome3.gnome-calculator
     pkgs.fd # https://github.com/sharkdp/fd
     # Internet and email
-    pkgs.firefox-wayland
+    #  Firefox popups not rendered on some multi-output setups #6147
+    # https://github.com/swaywm/sway/issues/6147
+    pkgs.firefox-esr-wayland
     pkgs.thunderbird
     pkgs.chromium
     pkgs.google-chrome
