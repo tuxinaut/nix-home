@@ -114,6 +114,7 @@ in
     pkgs.hstr
     pkgs.gitAndTools.scmpuff
     unstable.complete-alias
+    pkgs.neofetch
     # fonts
     pkgs.font-awesome-ttf
     pkgs.powerline-fonts
@@ -538,6 +539,8 @@ if [[ -f ${unstable.complete-alias}/bin/complete_alias ]]; then
   . ${unstable.complete-alias}/bin/complete_alias
   complete -F _complete_alias \"\${!BASH_ALIASES[@]}\"
 fi
+
+${pkgs.neofetch}/bin/neofetch
 ";
 shellAliases = {
 # https://github.com/scmbreeze/scm_breeze/blob/master/lib/git/aliases.sh
