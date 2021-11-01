@@ -15,39 +15,10 @@
 #[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && \
 #    . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
 
-# Starship prompt
-#
-# https://github.com/starship/starship
-#
-# Will be done by the home-manager .bashrc
-#eval "$(starship init bash)"
-
 # scmpuff
 #
 # https://github.com/mroth/scmpuff
-eval "$(scmpuff init -s --aliases=false)"
-
-# Activate autocompletion for fzf
-#
-# https://nixos.wiki/wiki/Fzf
-#
-# Will be done by the home-manager .bashrc
-#if command -v fzf-share >/dev/null; then
-#  . "$(fzf-share)/key-bindings.bash"
-#  . "$(fzf-share)/completion.bash"
-#fi
-
-# Aliases
-#alias g="git"
-#alias gcb="git checkout -b"
-#alias gpl="git pull"
-#alias gpl="git pull"
-#alias gplr="git pull --rebase"
-#alias gps="git push"
-#alias gpsf="git push --force"
-#alias gfa="git fetch --all"
-
-#alias reload=". ~/.bash_profile"
+eval "$(scmpuff init -s)"
 
 # Simulate at least partly the behavior of scm_breeze
 #
