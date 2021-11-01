@@ -561,6 +561,8 @@ export PATH=\"${homeDirectory}/.npm-packages/bin:\$PATH\"
 ${pkgs.neofetch}/bin/neofetch
 ";
 shellAliases = {
+".."="cd ..";
+"..."="cd .. && cd ..";
 # https://github.com/scmbreeze/scm_breeze/blob/master/lib/git/aliases.sh
 # https://github.com/scmbreeze/scm_breeze/blob/4f1e42165252cc63a541ae13e760e286a5710a7a/git.scmbrc.example
 g="git";
@@ -582,14 +584,14 @@ gcef="git clean -fd";
 gcl="git clone";
 gcm="git commit --amend";
 gcmh="git commit --amend -C HEAD";
-gco="git checkout";
 gcom="git checkout $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
 gcp="git cherry-pick";
 gcv="git commit --verbose";
 gdc="git diff --cached";
+gdnw="git diff -w";
 gdw="git diff --word-diff";
 gfa="git fetch --all";
-gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+gll="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
 glm="git log --oneline ...$(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
 gpl="git pull";
 gplp="git pull --prune";
@@ -601,13 +603,16 @@ grb="git rebase";
 grbc="git rebase --continue";
 grbi="git rebase --interactive";
 grbim="git rebase --interactive --autosquash $(git log --oneline --format=%H $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)... | tail -n1)^";
-grs="git reset";
 grsh="git reset --hard";
 grsl="git reset HEAD~";
+gss="git status -s";
 gt="git tag";
 gwc="git whatchanged";
+glme="git log --oneline --author=Denny";
 ns="nix-shell -p";
 reload=". ~/.bash_profile";
+tfp="terraform plan -out \"$(basename $(pwd)).tfplan\"";
+tfa="terraform apply -auto-approve \"$(basename $(pwd)).tfplan\"";
   };
 #  sessionVariables = {
 #    EDITOR = "vim";
