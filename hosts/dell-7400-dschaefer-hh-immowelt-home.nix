@@ -69,6 +69,11 @@ in
     enableBashIntegration = true;
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   home.packages = [
     # languages runtimes
     pkgs.nodejs-12_x
