@@ -45,6 +45,11 @@ aws_profile_switcher() {
 # if this is interactive shell, then bind ‘aws_profile_switcher’ to Ctrl-k
 if [[ $- =~ .*i.* ]]; then bind '"\C-k": "\C-a aws_profile_switcher \C-j"'; fi
 
+# Git branch namer
+gitBranchNamer () {
+  echo ${1,,} | tr ' ' '-'
+}
+
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr
 export HSTR_CONFIG=hicolor       # get more colors
