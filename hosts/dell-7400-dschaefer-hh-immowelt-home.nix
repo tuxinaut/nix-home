@@ -78,6 +78,7 @@ in
     # languages runtimes
     pkgs.nodejs-12_x
     pkgs.nodePackages.typescript
+    pkgs.terraform-ls
     # backup
     pkgs.borgbackup
     pkgs.borgmatic
