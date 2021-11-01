@@ -12,7 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
 ./dell-7400-dschaefer-hh-immowelt-hardware-configuration.nix
-./virtualbox.nix
+#./virtualbox.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
