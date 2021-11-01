@@ -685,6 +685,13 @@ hide_inactive = true;
 }
 {
 block = "net";
+device = "ppp0";
+format = "{ip}";
+interval = 5;
+hide_inactive = true;
+}
+{
+block = "net";
 device = "enp57s0u1u2";
 format = "{ip}";
 interval = 5;
