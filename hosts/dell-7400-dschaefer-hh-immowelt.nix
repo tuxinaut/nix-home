@@ -15,6 +15,18 @@ in
 #./virtualbox.nix
     ];
 
+# https://github.com/NixOS/nixpkgs/pull/139807
+#  nixpkgs.overlays = [(
+#    self: super: {
+#      canon-cups-ufr2 = super.canon-cups-ufr2.overrideAttrs (old: {
+#        src = super.fetchurl {
+#          url = "https://gdlp01.c-wss.com/gds/4/0100010264/01/linux-UFRII-drv-v370-uken-07.tar.gz";
+#          sha256 = "01nxpg3h1c64p5skxv904fg5c4sblmif486vkij2v62wwn6l65pz";
+#        };
+#      });
+#    }
+#  )];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
