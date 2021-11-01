@@ -529,6 +529,13 @@ nodejs = {
           mods = "Control|Shift";
           action = "SpawnNewInstance";
         }
+        {
+          key = "A";
+          mode = "Vi|~Search";
+          mods = "Shift";
+          action = "Last";
+        }
+
       ];
     };
   };
