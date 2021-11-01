@@ -556,6 +556,8 @@ if [[ -f ${unstable.complete-alias}/bin/complete_alias ]]; then
   complete -F _complete_alias \"\${!BASH_ALIASES[@]}\"
 fi
 
+export PATH=\"${homeDirectory}/.npm-packages/bin:\$PATH\"
+
 ${pkgs.neofetch}/bin/neofetch
 ";
 shellAliases = {
