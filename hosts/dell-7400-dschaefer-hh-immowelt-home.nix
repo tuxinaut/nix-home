@@ -448,12 +448,10 @@ services.gammastep = {
       includes = [
         {
           path = "~/.gitprivate";
-          # Check if that now really works!!!
           condition = "gitdir:~/workspace/private/";
         }
         {
           path = "~/.gitprivate";
-          # Check if that now really works!!!
           condition = "gitdir:/etc/nixos/";
         }
       ];
@@ -489,7 +487,6 @@ nodejs = {
     programs.rofi = {
       enable = true;
       package = unstable.wofi;
-
     };
 
   # https://www.linux.com/news/accelerating-openssh-connections-controlmaster
