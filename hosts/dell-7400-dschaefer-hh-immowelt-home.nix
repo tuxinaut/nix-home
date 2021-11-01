@@ -159,6 +159,7 @@ in
     # Misc tools
     pkgs.gnome3.gnome-system-monitor
     pkgs.killall
+    unstable.wofi-emoji
   ];
 
 wayland.windowManager.sway = {
@@ -207,6 +208,7 @@ modifier = "Mod4";
 #"${modifier}+Tab" = "exec ${unstable.wofi}/bin/wofi -d --show run,drun";
 # Ugly
 "${modifier}+Tab" = "exec bash ${homeDirectory}/bin/sway-window-switcher";
+"${modifier}+Shift+s" = "exec ${unstable.wofi-emoji}/bin/wofi-emoji";
 "${modifier}+Shift+h" = "move workspace to output left";
 "${modifier}+Shift+l" = "move workspace to output right";
 "${modifier}+Shift+j" = "move workspace to output up";
