@@ -255,6 +255,7 @@ modifier = "Mod4";
 # Dunst
 "Control+Shift+d" = "exec dunstctl close";
 "Control+Shift+h" = "exec dunstctl history-pop";
+"Control+Shift+n" = "exec dunstctl set-paused toggle";
 #Clipboard
 #$(swaymsg -r -t get_outputs | jq '. [] | select (.focused == true) | .name | split ("-") | last')
 "Control+Shift+c" = "exec ${pkgs.clipman}/bin/clipman pick --histpath \"${homeDirectory}/.local/share/clipman-primary.json\" --max-items=1000 -t bemenu -T'bemenu -b -i -l 10 --nb \"#002b36\" --tb \"#002b36\" --fb \"#002b36\" --fn \"Hack 14\" -p \"pick >\" -b -P \"\" --hb \"#002b36\" --hf \"#b5890\" --tf \"#fdf6e3\" --nf \"#fdf6e3\" -m focused'";
