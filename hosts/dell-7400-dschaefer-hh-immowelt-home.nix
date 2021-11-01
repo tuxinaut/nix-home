@@ -443,6 +443,7 @@ services.gammastep = {
         core.editor = "vim";
         core.excludesfile = "~/.gitignore";
         pull.ff = "only";
+        branch.sort = "authordate";
       };
       includes = [
         {
