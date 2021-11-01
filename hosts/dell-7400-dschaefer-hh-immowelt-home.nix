@@ -751,6 +751,7 @@ hide_inactive = true;
     services.gpg-agent = {
       enable = true;
       defaultCacheTtl = 1800;
+      maxCacheTtlSsh = 14400;
       enableSshSupport = true;
       pinentryFlavor = "tty";
       extraConfig = "
