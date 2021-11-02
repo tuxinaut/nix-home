@@ -118,8 +118,6 @@ extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"]; # 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #   wget vim
-  #   firefox
 vim
 git
 qt5.qtwayland
