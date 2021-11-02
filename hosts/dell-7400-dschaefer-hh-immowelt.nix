@@ -123,8 +123,8 @@ extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"]; # 
 vim
 git
 qt5.qtwayland
-  #networkmanagerapplet
   canon-cups-ufr2
+pulseaudio
   ];
 
 services.udev.packages = with pkgs; [
