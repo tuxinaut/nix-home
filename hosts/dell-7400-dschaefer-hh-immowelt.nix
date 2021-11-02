@@ -94,19 +94,9 @@ keyMap = "de";
   };
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-  # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = ''
-      load-module module-switch-on-connect
-    '';
-  };
-
   hardware.bluetooth.enable = true;
+
   services.blueman.enable = true;
 
 #hardware.bluetooth.settings = {
@@ -170,7 +160,11 @@ programs.bash.enableCompletion = true;
 # Needed for Yubikey
 services.pcscd.enable = true;
 
-services.pipewire.enable = true;
+services.pipewire = {
+  enable = true;
+  pulse.enable = true;
+};
+
 #services.pipewire.package = unstable.pipewire;
 
 services.fwupd.enable = true;
