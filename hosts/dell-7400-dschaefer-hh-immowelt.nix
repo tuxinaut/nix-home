@@ -118,11 +118,11 @@ extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"]; # 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-vim
-git
-qt5.qtwayland
-  canon-cups-ufr2
-pulseaudio
+    vim
+    git
+    qt5.qtwayland
+    canon-cups-ufr2
+    pulseaudio
   ];
 
 services.udev.packages = with pkgs; [
