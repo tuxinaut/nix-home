@@ -660,6 +660,12 @@ device = "intel_backlight";
 }
           {
 block = "bluetooth";
+mac = "00:0E:DD:0A:E9:5F";
+label = "Shure BT2";
+hide_disconnected = true;
+}
+          {
+block = "bluetooth";
 mac = "00:02:3C:7C:9C:0D";
 label = "Outlier Sports";
 hide_disconnected = true;
