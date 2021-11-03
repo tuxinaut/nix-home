@@ -49,6 +49,7 @@ let
     quick-scope
     vim-wayland-clipboard # Needed for exchange the + register with the (wayland) clipboard
     editorconfig-vim # https://github.com/editorconfig/editorconfig-vim https://editorconfig.org/
+    fzf-vim # https://github.com/junegunn/fzf.vim/
   ];
 
   modifier = config.wayland.windowManager.sway.config.modifier;
