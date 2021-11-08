@@ -62,6 +62,7 @@ in
     linuxPackages.exfat-nofuse
     firmwareLinuxNonfree
     fwupd
+    canon-cups-ufr2
   ];
 
   # Enable virtualbox.
@@ -208,6 +209,13 @@ in
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  services.printing.drivers = [
+    pkgs.gutenprint
+    pkgs.gutenprintBin
+  ];
 
   # Update the CPU microcode for Intel processors.
   hardware.cpu.intel.updateMicrocode = true;
