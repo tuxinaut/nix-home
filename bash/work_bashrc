@@ -47,7 +47,7 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-k": "\C-a aws_profile_switcher \C-j"'; fi
 
 # Git branch namer
 gitBranchNamer () {
-  echo ${1,,} | tr ' ' '-'
+  echo ${1,,} | tr ' ' '-' | tr '.' '-'
 }
 
 # HSTR configuration - add this to ~/.bashrc
