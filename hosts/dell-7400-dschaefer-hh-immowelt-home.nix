@@ -510,6 +510,7 @@ nodejs = {
     };
   };
 
+  # https://github.com/alacritty/alacritty/blob/master/alacritty.yml
   programs.alacritty = {
     enable = true;
     settings = {
@@ -520,6 +521,10 @@ nodejs = {
         normal.family = "Hack";
       };
       dynamic_title = true;
+      background_opacity = 0.9;
+      scrolling = {
+        history = 50000;
+      };
       save_to_clipboard = {
         save_to_clipboard = true;
       };
