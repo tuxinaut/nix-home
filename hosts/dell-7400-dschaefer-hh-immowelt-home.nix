@@ -8,50 +8,6 @@ let
     set rtp+=${plugin.rtp}/after
   '';
 
-  vim-wayland-clipboard = pkgs.vimUtils.buildVimPlugin {
-    name = "wayland-clipboard";
-    src = pkgs.fetchFromGitHub {
-      owner = "jasonccox";
-      repo = "vim-wayland-clipboard";
-      rev= "2dc05c0f556213068a9ddf37a8b9b2276deccf84";
-      sha256= "sha256:16x7dk1x9q8kzjcgapgb9hw8hm4w8v1g6pzpiz6ccsd0ab0jzf40";
-    };
-
-    buildInputs = [ pkgs.zip pkgs.vim ];
-  };
-
-  # See https://nixos.wiki/wiki/Vim
-  my_vim_configurable = pkgs.vim_configurable.override {
-    python = pkgs.python38Full;
-  };
-
-  my_vimPlugins = with pkgs.vimPlugins; [
-    coc-nvim
-    coc-json
-    coc-tsserver
-
-    iceberg-vim
-    tabular
-    vim-indent-guides
-    syntastic
-    vim-fugitive
-    nerdtree
-    ctrlp-vim
-    #vim-gnupg
-    vim-airline
-    #SudoEdit.vim
-    vim-multiple-cursors
-    vim-surround
-    vim-better-whitespace
-    vim-airline-themes
-    molokai
-    tagbar
-    quick-scope
-    vim-wayland-clipboard # Needed for exchange the + register with the (wayland) clipboard
-    editorconfig-vim # https://github.com/editorconfig/editorconfig-vim https://editorconfig.org/
-    fzf-vim # https://github.com/junegunn/fzf.vim/
-  ];
-
   modifier = config.wayland.windowManager.sway.config.modifier;
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
 in
@@ -128,17 +84,6 @@ in
     pkgs.font-awesome-ttf
     pkgs.powerline-fonts
     pkgs.gnome3.gnome-font-viewer
-      (
-        my_vim_configurable.customize {
-          name = "vim";
-          vimrcConfig.packages.myVimPackage = {
-            start = my_vimPlugins;
-          };
-
-          vimrcConfig.customRC = ''
-            ${ (builtins.readFile ../vim/vimrc) }
-          '';
-        })
     # Tools
     pkgs.gnumake
     pkgs.jq
@@ -428,6 +373,40 @@ services.gammastep = {
   };
   #tray = true;
 };
+
+programs.vim = {
+  enable = true;
+  plugins = with pkgs.vimPlugins; [
+    coc-nvim
+    coc-json
+    coc-tsserver
+
+    vim-wayland-clipboard # https://github.com/jasonccox/vim-wayland-clipboard/
+    iceberg-vim
+    tabular
+    vim-indent-guides
+    syntastic
+    vim-fugitive
+    nerdtree
+    ctrlp-vim
+    vim-airline
+    vim-multiple-cursors
+    vim-surround
+    vim-better-whitespace
+    vim-airline-themes
+    molokai
+    tagbar
+    quick-scope
+    vim-wayland-clipboard # Needed for exchange the + register with the (wayland) clipboard
+    editorconfig-vim # https://github.com/editorconfig/editorconfig-vim https://editorconfig.org/
+    fzf-vim # https://github.com/junegunn/fzf.vim/
+  ];
+
+  extraConfig = ''
+    ${ (builtins.readFile ../vim/vimrc) }
+  '';
+};
+
 
 
     programs.git = {
