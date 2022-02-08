@@ -63,6 +63,8 @@ in
     pkgs.google-chrome
     # Screensharing via chromium
     pkgs.xdg-desktop-portal-wlr
+    pkgs.obs-studio-plugins.wlrobs # needed for wayland (pipewire)
+    pkgs.obs-studio
     # Clipboard
     pkgs.wl-clipboard
     pkgs.clipman
@@ -78,7 +80,7 @@ in
     pkgs.bashCompletion
     pkgs.hstr
     pkgs.gitAndTools.scmpuff
-    unstable.complete-alias
+    pkgs.complete-alias
     pkgs.neofetch
     # fonts
     pkgs.font-awesome-ttf
@@ -87,7 +89,8 @@ in
     # Tools
     pkgs.gnumake
     pkgs.jq
-    unstable.awscli2 # Unstable because of error regarding autocompletionn
+    pkgs.awscli2 # Unstable because of error regarding autocompletionn
+    pkgs.saml2aws # retrieve AWS temporary credentials
     pkgs.git
     pkgs.gnupg
     # Needed for Immowelt SSO
@@ -105,7 +108,7 @@ in
     # Misc tools
     pkgs.gnome3.gnome-system-monitor
     pkgs.killall
-    unstable.wofi-emoji
+    pkgs.wofi-emoji
   ];
 
 wayland.windowManager.sway = {
@@ -154,7 +157,7 @@ modifier = "Mod4";
 #"${modifier}+Tab" = "exec ${unstable.wofi}/bin/wofi -d --show run,drun";
 # Ugly
 "${modifier}+Tab" = "exec bash ${homeDirectory}/bin/sway-window-switcher";
-"${modifier}+Shift+s" = "exec ${unstable.wofi-emoji}/bin/wofi-emoji";
+"${modifier}+Shift+s" = "exec ${pkgs.wofi-emoji}/bin/wofi-emoji";
 "${modifier}+Shift+h" = "move workspace to output left";
 "${modifier}+Shift+l" = "move workspace to output right";
 "${modifier}+Shift+j" = "move workspace to output up";
@@ -536,8 +539,8 @@ if [ -z $DISPLAY ] && [ \"$(tty)\" == \"/dev/tty1\" ]; then
 [[ -f ~/.bashrc_static ]] && . ~/.bashrc_static
 
 # https://github.com/cykerway/complete-alias
-if [[ -f ${unstable.complete-alias}/bin/complete_alias ]]; then
-  . ${unstable.complete-alias}/bin/complete_alias
+if [[ -f ${pkgs.complete-alias}/bin/complete_alias ]]; then
+  . ${pkgs.complete-alias}/bin/complete_alias
   complete -F _complete_alias \"\${!BASH_ALIASES[@]}\"
 fi
 
