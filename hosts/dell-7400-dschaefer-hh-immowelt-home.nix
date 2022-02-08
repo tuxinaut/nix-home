@@ -290,7 +290,10 @@ services.dunst = {
 
     monitor = 0;
     follow = "keyboard";
-    geometry = "x3-0-0";
+    width = 10000;
+    height = 100;
+    origin = "bottom-left";
+    offset = "0x0";
 
     progress_bar = true;
     progress_bar_height = 10;
