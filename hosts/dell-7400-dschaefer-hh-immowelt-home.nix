@@ -192,8 +192,8 @@ modifier = "Mod4";
 "XF86MonBrightnessUp" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
 "XF86MonBrightnessDown" = "exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
 # Pulse Audio controls
-"XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%"; #increase sound volume
-"XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%"; #decrease sound volume
+"XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && ${homeDirectory}/bin/dunst_volume"; #increase sound volume
+"XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && ${homeDirectory}/bin/dunst_volume"; #decrease sound volume
 # FIXME
 "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle"; # mute sound
 "Control+Shift+m" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -SIGRTMIN+4 i3status-rs"; # mute default mic
@@ -299,7 +299,7 @@ services.dunst = {
     progress_bar_height = 10;
     progress_bar_frame_width = 1;
     progress_bar_min_width = 150;
-    progress_bar_max_width = 300;
+    progress_bar_max_width = 1900;
 
     separator_height = 2;
     padding = 8;
@@ -736,6 +736,7 @@ hide_inactive = true;
       "bin/sway-window-switcher".source = ../sway/sway-bash-window-switcher.sh;
       "bin/screenshot".source = ../bash/screenshot.sh;
       "bin/mic_checker".source = ../bash/mic_checker.sh;
+      "bin/dunst_volume".source = ../bash/dunst_volume.sh;
       ".gitignore".source = ../gitignore;
       ".gitprivate".source = ../gitprivate;
       ".bashrc_static".source = ../bash/work_bashrc;
