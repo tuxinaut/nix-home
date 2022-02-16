@@ -109,6 +109,9 @@ in
     pkgs.gnome3.gnome-system-monitor
     pkgs.killall
     pkgs.wofi-emoji
+    pkgs.sirula
+    pkgs.swayr
+    pkgs.wofi
   ];
 
 wayland.windowManager.sway = {
@@ -122,7 +125,10 @@ wayland.windowManager.sway = {
     # Not sure if this will work
     startup = [
       {
-        command = "wl-paste  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=200 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
+        command = "env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1 &";
+      }
+      {
+        command = "wl-paste -n  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=200 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
       }
       {
         # FIXME
@@ -156,7 +162,10 @@ modifier = "Mod4";
     lib.mkOptionDefault {
 #"${modifier}+Tab" = "exec ${unstable.wofi}/bin/wofi -d --show run,drun";
 # Ugly
-"${modifier}+Tab" = "exec bash ${homeDirectory}/bin/sway-window-switcher";
+#"${modifier}+Tab" = "exec bash ${homeDirectory}/bin/sway-window-switcher";
+"${modifier}+Tab" = "exec ${pkgs.sirula}/bin/sirula";
+"Control+${modifier}+Space" = "exec ${pkgs.swayr}/bin/swayr switch-window";
+
 "${modifier}+Shift+s" = "exec ${pkgs.wofi-emoji}/bin/wofi-emoji";
 "${modifier}+Shift+h" = "move workspace to output left";
 "${modifier}+Shift+l" = "move workspace to output right";
@@ -470,11 +479,6 @@ nodejs = {
       };
     };
 
-    programs.rofi = {
-      enable = true;
-      package = unstable.wofi;
-    };
-
   # https://www.linux.com/news/accelerating-openssh-connections-controlmaster
   programs.ssh = {
     enable = true;
@@ -732,8 +736,9 @@ hide_inactive = true;
     };
   };
 
-    home.file = {
-      "bin/sway-window-switcher".source = ../sway/sway-bash-window-switcher.sh;
+  home.file = {
+      ".config/sirula/config.toml".source = ../sirula/config.toml;
+      ".config/sirula/style.css".source = ../sirula/style.css;
       "bin/screenshot".source = ../bash/screenshot.sh;
       "bin/mic_checker".source = ../bash/mic_checker.sh;
       "bin/dunst_volume".source = ../bash/dunst_volume.sh;

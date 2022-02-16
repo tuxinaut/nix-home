@@ -1,0 +1,45 @@
+/*
+pub const APP_LABEL_CLASS: &str = "app-label";
+pub const APP_ICON_CLASS: &str = "app-icon";
+pub const APP_ROW_CLASS: &str = "app-row";
+pub const ROOT_BOX_NAME: &str = "root-box";
+pub const LISTBOX_NAME: &str = "app-list";
+pub const SEARCH_ENTRY_NAME: &str = "search";
+pub const SCROLL_NAME: &str = "scroll";
+ */
+
+.app-row {
+    transition: unset;
+    padding: 5px 0 5px 10px;
+    background-color: #073642;
+}
+
+.app-row:selected {
+    background-color: #37474F;
+}
+
+.app-label {
+    margin-left: 10px;
+    font-family: Hack;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.app-list {
+    background-color: #f00;
+ }
+
+#root-box {
+    border: 3px solid #073642;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    margin: 100px;
+    background-color: #073642;
+}
+
+#search {
+    font-family: Hack;
+    font-size: 14px;
+    padding: 2px 8px;
+    margin: 5px;
+}
