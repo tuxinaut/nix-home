@@ -10,6 +10,10 @@ let
 
   modifier = config.wayland.windowManager.sway.config.modifier;
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+
+  vimPluginUnstable = with unstable.vimPlugins; [
+    everforest
+  ];
 in
 
 {
@@ -415,7 +419,7 @@ programs.vim = {
     vim-wayland-clipboard # Needed for exchange the + register with the (wayland) clipboard
     editorconfig-vim # https://github.com/editorconfig/editorconfig-vim https://editorconfig.org/
     fzf-vim # https://github.com/junegunn/fzf.vim/
-  ];
+  ] ++ vimPluginUnstable;
 
   extraConfig = ''
     ${ (builtins.readFile ../vim/vimrc) }
