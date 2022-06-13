@@ -16,3 +16,6 @@ trim_trailing_whitespace = true
 # Match perl/python/shell scripts, set indent width of four
 [*.{pl,pm,py,sh}]
 indent_size = 4
+
+[makefile]
+indent_style = tab
