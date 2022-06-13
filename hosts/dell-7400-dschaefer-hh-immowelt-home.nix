@@ -78,7 +78,7 @@ in
     pkgs.thunderbird
     pkgs.chromium
     pkgs.google-chrome
-    # Screensharing via chromium
+    # Screensharing
     pkgs.xdg-desktop-portal-wlr
     pkgs.obs-studio-plugins.wlrobs # needed for wayland (pipewire)
     pkgs.obs-studio
