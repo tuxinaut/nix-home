@@ -51,7 +51,7 @@ in
     # languages runtimes
     pkgs.nodejs-16_x
     pkgs.nodePackages.typescript
-    pkgs.terraform-ls
+    pkgs.terraform-ls # Terraform Language Server
     # backup
     pkgs.borgbackup
     pkgs.borgmatic
