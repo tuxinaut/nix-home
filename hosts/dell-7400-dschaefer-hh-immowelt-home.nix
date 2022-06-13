@@ -48,6 +48,7 @@ in
     pkgs.solaar # Logitech mouse
     pkgs.gimp
     pkgs.grim
+    pkgs.sway-contrib.grimshot
     pkgs.dunst # Workaround to control dunst via cli
     pkgs.bemenu
     # packages for i3status-rust
