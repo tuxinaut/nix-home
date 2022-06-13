@@ -74,7 +74,7 @@ in
     # Internet and email
     #  Firefox popups not rendered on some multi-output setups #6147
     # https://github.com/swaywm/sway/issues/6147
-    pkgs.firefox-esr-wayland
+    pkgs.firefox-wayland
     pkgs.thunderbird
     pkgs.chromium
     pkgs.google-chrome
