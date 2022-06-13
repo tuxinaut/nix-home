@@ -109,6 +109,7 @@ in
     pkgs.awscli2 # Unstable because of error regarding autocompletionn
     pkgs.saml2aws # retrieve AWS temporary credentials
     pkgs.git
+    pkgs.meld # diff tool
     pkgs.gnupg
     # Needed for Immowelt SSO
     pkgs.python38Packages.virtualenv
