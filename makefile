@@ -9,3 +9,6 @@ home_switch:
 
 home_cleanup:
 	home-manager expire-generations "-14 days"
+
+firmeware-upgrade:
+	fwupdmgr refresh && fwupdmgr upgrade
