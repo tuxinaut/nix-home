@@ -49,7 +49,7 @@ in
 
   home.packages = [
     # languages runtimes
-    pkgs.nodejs-12_x
+    pkgs.nodejs-16_x
     pkgs.nodePackages.typescript
     pkgs.terraform-ls
     # backup
