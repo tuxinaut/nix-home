@@ -161,9 +161,21 @@ services.pcscd.enable = true;
 services.pipewire = {
   enable = true;
   pulse.enable = true;
-};
 
-#services.pipewire.package = unstable.pipewire;
+  media-session.config.bluez-monitor.rules = [
+    {
+      matches = [
+        # Matches all sources
+        { "node.name" = "~bluez_input.*"; }
+        # Matches all outputs
+        { "node.name" = "~bluez_output.*"; }
+      ];
+      actions = {
+        "node.pause-on-idle" = false;
+      };
+    }
+  ];
+};
 
 services.fwupd.enable = true;
 
