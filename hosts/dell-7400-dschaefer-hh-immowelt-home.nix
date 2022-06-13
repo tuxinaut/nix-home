@@ -16,7 +16,19 @@ let
   ];
 in
 
-{
+  {
+#  nixpkgs.overlays = [(
+#    self: super: {
+#      slack  = super.slack.overrideAttrs (old: {
+#        x86_64-linux = super.fetchurl {
+#          url = "https://downloads.slack-edge.com/releases/linux/4.23.0/prod/x64/slack-desktop-4.23.0-amd64.deb";
+#          sha256 = "1wsrxacnj9f3cb6as7ncbdvi02jqcbyc7ijsavps5bls9phkp0is";
+#        };
+#      });
+#    }
+#  )];
+
+
   home.sessionPath = [
     "${homeDirectory}/bin"
   ];
