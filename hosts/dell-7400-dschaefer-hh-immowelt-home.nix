@@ -130,6 +130,7 @@ in
     pkgs.sirula
     pkgs.swayr
     pkgs.wofi
+    unstable.joplin-desktop
   ];
 
 wayland.windowManager.sway = {
