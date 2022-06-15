@@ -377,16 +377,21 @@ urgency_critical = {
   };
 };
 
-# Looks like there is not dunst package that supports wayland
-# despite the fact dunst supports wayland
-# https://github.com/dunst-project
-#programs.mako = {
-#enable = true;
-#anchor = "bottom-center";
-#};
-# FIXME: It broke with unstable!
+# FIXME
 #
-#  programs.firefox = {
+# building '/nix/store/apa7f69478mcvxi8yski0lb782z7hip1-firefox-91.2.0esr.drv'...
+#building '/nix/store/0v8549khp2kfpljihbdpg8sjvykvvjjb-firefox-91.2.0esr.drv'...
+#WARNING: Couldn't set ownership of text file bin/.firefox-old
+#/nix/store/3k69hbxg04sdxlgi1236ddggs346sxf3-stdenv-linux/setup: line 1404: /nix/store/y0lhqcrdh43fk1cx66vf831x1zb855lp-firefox-91.2.0esr/lib/firefox/defaults/pref/autoconfig.js: Permission denied
+#builder for '/nix/store/0v8549khp2kfpljihbdpg8sjvykvvjjb-firefox-91.2.0esr.drv' failed with exit code 1
+#cannot build derivation '/nix/store/pgsbmqnqp47mkrs594aflxvdc6yxvm5y-home-manager-path.drv': 1 dependencies couldn't be built
+#cannot build derivation '/nix/store/qn1hcrhxzn5cf1q9gn4k8191fvm7bk0c-home-manager-generation.drv': 1 dependencies couldn't be built
+#error: build of '/nix/store/qn1hcrhxzn5cf1q9gn4k8191fvm7bk0c-home-manager-generation.drv' failed
+#
+#There are 163 unread and relevant news items.
+#Read them by running the command 'home-manager news'.
+#
+#programs.firefox = {
 #enable = true;
 #package = pkgs.firefox-wayland;
 #profiles = {
