@@ -350,7 +350,6 @@ layer = "overlay";
     font = "Hack 12";
     format = "<b>%s</b>\\n%b";
     };
-#"Control+Shift+c" = "exec ${pkgs.clipman}/bin/clipman pick --histpath \"${homeDirectory}/.local/share/clipman-primary.json\" --max-items=1000 -t bemenu -T'bemenu -b -i -l 10 --nb \"#002b36\" --tb \"#002b36\" --fb \"#002b36\" --fn \"Hack 14\" -p \"pick >\" -b -P \"\" --hb \"#002b36\" --hf \"#b5890\" --tf \"#fdf6e3\" --nf \"#fdf6e3\"'";
 urgency_low = {
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
