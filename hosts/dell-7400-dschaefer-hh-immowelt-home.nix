@@ -319,11 +319,17 @@ services.dunst = {
   settings = {
     global = {
 
+layer = "overlay";
+
     monitor = 0;
     follow = "keyboard";
-    width = 10000;
-    height = 100;
-    origin = "bottom-left";
+    # FIXME
+    # it is not possible to set it up for the whole screen
+    # with without overflow
+    width = "(1900,1900)";
+    height = "(150, 300)";
+    # FIXME
+    origin = "bottom-center";
     offset = "0x0";
 
     progress_bar = true;
