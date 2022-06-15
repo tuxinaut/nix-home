@@ -598,6 +598,8 @@ shellAliases = {
 # https://github.com/scmbreeze/scm_breeze/blob/master/lib/git/aliases.sh
 # https://github.com/scmbreeze/scm_breeze/blob/4f1e42165252cc63a541ae13e760e286a5710a7a/git.scmbrc.example
 g="git";
+gbdm="git branch --merged | egrep -v \"(^\\*|master|main|dev)\" | xargs --no-run-if-empty git branch -d";
+gbda="git branch | egrep -v \"(^\\*|master|main|dev)\" | xargs --no-run-if-empty git branch -D";
 gaa="git add --all";
 gap="git add -p";
 gash="git stash";
