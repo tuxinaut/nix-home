@@ -645,6 +645,7 @@ gt="git tag";
 gwc="git whatchanged";
 glme="git log --oneline --author=Denny";
 ns="nix-shell -p";
+nsu="nix-shell -I nixpkgs=channel:nixpkgs-unstable -p";
 reload=". ~/.bash_profile";
 tfp="terraform plan -out \"$(basename $(pwd)).tfplan\"";
 tfa="terraform apply -auto-approve \"$(basename $(pwd)).tfplan\"";
