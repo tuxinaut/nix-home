@@ -619,6 +619,7 @@ gcl="git clone";
 gcm="git commit --amend";
 gcmh="git commit --amend -C HEAD";
 gcom="git checkout $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)";
+gbs="git checkout $(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf)";
 gcp="git cherry-pick";
 gcv="git commit --verbose";
 gdc="git diff --cached";
