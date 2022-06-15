@@ -647,8 +647,10 @@ glme="git log --oneline --author=Denny";
 ns="nix-shell -p";
 nsu="nix-shell -I nixpkgs=channel:nixpkgs-unstable -p";
 reload=". ~/.bash_profile";
-tfp="terraform plan -out \"$(basename $(pwd)).tfplan\"";
-tfa="terraform apply -auto-approve \"$(basename $(pwd)).tfplan\"";
+tfi="terraform init -reconfigure -upgrade=true";
+tfp="mkdir -p .terraform_work; terraform plan -out \".terraform_work/$(basename $(pwd)).tfplan\"";
+tfa="terraform apply -auto-approve \".terraform_work/$(basename $(pwd)).tfplan\"";
+tfmt="terraform fmt -recursive";
   };
 #  sessionVariables = {
 #    EDITOR = "vim";
