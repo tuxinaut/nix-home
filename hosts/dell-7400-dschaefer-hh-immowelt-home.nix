@@ -636,7 +636,7 @@ gpsf="git push --force";
 gr="git remote -v";
 grb="git rebase";
 grbc="git rebase --continue";
-grbi="git rebase --interactive";
+grbi="git rebase --interactive $(git log --oneline $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)... | fzf | cut -d ' ' -f 1)";
 grbim="git rebase --interactive --autosquash $(git log --oneline --format=%H $(if [[ $(git branch --list | grep -c master) -eq 1 ]]; then echo 'master'; else echo 'main'; fi)... | tail -n1)^";
 grsh="git reset --hard";
 grsl="git reset HEAD~";
