@@ -682,7 +682,6 @@ tfmt="terraform fmt -recursive";
         blocks = [
 {
 block = "notify";
-#driver = "dunst";
 format = "{state}";
 }
 {
