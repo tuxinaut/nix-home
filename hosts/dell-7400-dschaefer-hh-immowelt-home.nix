@@ -131,6 +131,9 @@ in
     pkgs.swayr
     pkgs.wofi
     unstable.joplin-desktop
+    # Windows stuff
+    pkgs.remmina
+    # Tools
   ];
 
 wayland.windowManager.sway = {
