@@ -429,8 +429,12 @@ programs.vim = {
     coc-json
     coc-tsserver
 
-    vim-wayland-clipboard # https://github.com/jasonccox/vim-wayland-clipboard/
+    vim-terraform
+
+    #everforest
     iceberg-vim
+
+    vim-wayland-clipboard # https://github.com/jasonccox/vim-wayland-clipboard/
     tabular
     vim-indent-guides
     syntastic
