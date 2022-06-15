@@ -819,33 +819,6 @@ hide_inactive = true;
   Service = {ExecStart = "${pkgs.bluez}/bin/mpris-proxy";};
   Install = {WantedBy = [ "default.target" ];};
 };
-# https://www.freedesktop.org/software/systemd/man/systemd.mount.html
-# https://github.com/nix-community/home-manager/pull/1629
-#systemd.user.mounts = {
-#       "home-dschaefer-nas-backup" = {
-#    Unit = {
-#      Description = "Example description";
-#      Documentation = [ "man:example(1)" "man:example(5)" ];
-#    };
-#
-#    Mount = {
-#      What = "//nas.tuxinaut.de/Sicherungen";
-#       Where = "/home/dschaefer/nas/backup";
-#      Type = "cifs";
-##      noCheck = true;
-#      options = [
-#        "user"
-#        "uid=1000"
-#        "gid=1000"
-#        "credentials=/etc/nas"
-#        "nofail"
-#        "x-systemd.automount"
-#        "x-systemd.device-timeout=2s"
-#        "x-systemd.mount-timeout=2s"
-#      ];
-#    };
-#  };
-#};
 
     programs.home-manager = {
       enable = true;
