@@ -829,8 +829,6 @@ hide_inactive = true;
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz;
-      # Needed becuase of broken rofi
-      #path = https://github.com/nix-community/home-manager/archive/9b7a90daa17022c428e3b6da36814f5f9a804a35.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz;
     };
 }
