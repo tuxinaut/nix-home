@@ -418,7 +418,8 @@ services.gammastep = {
       fade = 1;
     };
   };
-  #tray = true;
+  # Does not work ?¿
+  # tray = true;
 };
 
 programs.vim = {
