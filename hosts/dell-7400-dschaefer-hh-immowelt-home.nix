@@ -94,13 +94,13 @@ in
     pkgs.playerctl # https://github.com/altdesktop/playerctl
     pkgs.pavucontrol
     # terminal
-    pkgs.bashCompletion
+    pkgs.bash-completion
     pkgs.hstr
     pkgs.gitAndTools.scmpuff
     pkgs.complete-alias
     pkgs.neofetch
     # fonts
-    pkgs.font-awesome-ttf
+    pkgs.font-awesome
     pkgs.powerline-fonts
     pkgs.gnome3.gnome-font-viewer
     # Tools
@@ -113,7 +113,7 @@ in
     pkgs.gnupg
     # Needed for Immowelt SSO
     pkgs.python38Packages.virtualenv
-    pkgs.phantomjs
+    #pkgs.phantomjs is needed for SAMLtoAWS???
     pkgs.chromedriver
     # Communication
     unstable.teams
@@ -309,7 +309,7 @@ xkb_numlock enable
 gtk = {
 enable = true;
 iconTheme = {
-package = pkgs.gnome3.gnome_themes_standard;
+package = pkgs.gnome.gnome-themes-extra;
 name = "Adwaita";
 };
 };
@@ -547,7 +547,9 @@ nodejs = {
         normal.family = "Hack";
       };
       dynamic_title = true;
-      background_opacity = 0.9;
+      window = {
+        opacity = 0.9;
+      };
       scrolling = {
         history = 50000;
       };
@@ -829,6 +831,6 @@ hide_inactive = true;
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz;
     };
 }
