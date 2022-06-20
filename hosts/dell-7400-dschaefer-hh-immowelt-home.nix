@@ -822,12 +822,12 @@ hide_inactive = true;
   Install = {WantedBy = [ "default.target" ];};
 };
 
-  # Only available in the main git branch
-  # Enable Home Manager auto upgrade
-  # https://nix-community.github.io/home-manager/options.html#opt-services.home-manager.autoUpgrade.enable
-  #services.home-manager = {
-  #  autoUpgrade.enable = true;
-  #};
+    # Only available in the main git branch
+    # Enable Home Manager auto upgrade
+    # https://nix-community.github.io/home-manager/options.html#opt-services.home-manager.autoUpgrade.enable
+    services.home-manager = {
+      autoUpgrade.enable = true;
+    };
 
     programs.home-manager = {
       enable = true;
