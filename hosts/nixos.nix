@@ -217,6 +217,9 @@ in
     pkgs.gutenprintBin
   ];
 
+  # Enable SANE for scanning
+  hardware.sane.enable = true;
+
   # Update the CPU microcode for Intel processors.
   hardware.cpu.intel.updateMicrocode = true;
 
@@ -271,7 +274,7 @@ in
 
   users.extraUsers.tuxinaut = {
     createHome = true;
-    extraGroups = ["adbusers" "docker" "dialout" "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"];
+    extraGroups = ["adbusers" "docker" "dialout" "wheel" "video" "audio" "disk" "networkmanager" "vboxusers" "scanner" "lp"];
     group = "users";
     home = "/home/tuxinaut";
     isNormalUser = true;
