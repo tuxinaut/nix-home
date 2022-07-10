@@ -28,7 +28,7 @@ in
 
   boot.blacklistedKernelModules = [ "psmouse" ];
   boot.kernelParams = [ "modeset=1" "i915.enable_fbc=1" "i915.enable_guc=2"];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+#  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Whether to delete all files in /tmp during boot.
   boot.cleanTmpDir = true;
@@ -59,7 +59,7 @@ in
   environment.systemPackages = with pkgs; [
     vim
     htop
-    linuxPackages.exfat-nofuse
+    #linuxPackages.exfat-nofuse
     firmwareLinuxNonfree
     fwupd
     canon-cups-ufr2
@@ -234,7 +234,7 @@ in
   };
 
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.config = {
+  hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
     };
@@ -291,5 +291,4 @@ in
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "18.03"; # Did you read the comment?
-
 }

@@ -23,7 +23,7 @@ let
 
   # See https://nixos.wiki/wiki/Vim
   my_vim_configurable = pkgs.vim_configurable.override {
-    python = pkgs.python37Full;
+    python3 = pkgs.python39Full;
   };
 
   my_vimPlugins = with pkgs.vimPlugins; [
@@ -68,7 +68,7 @@ in
       pkgs.parcellite
       pkgs.redshift
       pkgs.vlc
-      pkgs.youtubeDL
+      pkgs.youtube-dl
       pkgs.hugo
       pkgs.borgbackup
       pkgs.kbfs
@@ -88,7 +88,7 @@ in
       pkgs.wget
       pkgs.usbutils
       pkgs.gnome3.gnome-keyring
-      pkgs.gnome3.dconf
+      pkgs.dconf
       pkgs.pavucontrol
       pkgs.lsof
       pkgs.xorg.xev
@@ -101,12 +101,12 @@ in
       pkgs.nix-index
       pkgs.atool
       pkgs.hicolor-icon-theme
-      pkgs.gnome3.gnome_themes_standard
-      pkgs.gnome3.defaultIconTheme
+      pkgs.gnome-themes-extra
+      pkgs.gnome.adwaita-icon-theme
       pkgs.go-mtpfs
       pkgs.zathura
       pkgs.gnumake
-      pkgs.yubikey-neo-manager
+      pkgs.yubikey-manager-qt
       pkgs.file
       pkgs.scrot
       pkgs.awscli
@@ -318,51 +318,9 @@ in
 
     programs.rofi = {
       enable = true;
-      padding = 1;
-      lines = 10;
-      borderWidth = 1;
       location = "bottom";
-      width = 100;
       xoffset = 0;
       yoffset = 0;
-      extraConfig = "rofi.modi: clipboard:greenclip print,combi,run,window\nrofi.show-icons: true";
-      colors = {
-        window = {
-          background = "#2f1e2e";
-          border = "argb:36ef6155";
-          separator = "argb:2fef6155";
-        };
-        rows = {
-          normal = {
-            background = "argb:a02f1e2e";
-            foreground = "#b4b4b4";
-            backgroundAlt = "argb:a02f1e2e";
-            highlight = {
-              background = "argb:54815ba4";
-              foreground = "#ffffff";
-            };
-          };
-          urgent = {
-            background = "argb:272f1e2e";
-            foreground = "#ef6155";
-            backgroundAlt = "argb:2f2f1e2e";
-            highlight = {
-              background = "argb:54815ba4";
-              foreground = "#ef6155";
-            };
-          };
-          active = {
-            background = "argb:272f1e2e";
-            foreground = "#815ba4";
-            backgroundAlt = "argb:2f2f1e2e";
-            highlight = {
-              background = "argb:54815ba4";
-              foreground = "#815ba4";
-            };
-          };
-        };
-      };
-      separator = "dash";
     };
 
     programs.autorandr = {
