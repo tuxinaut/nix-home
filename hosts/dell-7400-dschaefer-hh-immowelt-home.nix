@@ -662,6 +662,11 @@ tfmt="terraform fmt -recursive";
 #  };
 };
 
+  programs.watson = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   programs.bat = {
     enable = true;
     config = {
