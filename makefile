@@ -2,7 +2,7 @@ system_switch:
 	sudo nixos-rebuild --upgrade switch
 
 system_clean:
-	sudo nix-env --delete-generations 14d
+	nix-env --delete-generations 14d
 
 home_switch:
 	home-manager switch && source ~/.bash_profile
