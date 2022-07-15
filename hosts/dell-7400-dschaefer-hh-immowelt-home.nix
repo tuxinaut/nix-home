@@ -57,6 +57,7 @@ in
     pkgs.borgmatic
 
     pkgs.zathura
+    pkgs.calibre
     pkgs.solaar # Logitech mouse
     pkgs.gimp
     pkgs.grim
