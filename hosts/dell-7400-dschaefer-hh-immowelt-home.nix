@@ -817,6 +817,20 @@ hide_inactive = true;
     # https://github.com/emersion/kanshi
     services.kanshi = {
       enable = true;
+      profiles = {
+        work_docked = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              position = "4480,0";
+            }
+            {
+              criteria = "DP-6";
+              position = "1920,0";
+            }
+          ];
+        };
+      };
     };
 
     # Using Bluetooth headset buttons to control media player
