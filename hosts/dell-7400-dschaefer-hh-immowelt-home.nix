@@ -508,6 +508,10 @@ format = "user: [$user]($style) ";
 disabled = false;
 show_always = false;
 };
+aws = {
+  # https://github.com/starship/starship/issues/3834
+  force_display = true;
+};
 nodejs = {
   # https://github.com/starship/starship/pull/1649
   symbol = " ";
