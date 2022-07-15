@@ -866,7 +866,7 @@ hide_inactive = true;
         Timer = {
           Unit = [ "borg_backup.service" ];
           Persistent = true;
-          OnCalendar = [ "*-*-* *:00:00" ];
+          OnCalendar = [ "weekly" ];
         };
         Unit = {
           Description = "Personal Borg backup";
