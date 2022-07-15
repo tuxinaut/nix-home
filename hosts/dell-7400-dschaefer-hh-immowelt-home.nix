@@ -760,6 +760,14 @@ interval = 5;
 #use_bits = false;
 hide_inactive = true;
 }
+{
+block = "net";
+device = "enp57s0u1u4";
+format = "{ip}";
+interval = 5;
+#use_bits = false;
+hide_inactive = true;
+}
 #          {
 #              block = "disk_space";
 #              path = "/";
