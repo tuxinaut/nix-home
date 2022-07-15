@@ -734,6 +734,10 @@ block = "music";
 marquee = true;
 }
 {
+  block = "watson";
+  show_time = false;
+}
+{
 block = "net";
 device = "wlo1";
 format = "{ssid} {signal_strength} {ip}";
