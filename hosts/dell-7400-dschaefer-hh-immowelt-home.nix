@@ -112,8 +112,6 @@ in
     pkgs.git
     pkgs.meld # diff tool
     pkgs.gnupg
-    # Needed for Immowelt SSO
-    pkgs.python38Packages.virtualenv
     #pkgs.phantomjs is needed for SAMLtoAWS???
     pkgs.chromedriver
     # Communication
