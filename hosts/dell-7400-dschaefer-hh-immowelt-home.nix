@@ -833,6 +833,36 @@ hide_inactive = true;
       };
     };
 
+    systemd.user.services = {
+      borg_backup = {
+        Unit = {
+          Description = "Personal Borg backup";
+          After = [ "network.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/workspace/borgmatic/config.yaml";
+        };
+      };
+    };
+
+    systemd.user.timers = {
+      borg_backup = {
+        Install = {
+          WantedBy = [ "timer.target" ];
+        };
+        Timer = {
+          Unit = [ "borg_backup.service" ];
+          Persistent = true;
+          OnCalendar = [ "*-*-* *:00:00" ];
+        };
+        Unit = {
+          Description = "Personal Borg backup";
+          After = [ "network.target" ];
+        };
+      };
+    };
+
     # Using Bluetooth headset buttons to control media player
     # https://nixos.wiki/wiki/Bluetooth
     systemd.user.services.mpris-proxy = {
