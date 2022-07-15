@@ -830,6 +830,18 @@ hide_inactive = true;
             }
           ];
         };
+        work_docked_2 = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              position = "4480,0";
+            }
+            {
+              criteria = "DP-5";
+              position = "1920,0";
+            }
+          ];
+        };
       };
     };
 
