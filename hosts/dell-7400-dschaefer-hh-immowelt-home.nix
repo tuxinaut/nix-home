@@ -854,6 +854,18 @@ hide_inactive = true;
             }
           ];
         };
+        private = {
+          outputs = [
+            {
+              criteria = "DP-4";
+              position = "0,0";
+            }
+            {
+              criteria = "eDP-1";
+              position = "2560,0";
+            }
+          ];
+        };
       };
     };
 
