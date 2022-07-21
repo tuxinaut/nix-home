@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+HOME_IP_ADDRESS_RANGE="192.168.201"
+HOME_VPN_NAME="Home"
+
+are_we_home=$(ip a s | grep -cEi "${HOME_IP_ADDRESS_RANGE}")
+
+if [[ $are_we_home -ge 1 ]]; then
+  echo "We are home, nothing to do"
+else
+  vpn_con_home=$(nmcli -t con show --active | grep -c "${HOME_VPN_NAME}")
+
+  if [[ $vpn_con_home -lt 1 ]]; then
+    echo "We are at Work. Connect to HOME VPN"
+
+    nmcli --ask con up $HOME_VPN_NAME
+  fi
+fi
+
+exit 0

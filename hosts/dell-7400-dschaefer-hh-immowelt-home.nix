@@ -54,7 +54,7 @@ in
     pkgs.terraform-ls # Terraform Language Server
     # backup
     pkgs.borgbackup
-    pkgs.borgmatic
+    unstable.borgmatic
 
     pkgs.zathura
     pkgs.calibre
@@ -813,6 +813,21 @@ hide_inactive = true;
       ".vim/swap/.dummy".source = ../bash/emptyfile;
       ".vim/undo/.dummy".source = ../bash/emptyfile;
       "Pictures/.dummy".source = ../bash/emptyfile;
+      ".config/borgmatic/config.yaml".source = ../borgmatic/config.yaml;
+      ".config/borgmatic/pre-hook" = {
+        source = ../borgmatic/pre-hook;
+        executable = true;
+      };
+      ".config/borgmatic/make_backup" = {
+        text = "
+#!/usr/bin/env bash
+
+[[ -f ${homeDirectory}/.borgmatic ]] && . ${homeDirectory}/.borgmatic
+
+${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/config.yaml
+        ";
+        executable = true;
+      };
     };
 
     services.gpg-agent = {
@@ -877,7 +892,7 @@ hide_inactive = true;
         };
         Service = {
           Type = "simple";
-          ExecStart = "${pkgs.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/workspace/borgmatic/config.yaml";
+          ExecStart = "/usr/bin/env bash ${homeDirectory}/.config/borgmatic/make_backup";
         };
       };
     };
