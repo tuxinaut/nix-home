@@ -254,9 +254,10 @@ consistency:
     # archives, and "extract" does an extraction dry-run of the
     # most recent archive. Note that "data" implies "archives".
     checks:
-      #      - repository
-      #      - archives
-        - disabled
+        - name: repository
+          frequency: 2 weeks
+        - name: archives
+          frequency: 1 month
     # Paths to a subset of the repositories in the location
     # section on which to run consistency checks. Handy in case
     # some of your repositories are very large, and so running
