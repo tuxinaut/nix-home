@@ -2,6 +2,7 @@
 
 HOME_IP_ADDRESS_RANGE="192.168.201"
 HOME_VPN_NAME="Home"
+MOUNT_PATH="/storage/Sicherungen"
 
 are_we_home=$(ip a s | grep -cEi "${HOME_IP_ADDRESS_RANGE}")
 
@@ -16,5 +17,9 @@ else
     nmcli --ask con up $HOME_VPN_NAME
   fi
 fi
+
+#endless loop until the mount is read
+
+ls -l $MOUNT_PATH | head -n 1
 
 exit 0
