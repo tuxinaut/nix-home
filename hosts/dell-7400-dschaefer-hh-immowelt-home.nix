@@ -940,7 +940,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
     systemd.user.timers = {
       borg_backup = {
         Install = {
-          WantedBy = [ "timer.target" ];
+          WantedBy = [ "timers.target" ];
         };
         Timer = {
           Unit = [ "borg_backup.service" ];
