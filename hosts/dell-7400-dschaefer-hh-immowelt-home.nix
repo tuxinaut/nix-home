@@ -110,6 +110,7 @@ in
     pkgs.powerline-fonts
     pkgs.gnome3.gnome-font-viewer
     # Tools
+    pkgs.ranger
     pkgs.gnumake
     pkgs.jq
     pkgs.awscli2 # Unstable because of error regarding autocompletionn
