@@ -952,6 +952,19 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
           After = [ "network.target" ];
         };
       };
+      screenshot_cleanup = {
+        Install = {
+          WantedBy = [ "timers.target" ];
+        };
+        Timer = {
+          Unit = [ "screenshot_cleanup.service" ];
+          Persistent = true;
+          OnCalendar = [ "weekly" ];
+        };
+        Unit = {
+          Description = "Screenshot cleanup";
+        };
+      };
     };
 
     # Using Bluetooth headset buttons to control media player
