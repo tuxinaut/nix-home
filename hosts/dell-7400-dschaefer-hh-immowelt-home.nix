@@ -15,19 +15,24 @@ let
     everforest
   ];
 in
+{
+  # This finally enables functional screensharing in the Slack app!
+  #
+  # https://www.guyrutenberg.com/2022/03/12/slack-screen-sharing-under-wayland/
+  nixpkgs.overlays = [(
+    self: super: {
+      slack  = unstable.slack.overrideAttrs (old: {
+        installPhase = old.installPhase + ''
+          rm $out/bin/slack
 
-  {
-#  nixpkgs.overlays = [(
-#    self: super: {
-#      slack  = super.slack.overrideAttrs (old: {
-#        x86_64-linux = super.fetchurl {
-#          url = "https://downloads.slack-edge.com/releases/linux/4.23.0/prod/x64/slack-desktop-4.23.0-amd64.deb";
-#          sha256 = "1wsrxacnj9f3cb6as7ncbdvi02jqcbyc7ijsavps5bls9phkp0is";
-#        };
-#      });
-#    }
-#  )];
-
+          makeWrapper $out/lib/slack/slack $out/bin/slack \
+          --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
+          --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
+          --add-flags "--enable-features=WebRTCPipeWireCapturer %U"
+        '';
+      });
+    }
+  )];
 
   home.sessionPath = [
     "${homeDirectory}/bin"
@@ -117,7 +122,7 @@ in
     # Communication
     unstable.teams
     pkgs.signal-desktop
-    unstable.slack
+    pkgs.slack
     # System
     pkgs.brightnessctl # Backlight management
     pkgs.lm_sensors
