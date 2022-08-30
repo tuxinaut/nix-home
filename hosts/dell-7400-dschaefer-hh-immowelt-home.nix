@@ -835,7 +835,7 @@ hide_inactive = true;
         text = "
 #!/usr/bin/env bash
 
-[[ -f ${homeDirectory}/.borgmatic ]] && . ${homeDirectory}/.borgmatic
+[[ -f ${homeDirectory}/.borgmatic_pw ]] && . ${homeDirectory}/.borgmatic_pw
 
 ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/config.yaml
         ";
