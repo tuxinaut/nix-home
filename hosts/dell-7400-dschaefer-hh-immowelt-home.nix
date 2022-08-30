@@ -869,6 +869,12 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
               position = "1920,0";
             }
           ];
+          exec = [
+            "${pkgs.sway}/bin/swaymsg workspace 1:, move workspace to DP-6"
+            "${pkgs.sway}/bin/swaymsg workspace 2:, move workspace to DP-6"
+            "${pkgs.sway}/bin/swaymsg workspace 3:, move workspace to DP-6"
+            "${pkgs.sway}/bin/swaymsg workspace 5:, move workspace to DP-6"
+          ];
         };
         work_docked_2 = {
           outputs = [
@@ -881,6 +887,12 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
               position = "1920,0";
             }
           ];
+          exec = [
+            "${pkgs.sway}/bin/swaymsg workspace 1:, move workspace to DP-5"
+            "${pkgs.sway}/bin/swaymsg workspace 2:, move workspace to DP-5"
+            "${pkgs.sway}/bin/swaymsg workspace 3:, move workspace to DP-5"
+            "${pkgs.sway}/bin/swaymsg workspace 5:, move workspace to DP-5"
+          ];
         };
         private = {
           outputs = [
@@ -892,6 +904,12 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
               criteria = "eDP-1";
               position = "2560,0";
             }
+          ];
+          exec = [
+            "${pkgs.sway}/bin/swaymsg workspace 1:, move workspace to DP-4"
+            "${pkgs.sway}/bin/swaymsg workspace 2:, move workspace to DP-4"
+            "${pkgs.sway}/bin/swaymsg workspace 3:, move workspace to DP-4"
+            "${pkgs.sway}/bin/swaymsg workspace 5:, move workspace to DP-4"
           ];
         };
       };
