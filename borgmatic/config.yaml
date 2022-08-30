@@ -337,8 +337,8 @@ hooks:
     # before running all actions (if one of them is "create").
     # These are collected from all configuration files and then
     # run once before all of them (prior to all actions).
-    # before_everything:
-        # - echo "Starting actions."
+    before_everything:
+        - bash /home/dschaefer/.config/borgmatic/pre-hook
 
     # List of one or more shell commands or scripts to execute
     # after running all actions (if one of them is "create").
