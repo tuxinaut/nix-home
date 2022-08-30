@@ -3,6 +3,8 @@ system_switch:
 
 system_clean:
 	nix-env --delete-generations 14d
+	sudo nix-collect-garbage -d
+	sudo nixos-rebuild switch
 
 home_switch:
 	home-manager switch && source ~/.bash_profile
