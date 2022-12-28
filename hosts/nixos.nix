@@ -63,6 +63,7 @@ in
     firmwareLinuxNonfree
     fwupd
     canon-cups-ufr2
+    cups-filters
   ];
 
   # Enable virtualbox.
@@ -219,6 +220,7 @@ in
 
   # Enable SANE for scanning
   hardware.sane.enable = true;
+  hardware.sane.extraBackends = [ pkgs.sane-airscan ];
 
   # Update the CPU microcode for Intel processors.
   hardware.cpu.intel.updateMicrocode = true;
@@ -274,7 +276,7 @@ in
 
   users.extraUsers.tuxinaut = {
     createHome = true;
-    extraGroups = ["adbusers" "docker" "dialout" "wheel" "video" "audio" "disk" "networkmanager" "vboxusers" "scanner" "lp"];
+    extraGroups = ["adbusers" "docker" "dialout" "wheel" "video" "audio" "disk" "networkmanager" "vboxusers" "scanner" "lp" "avahi"];
     group = "users";
     home = "/home/tuxinaut";
     isNormalUser = true;

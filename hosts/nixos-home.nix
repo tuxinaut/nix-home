@@ -148,6 +148,7 @@ in
       pkgs.signal-desktop
       pkgs.bitwarden
       pkgs.hyper
+      pkgs.simple-scan
     ];
 
   gtk = {
