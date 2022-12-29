@@ -9,7 +9,7 @@ in
 #    };
     virtualbox = {
       host = {
-        package = unstable.virtualbox;
+        package = pkgs.virtualbox;
         enable = true;
         enableExtensionPack = true;
       };
