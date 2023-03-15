@@ -31,6 +31,9 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # https://wiki.archlinux.org/title/Intel_graphics
+  boot.kernelParams = [ "i915.enable_psr=0" ];
+
 boot.initrd.luks.devices =
 {
 luksroot = {
