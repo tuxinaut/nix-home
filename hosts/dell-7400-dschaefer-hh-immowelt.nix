@@ -82,7 +82,7 @@ keyMap = "de";
 
   # Nix automatically detects files in the store that have
   # identical contents, and replaces them with hard links to a single copy.
-  nix.autoOptimiseStore = true;
+  nix.settings.auto-optimise-store = true;
 
   hardware.opengl = {
     enable = true;
