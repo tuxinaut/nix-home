@@ -439,7 +439,6 @@ programs.vim = {
     #everforest
     iceberg-vim
 
-    vim-wayland-clipboard # https://github.com/jasonccox/vim-wayland-clipboard/
     tabular
     vim-indent-guides
     syntastic
