@@ -288,9 +288,9 @@ consistency:
 hooks:
     # List of one or more shell commands or scripts to execute
     # before creating a backup, run once per configuration file.
-    before_backup:
-        - echo "Starting a backup."
-        - bash /home/dschaefer/workspace/borgmatic/pre-hook
+    #before_backup:
+      #        - echo "Starting a backup."
+      #  - bash /home/dschaefer/workspace/borgmatic/pre-hook
 
     # List of one or more shell commands or scripts to execute
     # before pruning, run once per configuration file.
