@@ -922,6 +922,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
         };
         Service = {
           Type = "simple";
+          Environment = [ "PATH=${lib.makeBinPath [ pkgs.bash ]}" ];
           ExecStart = "/usr/bin/env bash ${homeDirectory}/.config/borgmatic/make_backup";
         };
       };
@@ -931,6 +932,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
         };
         Service = {
           Type = "simple";
+          Environment = [ "PATH=${lib.makeBinPath [ pkgs.bash ]}" ];
           ExecStart = "${pkgs.fd}/bin/fd -t f -d 1 --change-older-than 5weeks .*.png ${homeDirectory}/Pictures/ -X rm -v -- {}";
         };
       };
