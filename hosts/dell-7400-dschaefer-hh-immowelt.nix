@@ -7,47 +7,45 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
 in
-
 {
   imports =
-    [ # Include the results of the hardware scan.
-./dell-7400-dschaefer-hh-immowelt-hardware-configuration.nix
-#./virtualbox.nix
-    ];
+  [ # Include the results of the hardware scan.
+    ./dell-7400-dschaefer-hh-immowelt-hardware-configuration.nix
+  ];
 
-# https://github.com/NixOS/nixpkgs/pull/139807
-#  nixpkgs.overlays = [(
-#    self: super: {
-#      canon-cups-ufr2 = super.canon-cups-ufr2.overrideAttrs (old: {
-#        src = super.fetchurl {
-#          url = "https://gdlp01.c-wss.com/gds/4/0100010264/01/linux-UFRII-drv-v370-uken-07.tar.gz";
-#          sha256 = "01nxpg3h1c64p5skxv904fg5c4sblmif486vkij2v62wwn6l65pz";
-#        };
-#      });
-#    }
-#  )];
+  # https://github.com/NixOS/nixpkgs/pull/139807
+  #  nixpkgs.overlays = [(
+  #    self: super: {
+  #      canon-cups-ufr2 = super.canon-cups-ufr2.overrideAttrs (old: {
+  #        src = super.fetchurl {
+  #          url = "https://gdlp01.c-wss.com/gds/4/0100010264/01/linux-UFRII-drv-v370-uken-07.tar.gz";
+  #          sha256 = "01nxpg3h1c64p5skxv904fg5c4sblmif486vkij2v62wwn6l65pz";
+  #        };
+  #      });
+  #    }
+  #  )];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    # https://wiki.archlinux.org/title/Intel_graphics
+    kernelParams = [ "i915.enable_psr=0" ];
+    loader = {
+      # Use the systemd-boot EFI boot loader.
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    initrd.luks.devices = {
+      luksroot = {
+        device= "/dev/nvme0n1p2";
+        preLVM = true;
+      };
+    };
+  };
 
-  # https://wiki.archlinux.org/title/Intel_graphics
-  boot.kernelParams = [ "i915.enable_psr=0" ];
-
-boot.initrd.luks.devices =
-{
-luksroot = {
-device= "/dev/nvme0n1p2";
-preLVM = true;
-};
-};
-
-
-networking.hostName = "dell-7400-dschaefer-hh-immowelt"; # Define your hostname.
+  networking.hostName = "dell-7400-dschaefer-hh-immowelt"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
-time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Berlin";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -62,30 +60,12 @@ time.timeZone = "Europe/Berlin";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-i18n.defaultLocale = "en_US.UTF-8";
-console = {
-font = "Lat2-Terminus16";
-keyMap = "de";
-};
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
-  services.printing.drivers = [
-    pkgs.gutenprint
-    pkgs.gutenprintBin
-  ];
-  # Automatically run the garbage collector at a specific time.
-  nix.gc.automatic = true;
-
-  # Nix automatically detects files in the store that have
-  # identical contents, and replaces them with hard links to a single copy.
-  nix.settings.auto-optimise-store = true;
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "de";
+  };
 
   hardware.opengl = {
     enable = true;
@@ -100,23 +80,14 @@ keyMap = "de";
   sound.enable = true;
   hardware.bluetooth.enable = true;
 
-  services.blueman.enable = true;
-
-#hardware.bluetooth.settings = {
-#  general = "Enable=Source,Sink,Media,Socket";
-#};
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-users.users.dschaefer = {
-isNormalUser = true;
-uid=1000;
-createHome = true;
-group = "users";
-extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"]; # Enable ‘sudo’ for the user.
-};
+  users.users.dschaefer = {
+    isNormalUser = true;
+    uid=1000;
+    createHome = true;
+    group = "users";
+    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "vboxusers" ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -128,11 +99,6 @@ extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "vboxusers"]; # 
     pulseaudio
   ];
 
-services.udev.packages = with pkgs; [
-  yubikey-personalization
-  logitech-udev-rules
-];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -141,48 +107,61 @@ services.udev.packages = with pkgs; [
   #   enableSSHSupport = true;
   # };
 
-programs.sway = {
-enable = true;
-};
+  programs.sway = {
+    enable = true;
+  };
 
-programs.bash.enableCompletion = true;
-
-# Displays keypresses on screen on supported Wayland compositors (requires wlr_layer_shell_v1 support).
-#
-# https://git.sr.ht/~sircmpwn/wshowkeys
-# Does not work because of errors
-#programs.wshowkeys.enable = true;
+  programs.bash.enableCompletion = true;
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-# Needed for Yubikey
-services.pcscd.enable = true;
+  # Needed for Yubikey
+  services.pcscd.enable = true;
 
-services.pipewire = {
-  enable = true;
-  pulse.enable = true;
-
-  media-session.config.bluez-monitor.rules = [
-    {
-      matches = [
-        # Matches all sources
-        { "node.name" = "~bluez_input.*"; }
-        # Matches all outputs
-        { "node.name" = "~bluez_output.*"; }
-      ];
-      actions = {
-        "node.pause-on-idle" = false;
-      };
-    }
+  services.udev.packages = with pkgs; [
+    yubikey-personalization
+    logitech-udev-rules
   ];
-};
 
-services.fwupd.enable = true;
+  services.blueman.enable = true;
 
-services.upower.enable = true;
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+
+    media-session.config.bluez-monitor.rules = [
+      {
+        matches = [
+          # Matches all sources
+          { "node.name" = "~bluez_input.*"; }
+          # Matches all outputs
+          { "node.name" = "~bluez_output.*"; }
+        ];
+        actions = {
+          "node.pause-on-idle" = false;
+        };
+      }
+    ];
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+
+  services.printing.drivers = [
+    pkgs.gutenprint
+    pkgs.gutenprintBin
+  ];
+
+  services.fwupd.enable = true;
+
+  services.upower.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -190,18 +169,17 @@ services.upower.enable = true;
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-# Handy and needed
-# Without Firefox can't call the Slack app
-xdg = {
-  portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      #xdg-desktop-portal-gtk
-    ];
-    #gtkUsePortal = true;
+  # Handy and needed
+  # Without Firefox can't call the Slack app
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+      ];
+    };
   };
-};
+
   fileSystems = {
     "/storage/Sicherungen" = {
       device = "//nas.tuxinaut.de/Sicherungen";
@@ -219,6 +197,17 @@ xdg = {
       ];
     };
   };
+
+  #####################################
+  # Nix settings
+  #####################################
+
+  # Automatically run the garbage collector at a specific time.
+  nix.gc.automatic = true;
+
+  # Nix automatically detects files in the store that have
+  # identical contents, and replaces them with hard links to a single copy.
+  nix.settings.auto-optimise-store = true;
 
   nixpkgs = {
     config.allowUnfree = true;
