@@ -815,6 +815,7 @@ hide_inactive = true;
   home.file = {
       ".config/sirula/config.toml".source = ../sirula/config.toml;
       ".config/sirula/style.css".source = ../sirula/style.css;
+      ".thunderbird-signature.html".source = ../work/email/signature.html;
       "bin/screenshot".source = ../bash/screenshot.sh;
       "bin/mic_checker".source = ../bash/mic_checker.sh;
       "bin/dunst_volume".source = ../bash/dunst_volume.sh;
