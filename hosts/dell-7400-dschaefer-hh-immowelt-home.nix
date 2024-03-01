@@ -157,13 +157,13 @@ wayland.windowManager.sway = {
         command = "env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1 &";
       }
       {
-        command = "wl-paste -n  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=200 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
+        command = "wl-paste -n  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=${toString clipboardSize} -P --histpath=\"~/.local/share/clipman-primary.json\" &";
       }
       {
         # FIXME
         # Maybe shorter
         # https://www.reddit.com/r/swaywm/comments/ki4z9a/sync_clipboards/
-        command = "wl-paste -n -p  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=200 -P --histpath=\"~/.local/share/clipman-primary.json\" &";
+        command = "wl-paste -n -p  -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=${toString clipboardSize} -P --histpath=\"~/.local/share/clipman-primary.json\" &";
       }
     ];
     assigns = {
