@@ -692,122 +692,106 @@ tfmt="terraform fmt -recursive";
 
   programs.i3status-rust = {
     enable = true;
-    bars = {
-      main = {
-        theme = "solarized-dark";
+bars = {
+  main = {
+    settings = {
+      theme = {
+        theme =  "solarized-dark";
+      };
+      icons = {
         icons = "awesome5";
-        blocks = [
-{
-block = "notify";
-format = "{state}";
-}
-{
-  block = "custom";
-  command = "bash ${homeDirectory}/bin/mic_checker";
-  on_click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-  signal = 4;
-  interval = 30;
-}
-{
-block = "backlight";
-device = "intel_backlight";
-}
-          {
-block = "bluetooth";
-mac = "00:0E:DD:0A:E9:5F";
-label = "Shure BT2";
-hide_disconnected = true;
-}
-          {
-block = "bluetooth";
-mac = "00:02:3C:7C:9C:0D";
-label = "Outlier Sports";
-hide_disconnected = true;
-}
-          {
-block = "bluetooth";
-mac = "DA:0B:DA:C7:BD:A0";
-label = "MX Ergo";
-hide_disconnected = true;
-}
-{
-  block = "battery";
-  device = "BAT0";
-driver = "upower";
-format = "{percentage}% {time}";
-}
-{
-block = "music";
-marquee = true;
-}
-{
-  block = "watson";
-  show_time = false;
-}
-{
-block = "net";
-device = "wlo1";
-format = "{ssid} {signal_strength} {ip}";
-interval = 5;
-#use_bits = false; # broken?
-hide_inactive = true;
-}
-{
-block = "net";
-device = "ppp0";
-format = "{ip}";
-interval = 5;
-hide_inactive = true;
-}
-{
-block = "net";
-device = "tun0";
-format = "{ip}";
-interval = 5;
-hide_inactive = true;
-}
-{
-block = "net";
-device = "enp57s0u1u2";
-format = "{ip}";
-interval = 5;
-#use_bits = false;
-hide_inactive = true;
-}
-{
-block = "net";
-device = "enp57s0u1u4";
-format = "{ip}";
-interval = 5;
-#use_bits = false;
-hide_inactive = true;
-}
-#          {
-#              block = "disk_space";
-#              path = "/";
-#              alias = "/";
-#              info_type = "available";
-#              unit = "GB";
-#              interval = 60;
-#              warning = 20.0;
-#              alert = 10.0;
-#            }
+      };
+    };
+    blocks = [
+      {
+        block = "notify";
+      }
+      {
+        block = "custom";
+        command = "bash ${homeDirectory}/bin/mic_checker";
+        interval = 30;
+        click = [{
+          button = "left";
+          # Update 23.05 why do I have to do the pkill by myself now?
+          cmd = "pactl set-source-mute @DEFAULT_SOURCE@ toggle; pkill -SIGRTMIN+4 i3status-rs";
+        }];
+        signal = 4;
+      }
+            {
+              block = "backlight";
+              device = "intel_backlight";
+            }
+            {
+              block = "bluetooth";
+              mac = "DA:0B:DA:C7:BD:A0";
+              format = "$icon $name";
+              disconnected_format = "";
+            }
+            {
+              block = "battery";
+              device = "BAT0";
+              driver = "upower";
+              format = "$icon $percentage% $time";
+            }
+            {
+              block = "music";
+            }
+            {
+              block = "watson";
+              show_time = false;
+            }
+            {
+              block = "net";
+              device = "wlo1";
+              format = "$icon $ssid $signal_strength $ip";
+              interval = 5;
+              missing_format = "";
+            }
+            {
+              block = "net";
+              device = "ppp0";
+              format = "$icon $ip";
+              interval = 5;
+              missing_format = "";
+            }
+            {
+              block = "net";
+              device = "tun0";
+              format = "$icon $ip";
+              interval = 5;
+              missing_format = "";
+            }
+            {
+              block = "net";
+              device = "enp57s0u1u2";
+              format = "$icon $ip";
+              interval = 5;
+              missing_format = "";
+            }
+            {
+              block = "net";
+              device = "enp57s0u1u4";
+              format = "$icon $ip";
+              interval = 5;
+              missing_format = "";
+            }
             {
               block = "memory";
-              display_type = "memory";
-              format_mem = "{mem_used_percents}%";
-              format_swap = "{swap_used_percents}%";
+              format = "$icon $mem_avail.eng(prefix:M)/$mem_total.eng(prefix:M)($mem_total_used_percents.eng(w:2))";
+              format_alt = "$icon_swap $swap_free.eng(w:3,u:B,p:M)/$swap_total.eng(w:3,u:B,p:M)($swap_used_percents.eng(w:2))";
             }
             {
               block = "load";
               interval = 1;
-              format = "{1m}";
+              format = "$icon $1m.eng(w:4)";
             }
-            { block = "sound"; }
+            {
+              block = "sound";
+            }
             {
               block = "time";
               interval = 60;
-              format = "%a %Y-%m-%d %R";
+              format = "$icon $timestamp.datetime(f:'%a %Y-%m-%d %R', l:de_DE)";
             }
         ];
       };
