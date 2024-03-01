@@ -156,19 +156,20 @@ in
     enable = true;
     pulse.enable = true;
 
-    media-session.config.bluez-monitor.rules = [
-      {
-        matches = [
-          # Matches all sources
-          { "node.name" = "~bluez_input.*"; }
-          # Matches all outputs
-          { "node.name" = "~bluez_output.*"; }
-        ];
-        actions = {
-          "node.pause-on-idle" = false;
-        };
-      }
-    ];
+# Deactivated with 23.05 update
+#    media-session.config.bluez-monitor.rules = [
+#      {
+#        matches = [
+#          # Matches all sources
+#          { "node.name" = "~bluez_input.*"; }
+#          # Matches all outputs
+#          { "node.name" = "~bluez_output.*"; }
+#        ];
+#        actions = {
+#          "node.pause-on-idle" = false;
+#        };
+#      }
+#    ];
   };
 
   # Enable CUPS to print documents.
