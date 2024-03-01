@@ -98,7 +98,7 @@ in
     pkgs.wdisplays
     pkgs.wlr-randr
     # Yubikey Totp
-    pkgs.yubioath-desktop
+    pkgs.yubioath-flutter
     # Multimedia
     pkgs.playerctl # https://github.com/altdesktop/playerctl
     pkgs.pavucontrol
