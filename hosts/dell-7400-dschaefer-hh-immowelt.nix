@@ -117,6 +117,12 @@ in
   # https://github.com/adrienverge/openfortivpn/issues/1076#issuecomment-1777003887
   environment.etc."ppp/options".text = "ipcp-accept-remote";
 
+  # If you are using Wayland you can choose to use the Ozone Wayland support in Chrome and several Electron apps by setting the environment variable NIXOS_OZONE_WL=1
+  # https://github.com/NixOS/nixpkgs/blob/07dc8ecd7893b1b3b08b6b96ccd29e11b925fd23/nixos/doc/manual/release-notes/rl-2205.section.md?plain=1#L783-L789
+  # https://discourse.nixos.org/t/default-command-line-args-for-the-brave-browser/21471
+  # https://nixos.wiki/wiki/Slack
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
