@@ -951,7 +951,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
         Timer = {
           Unit = [ "borg_backup.service" ];
           Persistent = true;
-          OnCalendar = [ "weekly" ];
+          OnCalendar = [ "Mon,Thu 12:00" ];
         };
         Unit = {
           Description = "Personal Borg backup";
