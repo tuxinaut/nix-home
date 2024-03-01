@@ -99,6 +99,8 @@ in
     pkgs.wlr-randr
     # Yubikey Totp
     pkgs.yubioath-flutter
+    # Office
+    pkgs.libreoffice
     # Multimedia
     pkgs.playerctl # https://github.com/altdesktop/playerctl
     pkgs.pavucontrol
