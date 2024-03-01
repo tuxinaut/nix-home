@@ -996,7 +996,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz;
     };
 
     home = {
