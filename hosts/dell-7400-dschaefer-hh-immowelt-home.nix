@@ -880,6 +880,24 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
             "${pkgs.sway}/bin/swaymsg workspace 5:, move workspace to DP-5"
           ];
         };
+        koenigs = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL P2214H 29C295BG0EVL";
+              position = "0,0";
+            }
+            {
+              criteria = "AU Optronics 0x633D Unknown";
+              position = "1920,0";
+            }
+          ];
+          exec = [
+            "${pkgs.sway}/bin/swaymsg workspace 1:, move workspace to DP-5"
+            "${pkgs.sway}/bin/swaymsg workspace 2:, move workspace to DP-5"
+            "${pkgs.sway}/bin/swaymsg workspace 3:, move workspace to DP-5"
+            "${pkgs.sway}/bin/swaymsg workspace 5:, move workspace to DP-5"
+          ];
+        };
         private = {
           outputs = [
             {
