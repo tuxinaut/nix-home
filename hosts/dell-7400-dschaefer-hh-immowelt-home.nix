@@ -57,7 +57,7 @@ in
 
   home.packages = [
     # languages runtimes
-    pkgs.nodejs-16_x
+    pkgs.nodejs_18
     pkgs.nodePackages.typescript
     pkgs.terraform-ls # Terraform Language Server
     # backup
