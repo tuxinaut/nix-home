@@ -114,6 +114,9 @@ in
     pulseaudio
   ];
 
+  # https://github.com/adrienverge/openfortivpn/issues/1076#issuecomment-1777003887
+  environment.etc."ppp/options".text = "ipcp-accept-remote";
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
