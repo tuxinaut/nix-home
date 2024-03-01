@@ -21,20 +21,21 @@ in
   # This finally enables functional screensharing in the Slack app!
   #
   # https://www.guyrutenberg.com/2022/03/12/slack-screen-sharing-under-wayland/
-  nixpkgs.overlays = [(
-    self: super: {
-      slack  = unstable.slack.overrideAttrs (old: {
-        installPhase = old.installPhase + ''
-          rm $out/bin/slack
-
-          makeWrapper $out/lib/slack/slack $out/bin/slack \
-          --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-          --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
-          --add-flags "--enable-features=WebRTCPipeWireCapturer %U"
-        '';
-      });
-    }
-  )];
+#  nixpkgs.overlays = [
+#    (
+#    self: super: {
+#      slack  = unstable.slack.overrideAttrs (old: {
+#        installPhase = old.installPhase + ''
+#          rm $out/bin/slack
+#
+#          makeWrapper $out/lib/slack/slack $out/bin/slack \
+#          --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
+#          --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
+#          --add-flags "--enable-features=WebRTCPipeWireCapturer %U"
+#        '';
+#      });
+#    }
+#    )];
 
   home.sessionPath = [
     "${homeDirectory}/bin"
