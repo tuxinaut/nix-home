@@ -124,7 +124,6 @@ in
     pkgs.meld # diff tool
     pkgs.gnupg
     # Communication
-    unstable.teams
     pkgs.signal-desktop
     pkgs.slack
     # System
