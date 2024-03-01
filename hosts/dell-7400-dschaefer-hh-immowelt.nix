@@ -14,7 +14,18 @@ in
   ];
 
   # https://github.com/NixOS/nixpkgs/pull/139807
-  #  nixpkgs.overlays = [(
+#  nixpkgs.overlays = [(
+#    self: super:
+#{
+#  ppp = super.ppp.overrideAttrs (old: {
+#    version = "2.4.9";
+#    sha256 = "sha256-8+nbqRNfKPLDx+wmuKSkv+BSeG72hKJI4dNqypqeEK4=";
+#    configureFlags = [
+#      "--with-openssl=${super.openssl.dev}"
+#    ];
+#  });
+#}
+
   #    self: super: {
   #      canon-cups-ufr2 = super.canon-cups-ufr2.overrideAttrs (old: {
   #        src = super.fetchurl {
@@ -23,7 +34,7 @@ in
   #        };
   #      });
   #    }
-  #  )];
+ #   )];
 
   boot = {
     # https://wiki.archlinux.org/title/Intel_graphics
