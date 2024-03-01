@@ -123,8 +123,6 @@ in
     pkgs.git
     pkgs.meld # diff tool
     pkgs.gnupg
-    #pkgs.phantomjs is needed for SAMLtoAWS???
-    pkgs.chromedriver
     # Communication
     unstable.teams
     pkgs.signal-desktop
