@@ -66,6 +66,10 @@ in
 
   networking.networkmanager.enable = true;
 
+  # New office?
+  networking.networkmanager.wifi.macAddress = "52:68:56:ac:59:0d";
+  networking.networkmanager.wifi.scanRandMacAddress = false;
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
