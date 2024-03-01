@@ -137,7 +137,7 @@ in
     pkgs.sirula
     pkgs.swayr
     pkgs.wofi
-    unstable.joplin-desktop
+    pkgs.joplin-desktop
     # Windows stuff
     pkgs.remmina
     # Tools
