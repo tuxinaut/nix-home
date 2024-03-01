@@ -209,7 +209,7 @@ in
 
   fileSystems = {
     "/storage/Sicherungen" = {
-      device = "//nas.tuxinaut.de/Sicherungen";
+      device = "//nas.tuxinaut.de/backups";
       fsType = "cifs";
       noCheck = true;
       options = [
