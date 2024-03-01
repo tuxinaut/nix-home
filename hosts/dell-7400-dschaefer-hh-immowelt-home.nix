@@ -3,6 +3,8 @@
 let
   homeDirectory = "/home/dschaefer";
 
+  clipboardSize = 2000;
+
   loadPlugin = plugin: ''
     set rtp^=${plugin.rtp}
     set rtp+=${plugin.rtp}/after
