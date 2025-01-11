@@ -215,9 +215,11 @@ in
             "Control+${modifier}+q" = "workspace back_and_forth";
             "${modifier}+Tab" = "exec rofi -show combi run -threads 0";
             "${modifier}+Shift+e" = "mode \"\$mode_system\"";
-            "XF86AudioRaiseVolume" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 5%+ unmute";
-            "XF86AudioLowerVolume" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 5%- unmute";
-            "XF86AudioMute" = "exec ${pkgs.alsaUtils}/bin/amixer -q set Master 1+ toggle";
+
+            "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1.1 @DEFAULT_AUDIO_SINK@ 5%+";
+            "XF86AudioLowerVolume" = "exec wpctl set-volume -l 1.1 @DEFAULT_AUDIO_SINK@ 5%-";
+            "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+
             "XF86MonBrightnessUp" = "exec xbacklight -inc 10";
             "XF86MonBrightnessDown" = "exec xbacklight -dec 10";
           };
