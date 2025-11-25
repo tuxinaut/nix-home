@@ -84,7 +84,7 @@ in
     pkgs.eog
     pkgs.pinentry
     # languages runtimes
-    pkgs.nodejs_18
+    pkgs.nodejs_24
     pkgs.nodePackages.typescript
     pkgs.terraform-ls # Terraform Language Server
     # backup
