@@ -13,12 +13,6 @@
   boot.blacklistedKernelModules = [ "snd_pcsp" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams =[
-    # needed for Intel Iris Xe
-#    "i915.force_probe=46a8"
-#    "i915.enable_guc=3"
-#    "i915.fastboot=1"
-  ];
   boot.kernel.sysctl = {
     "dev.tty.legacy_tiocsti" = 1;
   };
