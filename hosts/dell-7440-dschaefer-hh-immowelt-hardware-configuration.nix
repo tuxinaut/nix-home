@@ -19,6 +19,9 @@
 #    "i915.enable_guc=3"
 #    "i915.fastboot=1"
   ];
+  boot.kernel.sysctl = {
+    "dev.tty.legacy_tiocsti" = 1;
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/4eb41df6-b0ae-48de-8f28-4f6f878c354e";
