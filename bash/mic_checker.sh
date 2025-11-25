@@ -15,7 +15,10 @@ CURRENT_SOURCE=$(pactl info | grep "Default Source" | cut -f3 -d" ")
 MUTED=$(pactl list sources | grep -A 10 $CURRENT_SOURCE | grep -c "Mute: yes")
 
 if [[ $MUTED -eq 1 ]]; then
+  # It does not work because this scriot is called every 5 seconds from i3status-rs
+  # notify-send -e -a "changeMic" -u low -i microphone "Mic muted"
   echo ""
 else
+  # notify-send -e -a "changeMic" -u low -i microphone "Mic on"
   echo ""
 fi
