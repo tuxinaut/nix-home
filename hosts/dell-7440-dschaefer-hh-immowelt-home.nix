@@ -28,6 +28,7 @@ let
     # packages for i3status-rust
     pkgs.iw
     pkgs.ethtool
+    pkgs.dig
   ];
 in
 {
