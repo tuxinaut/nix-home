@@ -65,6 +65,11 @@ in
     cups-filters
   ];
 
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD"; # Force intel-media-driver
+    #LIBGL_DRI3_DISABLE = 1; # https://wiki.archlinux.org/title/Intel_graphics#DRI3_issues
+  };
+
   # Enable virtualbox.
   virtualisation = {
     docker = {
@@ -239,14 +244,15 @@ in
       };
     };
 
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl
-  ];
-  # needed to support 32Bit games
-  hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
+  hardware.graphics = {
+    enable = true;
+
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
+    ];
+  };
 
   hardware.acpilight.enable = true;
 
@@ -256,6 +262,19 @@ in
   # services.xserver.xkbOptions = "eurosign:e";
   services.xserver.windowManager.i3.enable = true;
   services.xserver.autorun = true;
+
+  # Double check if that here really helps
+  # https://www.youtube.com/watch?v=9hIRq5HTh5s
+  services.xserver.videoDrivers = [ "modesetting" ];
+
+# Not working with 24.11 anymore
+# Youtube performace with 2x is horrible :|
+# https://github.com/NixOS/nixpkgs/pull/365448/files#diff-a9dc66a79341a1e27acaee259a4f5c9e8bc6b2386b701b93b4e071dcae80a2c4
+#  services.xserver.videoDrivers = [ "intel" ];
+#services.xserver.deviceSection = ''
+#  Option "TearFree" "true"
+#  Option "DRI" "3" → Old firefox crashes
+#'';
 
   # Enable touchpad support.
   services.libinput.enable = true;
@@ -285,6 +304,11 @@ in
   nixpkgs = {
     config.allowUnfree = true;
     config.allowBroken = true;
+
+    # https://nixos.wiki/wiki/Accelerated_Video_Playback
+    config.packageOverrides = pkgs: {
+      intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+    };
   };
 
   # This value determines the NixOS release with which your system is to be
