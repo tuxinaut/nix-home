@@ -60,6 +60,12 @@ in
     ./alacritty.nix
   ];
 
+  nixpkgs.overlays = [(
+    self: super: {
+      fcitx-engines = pkgs.fcitx5;
+    }
+    )];
+
   home.keyboard.layout = "de";
 
   home.packages = [
