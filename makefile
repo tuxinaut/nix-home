@@ -1,4 +1,5 @@
 system_switch:
+	sudo nix-channel --update
 	sudo nixos-rebuild --upgrade switch
 
 system_clean:
