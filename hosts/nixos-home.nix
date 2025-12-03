@@ -80,7 +80,7 @@ in
       pkgs.parcellite
       pkgs.redshift
       pkgs.vlc
-      pkgs.youtube-dl
+      pkgs.yt-dlp
       pkgs.hugo
       pkgs.borgbackup
       pkgs.kbfs
