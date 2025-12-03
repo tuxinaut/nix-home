@@ -159,7 +159,7 @@ in
       })
       pkgs.acpilight
       pkgs.x265
-      pkgs.signal-desktop
+      unstable.signal-desktop
       pkgs.bitwarden
       pkgs.hyper
       pkgs.simple-scan
