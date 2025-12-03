@@ -162,6 +162,7 @@ in
       unstable.signal-desktop
       pkgs.bitwarden
       pkgs.simple-scan
+      pkgs.pdfarranger
       pkgs.inkscape-with-extensions
     ];
 
