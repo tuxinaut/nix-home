@@ -831,7 +831,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
       enableScDaemon = true;
       enableSshSupport = true;
       # FIXME
-      #pinentryPackage = "tty";
+      pinentry.package = pkgs.pinentry-tty;
 
       defaultCacheTtl = 1800;
       maxCacheTtlSsh = 14400;
