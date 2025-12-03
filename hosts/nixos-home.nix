@@ -163,6 +163,7 @@ in
       pkgs.bitwarden
       pkgs.simple-scan
       pkgs.pdfarranger
+      pkgs.intel-gpu-tools
       pkgs.inkscape-with-extensions
     ];
 
