@@ -500,6 +500,11 @@ exit 0
       "/home/tuxinaut/.local/bin"
     ];
 
+    home.sessionVariables = {
+      TERMINAL = "alacritty";
+      EDITOR = "vim";
+    };
+
     services.screen-locker = {
       enable = true;
       inactiveInterval = 5;
