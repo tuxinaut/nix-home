@@ -98,6 +98,7 @@ in
       pkgs.blueman
       pkgs.ranger
       pkgs.powerline-fonts
+      pkgs.roboto
       pkgs.wget
       pkgs.usbutils
       pkgs.gnome-keyring
