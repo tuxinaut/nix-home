@@ -470,6 +470,14 @@ esac
 
 exit 0
 '';};
+"zwift.sh" = {
+        source = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/netbrain/zwift/master/zwift.sh";
+            hash = "sha256-Xh3mOwOOWeE1QBHz1mN14crOvetYxXZBCsix1Hd0Gdk=";
+        };
+        target = ".local/bin/zwift";
+        executable = true;
+      };
     };
 
     programs.home-manager = {
@@ -481,6 +489,10 @@ exit 0
 
     home.username = "tuxinaut";
     home.homeDirectory = "/home/tuxinaut/";
+
+    home.sessionPath = [
+      "/home/tuxinaut/.local/bin"
+    ];
 
     services.screen-locker = {
       enable = true;
