@@ -166,6 +166,7 @@ in
       pkgs.intel-gpu-tools
       pkgs.inkscape-with-extensions
       pkgs.eog
+      pkgs.playerctl # https://github.com/altdesktop/playerctl
     ];
 
   gtk = {
@@ -236,6 +237,11 @@ in
             "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1.1 @DEFAULT_AUDIO_SINK@ 5%+";
             "XF86AudioLowerVolume" = "exec wpctl set-volume -l 1.1 @DEFAULT_AUDIO_SINK@ 5%-";
             "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+
+            # Media player controls
+            "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+            "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+            "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
 
             "XF86MonBrightnessUp" = "exec xbacklight -inc 10";
             "XF86MonBrightnessDown" = "exec xbacklight -dec 10";
