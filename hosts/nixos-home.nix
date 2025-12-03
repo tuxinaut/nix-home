@@ -23,7 +23,7 @@ let
 
   # See https://nixos.wiki/wiki/Vim
   my_vim_configurable = pkgs.vim_configurable.override {
-    python3 = pkgs.python39Full;
+    python3 = pkgs.python311Full;
   };
 
   my_vimPlugins = with pkgs.vimPlugins; [
@@ -78,7 +78,7 @@ in
       pkgs.hstr
       pkgs.gimp
       pkgs.yubikey-personalization-gui
-      pkgs.yubioath-desktop
+      pkgs.yubioath-flutter
       pkgs.lm_sensors
       pkgs.keepassxc
       pkgs.dropbox
@@ -87,7 +87,7 @@ in
       pkgs.powerline-fonts
       pkgs.wget
       pkgs.usbutils
-      pkgs.gnome3.gnome-keyring
+      pkgs.gnome-keyring
       pkgs.dconf
       pkgs.pavucontrol
       pkgs.lsof
@@ -102,22 +102,22 @@ in
       pkgs.atool
       pkgs.hicolor-icon-theme
       pkgs.gnome-themes-extra
-      pkgs.gnome.adwaita-icon-theme
+      pkgs.adwaita-icon-theme
       pkgs.go-mtpfs
       pkgs.zathura
       pkgs.gnumake
-      pkgs.yubikey-manager-qt
       pkgs.file
       pkgs.scrot
       pkgs.awscli
       pkgs.imagemagick
-      pkgs.inkscape
       pkgs.ruby
       pkgs.ffmpeg
-      unstable.kdenlive
-      pkgs.breeze-qt5
-      pkgs.breeze-gtk
-      pkgs.breeze-icons
+
+      pkgs.kdePackages.kdenlive
+      pkgs.kdePackages.breeze
+      pkgs.kdePackages.breeze-gtk
+      pkgs.kdePackages.breeze-icons
+
       pkgs.s-tui
       pkgs.xclip
       pkgs.easytag
@@ -130,8 +130,8 @@ in
       pkgs.killall
       pkgs.steam-run-native
       pkgs.haskellPackages.greenclip
-      pkgs.gnome3.gnome-calculator
-      pkgs.gnome3.gnome-system-monitor
+      pkgs.gnome-calculator
+      pkgs.gnome-system-monitor
       (
         my_vim_configurable.customize {
           name = "vim";
@@ -149,6 +149,7 @@ in
       pkgs.bitwarden
       pkgs.hyper
       pkgs.simple-scan
+      pkgs.inkscape-with-extensions
     ];
 
   gtk = {
@@ -165,7 +166,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 
 
@@ -191,7 +192,7 @@ in
       '';
       config = {
         modifier = "${modifier}";
-        focus.forceWrapping = true;
+        focus.wrapping = "force";
         keybindings =
           lib.mkOptionDefault {
             "${modifier}+1" = "workspace 1:Web";
@@ -297,6 +298,8 @@ in
           {
             id = "bar-0";
             position = "top";
+            statusCommand = "i3status --config ~/.i3status.conf";
+            trayOutput = "primary";
           }
         ];
       };
@@ -461,8 +464,13 @@ exit 0
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/rycee/home-manager/archive/release-20.09.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-25.05.zip;
     };
+
+    home.stateVersion = "22.11";
+
+    home.username = "tuxinaut";
+    home.homeDirectory = "/home/tuxinaut/";
 
     services.screen-locker = {
       enable = true;

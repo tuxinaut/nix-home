@@ -26,12 +26,10 @@ in
     };
   };
 
-  boot.blacklistedKernelModules = [ "psmouse" ];
-  boot.kernelParams = [ "modeset=1" "i915.enable_fbc=1" "i915.enable_guc=2"];
-#  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "modeset=1" ];
 
   # Whether to delete all files in /tmp during boot.
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
 
   networking = {
     networkmanager = {
@@ -88,11 +86,12 @@ in
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.bash.enableCompletion = true;
+  programs.bash.completion.enable = true;
+
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
-  programs.qt5ct.enable = true;
+  qt.platformTheme = "qt5ct";
 
   programs.gnupg.agent = {
     enable = true;
@@ -225,22 +224,19 @@ in
   # Update the CPU microcode for Intel processors.
   hardware.cpu.intel.updateMicrocode = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = ''
-      load-module module-switch-on-connect
-    '';
+    pulse.enable = true;
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
+
+    hardware.bluetooth.enable = true;
+    hardware.bluetooth.settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
     };
-  };
 
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
@@ -255,13 +251,15 @@ in
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "de";
+  services.xserver.xkb.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
   services.xserver.windowManager.i3.enable = true;
   services.xserver.autorun = true;
 
   # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
+
+  services.xserver.exportConfiguration = true;
 
   services.autorandr.enable = true;
   services.keybase.enable = true;
