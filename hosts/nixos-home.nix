@@ -83,6 +83,7 @@ in
       pkgs.yt-dlp
       pkgs.hugo
       pkgs.borgbackup
+      pkgs.borgmatic
       pkgs.kbfs
       pkgs.keybase
       pkgs.keybase-gui
