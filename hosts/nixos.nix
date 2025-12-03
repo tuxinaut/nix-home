@@ -104,6 +104,11 @@ in
     #enableSSHSupport = true;
   };
 
+  programs.ausweisapp = {
+    enable = true;
+    openFirewall = true;
+  };
+
   # List services that you want to enable:
 
   # Needed for Yubikey

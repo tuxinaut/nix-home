@@ -69,6 +69,7 @@ in
   home.keyboard.layout = "de";
 
   home.packages = [
+      unstable.ausweisapp
       pkgs.htop
       pkgs.git
       pkgs.terminator
