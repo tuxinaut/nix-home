@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
@@ -10,7 +10,8 @@ in
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      <nixos-hardware/dell/xps/13-9360> # https://github.com/NixOS/nixos-hardware
       ./nixos-hardware-configuration.nix
     ];
 
