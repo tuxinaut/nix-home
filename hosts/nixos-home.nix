@@ -161,7 +161,6 @@ in
       pkgs.x265
       unstable.signal-desktop
       pkgs.bitwarden
-      pkgs.hyper
       pkgs.simple-scan
       pkgs.inkscape-with-extensions
     ];
