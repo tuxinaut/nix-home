@@ -30,6 +30,10 @@ let
     pkgs.ethtool
     pkgs.dig
   ];
+
+  desktopPackages = [
+    pkgs.bitwarden-desktop
+  ];
 in
 {
   # This finally enables functional screensharing in the Slack app!
@@ -162,7 +166,8 @@ in
     # Tools
     pkgs.wtype # needed by wofi-emoji?
   ] ++ webPackages
-    ++ networkPackages;
+    ++ networkPackages
+    ++ desktopPackages;
 
 wayland.windowManager.sway = {
   enable = true;
