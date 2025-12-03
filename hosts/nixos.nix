@@ -122,7 +122,7 @@ in
 
   fileSystems = {
     "/storage/Daten" = {
-      device = "//nas.tuxinaut.de/Daten";
+      device = "//nas.tuxinaut.de/data";
       fsType = "cifs";
       noCheck = true;
       options = [
@@ -152,22 +152,7 @@ in
       ];
     };
     "/storage/Photo" = {
-      device = "//nas.tuxinaut.de/Photo";
-      fsType = "cifs";
-      noCheck = true;
-      options = [
-        "user"
-        "uid=1000"
-        "gid=1000"
-        "credentials=/etc/nas"
-        "nofail"
-        "x-systemd.automount"
-        "x-systemd.mount-timeout=5s"
-        "_netdev"
-      ];
-    };
-    "/storage/Robocopy" = {
-      device = "//nas.tuxinaut.de/Robocopy";
+      device = "//nas.tuxinaut.de/photo";
       fsType = "cifs";
       noCheck = true;
       options = [
@@ -182,7 +167,7 @@ in
       ];
     };
     "/storage/Sicherungen" = {
-      device = "//nas.tuxinaut.de/Sicherungen";
+      device = "//nas.tuxinaut.de/backups";
       fsType = "cifs";
       noCheck = true;
       options = [
@@ -190,6 +175,51 @@ in
         "uid=1000"
         "gid=1000"
         "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
+      ];
+    };
+    "/storage/docker" = {
+      device = "//nas.tuxinaut.de/docker";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "uid=1000"
+        "gid=1000"
+        "credentials=/etc/nas-admin"
+        "nofail"
+        "x-systemd.automount"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
+      ];
+    };
+    "/storage/documents" = {
+      device = "//nas.tuxinaut.de/documents";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "uid=1000"
+        "gid=1000"
+        "credentials=/etc/nas"
+        "nofail"
+        "x-systemd.automount"
+        "x-systemd.mount-timeout=5s"
+        "_netdev"
+      ];
+    };
+    "/storage/homes" = {
+      device = "//nas.tuxinaut.de/homes";
+      fsType = "cifs";
+      noCheck = true;
+      options = [
+        "user"
+        "uid=1000"
+        "gid=1000"
+        "credentials=/home/tuxinaut/.nas-root"
         "nofail"
         "x-systemd.automount"
         "x-systemd.mount-timeout=5s"
