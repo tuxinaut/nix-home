@@ -12,6 +12,10 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  boot.kernel.sysctl = {
+    "dev.tty.legacy_tiocsti" = 1;
+  };
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/63682534-1d8b-4391-b78b-93bc300f7d1c";
       fsType = "ext4";
