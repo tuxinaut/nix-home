@@ -305,13 +305,8 @@ in
   services.xserver.windowManager.i3.enable = true;
   services.xserver.autorun = true;
 
-  # Double check if that here really helps
-  # https://www.youtube.com/watch?v=9hIRq5HTh5s
-  services.xserver.videoDrivers = [ "intel" ];
-  services.xserver.deviceSection = ''
-    Option "TearFree" "true"
-    Option "DRI" "2"
-  '';
+  # TearFree test video https://www.youtube.com/watch?v=9hIRq5HTh5s
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   # Enable touchpad support.
   services.libinput.enable = true;
