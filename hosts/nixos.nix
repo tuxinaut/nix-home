@@ -307,16 +307,11 @@ in
 
   # Double check if that here really helps
   # https://www.youtube.com/watch?v=9hIRq5HTh5s
-  services.xserver.videoDrivers = [ "modesetting" ];
-
-# Not working with 24.11 anymore
-# Youtube performace with 2x is horrible :|
-# https://github.com/NixOS/nixpkgs/pull/365448/files#diff-a9dc66a79341a1e27acaee259a4f5c9e8bc6b2386b701b93b4e071dcae80a2c4
-#  services.xserver.videoDrivers = [ "intel" ];
-#services.xserver.deviceSection = ''
-#  Option "TearFree" "true"
-#  Option "DRI" "3" → Old firefox crashes
-#'';
+  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.deviceSection = ''
+    Option "TearFree" "true"
+    Option "DRI" "2"
+  '';
 
   # Enable touchpad support.
   services.libinput.enable = true;
