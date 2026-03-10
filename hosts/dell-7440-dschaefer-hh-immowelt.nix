@@ -67,7 +67,7 @@ in
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
       intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      vaapiVdpau
+      libva-vdpau-driver
       libvdpau-va-gl
     ];
   };
@@ -170,7 +170,7 @@ in
 
   services.cloudflare-warp = {
     enable = true;
-    package = unstable.cloudflare-warp;
+    package = pkgs.cloudflare-warp;
     openFirewall = true;
   };
 

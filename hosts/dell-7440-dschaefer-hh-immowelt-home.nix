@@ -18,7 +18,7 @@ let
   ];
 
   webPackages =  [
-    pkgs.firefox-wayland
+    pkgs.firefox
     pkgs.thunderbird
     pkgs.google-chrome
   ];
@@ -87,7 +87,7 @@ in
 
   home.packages = [
     pkgs.eog
-    pkgs.pinentry
+    pkgs.pinentry-curses
     # languages runtimes
     pkgs.nodejs_24
     pkgs.nodePackages.typescript
@@ -133,7 +133,7 @@ in
     # terminal
     pkgs.bash-completion
     pkgs.hstr
-    pkgs.gitAndTools.scmpuff
+    pkgs.scmpuff
     pkgs.complete-alias
     pkgs.fastfetch
     # fonts
@@ -1014,7 +1014,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
     };
 
     home = {
