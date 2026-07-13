@@ -34,6 +34,12 @@ let
   desktopPackages = [
     pkgs.bitwarden-desktop
   ];
+
+  developmentPackages = [
+    pkgs.tenv # tenv, a versatile version manager for OpenTofu, Terraform, Terragrunt, Terramate and Atmos
+    pkgs.tflint # A Pluggable Terraform Linter
+    pkgs.github-cli #
+  ];
 in
 {
   # This finally enables functional screensharing in the Slack app!
@@ -167,7 +173,8 @@ in
     pkgs.wtype # needed by wofi-emoji?
   ] ++ webPackages
     ++ networkPackages
-    ++ desktopPackages;
+    ++ desktopPackages
+    ++ developmentPackages;
 
 wayland.windowManager.sway = {
   enable = true;
