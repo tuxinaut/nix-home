@@ -456,6 +456,7 @@ programs.vim = {
         core.excludesfile = "~/.gitignore";
         pull.ff = "only";
         branch.sort = "authordate";
+        init.defaultBranch = "main";
       };
       includes = [
         {
