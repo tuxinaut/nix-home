@@ -24,10 +24,12 @@ in
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    initrd.luks.devices = {
-      luksroot = {
-        device= "/dev/nvme0n1p2";
-        preLVM = true;
+    initrd = {
+      luks.devices = {
+        luksroot = {
+          device = "/dev/disk/by-uuid/b7b71a0d-cb34-475d-8683-0a70ef8f33e6";
+          preLVM = true;
+        };
       };
     };
   };

@@ -17,10 +17,11 @@
     "dev.tty.legacy_tiocsti" = 1;
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4eb41df6-b0ae-48de-8f28-4f6f878c354e";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+    options = [ "x-systemd.device-timeout=infinity" ];
+  };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/1BCB-E9E5";
