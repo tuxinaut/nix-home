@@ -668,28 +668,6 @@ W_DAY="watson log -dGc --ignore-project break --ignore-project \"slack time\"";
     };
   };
 
-#  programs.fuzzel.enable = true;
-#  programs.swayr = {
-#    enable = true;
-#    systemd.enable = true;
-#    settings = {
-#      menu = {
-#        executable = "${pkgs.fuzzel}/bin/fuzzel";
-#        args = [
-#          "--dmenu"
-#          "--prompt=🪟❯ "
-#          "--width=100"
-#          "--font=Hack:size=10"
-#          "--line-height=20"
-#        ];
-#      };
-#      format = {
-#          window_format = "{app_name:{:<11.11}} “{title:{:<60.60}...}” on {workspace_name:{:<13.13}} \\u0000icon\\u001f{app_icon}"; #FIXME formating
-#          indent = " ";
-#        };
-#      };
-#    };
-
   programs.i3status-rust = {
     enable = true;
 bars = {
