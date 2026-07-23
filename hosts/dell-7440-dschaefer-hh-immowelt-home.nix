@@ -96,7 +96,7 @@ in
     pkgs.pinentry-curses
     # languages runtimes
     pkgs.nodejs_24
-    pkgs.nodePackages.typescript
+    pkgs.typescript
     pkgs.terraform-ls # Terraform Language Server
     # backup
     pkgs.borgbackup
@@ -408,7 +408,6 @@ programs.vim = {
   plugins = with pkgs.vimPlugins; [
     coc-nvim
     coc-json
-    coc-tsserver
 
     vim-terraform
 
@@ -1023,7 +1022,7 @@ ${unstable.borgmatic}/bin/borgmatic -v2 -c ${homeDirectory}/.config/borgmatic/co
 
     programs.home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
     };
 
     home = {
